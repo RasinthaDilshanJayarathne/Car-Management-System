@@ -142,10 +142,10 @@
             guna2GradientPanel1.Controls.Add(lblOrderId);
             guna2GradientPanel1.Controls.Add(txtOrderId);
             guna2GradientPanel1.CustomizableEdges = customizableEdges11;
-            guna2GradientPanel1.Location = new Point(6, 34);
+            guna2GradientPanel1.Location = new Point(12, 34);
             guna2GradientPanel1.Name = "guna2GradientPanel1";
             guna2GradientPanel1.ShadowDecoration.CustomizableEdges = customizableEdges12;
-            guna2GradientPanel1.Size = new Size(180, 157);
+            guna2GradientPanel1.Size = new Size(199, 169);
             guna2GradientPanel1.TabIndex = 0;
             // 
             // lblAddress
@@ -154,7 +154,7 @@
             lblAddress.BackColor = Color.White;
             lblAddress.Font = new Font("Segoe UI", 9F);
             lblAddress.ForeColor = Color.Gray;
-            lblAddress.Location = new Point(99, 106);
+            lblAddress.Location = new Point(113, 112);
             lblAddress.Name = "lblAddress";
             lblAddress.Size = new Size(49, 15);
             lblAddress.TabIndex = 36;
@@ -164,7 +164,7 @@
             // 
             txtAddress.BorderColor = Color.White;
             txtAddress.CustomizableEdges = customizableEdges1;
-            txtAddress.DefaultText = "Test";
+            txtAddress.DefaultText = "";
             txtAddress.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtAddress.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
             txtAddress.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
@@ -172,13 +172,13 @@
             txtAddress.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtAddress.Font = new Font("Segoe UI", 9F);
             txtAddress.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtAddress.Location = new Point(91, 124);
+            txtAddress.Location = new Point(105, 130);
             txtAddress.Name = "txtAddress";
             txtAddress.PasswordChar = '\0';
-            txtAddress.PlaceholderText = "";
+            txtAddress.PlaceholderText = "Test";
             txtAddress.SelectedText = "";
             txtAddress.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            txtAddress.Size = new Size(81, 26);
+            txtAddress.Size = new Size(87, 26);
             txtAddress.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             txtAddress.TabIndex = 35;
             // 
@@ -188,7 +188,7 @@
             lblPhoneNo.BackColor = Color.White;
             lblPhoneNo.Font = new Font("Segoe UI", 9F);
             lblPhoneNo.ForeColor = Color.Gray;
-            lblPhoneNo.Location = new Point(17, 106);
+            lblPhoneNo.Location = new Point(19, 112);
             lblPhoneNo.Name = "lblPhoneNo";
             lblPhoneNo.Size = new Size(60, 15);
             lblPhoneNo.TabIndex = 34;
@@ -206,13 +206,13 @@
             txtPhoneNo.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtPhoneNo.Font = new Font("Segoe UI", 9F);
             txtPhoneNo.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtPhoneNo.Location = new Point(8, 124);
+            txtPhoneNo.Location = new Point(10, 130);
             txtPhoneNo.Name = "txtPhoneNo";
             txtPhoneNo.PasswordChar = '\0';
             txtPhoneNo.PlaceholderText = "0711234567";
             txtPhoneNo.SelectedText = "";
             txtPhoneNo.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            txtPhoneNo.Size = new Size(75, 26);
+            txtPhoneNo.Size = new Size(81, 26);
             txtPhoneNo.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             txtPhoneNo.TabIndex = 33;
             // 
@@ -222,7 +222,7 @@
             lblCusName.BackColor = Color.White;
             lblCusName.Font = new Font("Segoe UI", 9F);
             lblCusName.ForeColor = Color.Gray;
-            lblCusName.Location = new Point(97, 57);
+            lblCusName.Location = new Point(113, 60);
             lblCusName.Name = "lblCusName";
             lblCusName.Size = new Size(39, 15);
             lblCusName.TabIndex = 32;
@@ -232,7 +232,7 @@
             // 
             guna2TextBox2.BorderColor = Color.White;
             guna2TextBox2.CustomizableEdges = customizableEdges5;
-            guna2TextBox2.DefaultText = "Test";
+            guna2TextBox2.DefaultText = "";
             guna2TextBox2.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             guna2TextBox2.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
             guna2TextBox2.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
@@ -240,13 +240,13 @@
             guna2TextBox2.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             guna2TextBox2.Font = new Font("Segoe UI", 9F);
             guna2TextBox2.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            guna2TextBox2.Location = new Point(89, 75);
+            guna2TextBox2.Location = new Point(105, 78);
             guna2TextBox2.Name = "guna2TextBox2";
             guna2TextBox2.PasswordChar = '\0';
-            guna2TextBox2.PlaceholderText = "";
+            guna2TextBox2.PlaceholderText = "Test";
             guna2TextBox2.SelectedText = "";
             guna2TextBox2.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            guna2TextBox2.Size = new Size(81, 26);
+            guna2TextBox2.Size = new Size(87, 26);
             guna2TextBox2.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             guna2TextBox2.TabIndex = 31;
             // 
@@ -256,7 +256,7 @@
             lblCusId.BackColor = Color.White;
             lblCusId.Font = new Font("Segoe UI", 9F);
             lblCusId.ForeColor = Color.Gray;
-            lblCusId.Location = new Point(15, 57);
+            lblCusId.Location = new Point(19, 60);
             lblCusId.Name = "lblCusId";
             lblCusId.Size = new Size(44, 15);
             lblCusId.TabIndex = 30;
@@ -274,13 +274,13 @@
             txt.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txt.Font = new Font("Segoe UI", 9F);
             txt.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txt.Location = new Point(6, 75);
+            txt.Location = new Point(10, 78);
             txt.Name = "txt";
             txt.PasswordChar = '\0';
             txt.PlaceholderText = "C001";
             txt.SelectedText = "";
             txt.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            txt.Size = new Size(75, 26);
+            txt.Size = new Size(81, 26);
             txt.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             txt.TabIndex = 29;
             // 
@@ -290,7 +290,7 @@
             lblOrderId.BackColor = Color.White;
             lblOrderId.Font = new Font("Segoe UI", 9F);
             lblOrderId.ForeColor = Color.Gray;
-            lblOrderId.Location = new Point(15, 8);
+            lblOrderId.Location = new Point(19, 8);
             lblOrderId.Name = "lblOrderId";
             lblOrderId.Size = new Size(50, 15);
             lblOrderId.TabIndex = 28;
@@ -308,7 +308,7 @@
             txtOrderId.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtOrderId.Font = new Font("Segoe UI", 9F);
             txtOrderId.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtOrderId.Location = new Point(6, 26);
+            txtOrderId.Location = new Point(10, 26);
             txtOrderId.Name = "txtOrderId";
             txtOrderId.PasswordChar = '\0';
             txtOrderId.PlaceholderText = "O00-001";
@@ -336,10 +336,10 @@
             guna2GradientPanel2.Controls.Add(lblPartId);
             guna2GradientPanel2.Controls.Add(txtUnitPrice);
             guna2GradientPanel2.CustomizableEdges = customizableEdges25;
-            guna2GradientPanel2.Location = new Point(195, 34);
+            guna2GradientPanel2.Location = new Point(228, 34);
             guna2GradientPanel2.Name = "guna2GradientPanel2";
             guna2GradientPanel2.ShadowDecoration.CustomizableEdges = customizableEdges26;
-            guna2GradientPanel2.Size = new Size(180, 157);
+            guna2GradientPanel2.Size = new Size(199, 169);
             guna2GradientPanel2.TabIndex = 1;
             // 
             // lblCarId
@@ -348,7 +348,7 @@
             lblCarId.BackColor = Color.White;
             lblCarId.Font = new Font("Segoe UI", 9F);
             lblCarId.ForeColor = Color.Gray;
-            lblCarId.Location = new Point(97, 57);
+            lblCarId.Location = new Point(108, 60);
             lblCarId.Name = "lblCarId";
             lblCarId.Size = new Size(38, 15);
             lblCarId.TabIndex = 58;
@@ -358,7 +358,7 @@
             // 
             guna2TextBox1.BorderColor = Color.White;
             guna2TextBox1.CustomizableEdges = customizableEdges13;
-            guna2TextBox1.DefaultText = "Test";
+            guna2TextBox1.DefaultText = "";
             guna2TextBox1.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             guna2TextBox1.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
             guna2TextBox1.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
@@ -366,13 +366,13 @@
             guna2TextBox1.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             guna2TextBox1.Font = new Font("Segoe UI", 9F);
             guna2TextBox1.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            guna2TextBox1.Location = new Point(89, 75);
+            guna2TextBox1.Location = new Point(100, 78);
             guna2TextBox1.Name = "guna2TextBox1";
             guna2TextBox1.PasswordChar = '\0';
-            guna2TextBox1.PlaceholderText = "";
+            guna2TextBox1.PlaceholderText = "Test";
             guna2TextBox1.SelectedText = "";
             guna2TextBox1.ShadowDecoration.CustomizableEdges = customizableEdges14;
-            guna2TextBox1.Size = new Size(81, 26);
+            guna2TextBox1.Size = new Size(90, 26);
             guna2TextBox1.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             guna2TextBox1.TabIndex = 57;
             // 
@@ -387,7 +387,7 @@
             btnAdd.FillColor = Color.FromArgb(26, 26, 255);
             btnAdd.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnAdd.ForeColor = Color.White;
-            btnAdd.Location = new Point(98, 121);
+            btnAdd.Location = new Point(118, 130);
             btnAdd.Name = "btnAdd";
             btnAdd.ShadowDecoration.CustomizableEdges = customizableEdges16;
             btnAdd.Size = new Size(72, 29);
@@ -400,7 +400,7 @@
             lblQtyOnHand.BackColor = Color.White;
             lblQtyOnHand.Font = new Font("Segoe UI", 9F);
             lblQtyOnHand.ForeColor = Color.Gray;
-            lblQtyOnHand.Location = new Point(17, 56);
+            lblQtyOnHand.Location = new Point(17, 59);
             lblQtyOnHand.Name = "lblQtyOnHand";
             lblQtyOnHand.Size = new Size(26, 15);
             lblQtyOnHand.TabIndex = 44;
@@ -418,13 +418,13 @@
             txtQtyOnHand.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtQtyOnHand.Font = new Font("Segoe UI", 9F);
             txtQtyOnHand.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtQtyOnHand.Location = new Point(8, 74);
+            txtQtyOnHand.Location = new Point(8, 77);
             txtQtyOnHand.Name = "txtQtyOnHand";
             txtQtyOnHand.PasswordChar = '\0';
             txtQtyOnHand.PlaceholderText = "00";
             txtQtyOnHand.SelectedText = "";
             txtQtyOnHand.ShadowDecoration.CustomizableEdges = customizableEdges18;
-            txtQtyOnHand.Size = new Size(75, 26);
+            txtQtyOnHand.Size = new Size(84, 26);
             txtQtyOnHand.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             txtQtyOnHand.TabIndex = 43;
             // 
@@ -434,7 +434,7 @@
             lblName.BackColor = Color.White;
             lblName.Font = new Font("Segoe UI", 9F);
             lblName.ForeColor = Color.Gray;
-            lblName.Location = new Point(97, 8);
+            lblName.Location = new Point(108, 8);
             lblName.Name = "lblName";
             lblName.Size = new Size(39, 15);
             lblName.TabIndex = 42;
@@ -444,7 +444,7 @@
             // 
             txtName.BorderColor = Color.White;
             txtName.CustomizableEdges = customizableEdges19;
-            txtName.DefaultText = "Test";
+            txtName.DefaultText = "";
             txtName.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtName.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
             txtName.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
@@ -452,13 +452,13 @@
             txtName.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtName.Font = new Font("Segoe UI", 9F);
             txtName.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtName.Location = new Point(89, 26);
+            txtName.Location = new Point(100, 26);
             txtName.Name = "txtName";
             txtName.PasswordChar = '\0';
-            txtName.PlaceholderText = "";
+            txtName.PlaceholderText = "Test";
             txtName.SelectedText = "";
             txtName.ShadowDecoration.CustomizableEdges = customizableEdges20;
-            txtName.Size = new Size(81, 26);
+            txtName.Size = new Size(90, 26);
             txtName.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             txtName.TabIndex = 41;
             // 
@@ -480,7 +480,7 @@
             txtPartId.PlaceholderText = "POO-001";
             txtPartId.SelectedText = "";
             txtPartId.ShadowDecoration.CustomizableEdges = customizableEdges22;
-            txtPartId.Size = new Size(75, 26);
+            txtPartId.Size = new Size(84, 26);
             txtPartId.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             txtPartId.TabIndex = 37;
             // 
@@ -490,7 +490,7 @@
             lblUnitPrice.BackColor = Color.White;
             lblUnitPrice.Font = new Font("Segoe UI", 9F);
             lblUnitPrice.ForeColor = Color.Gray;
-            lblUnitPrice.Location = new Point(17, 103);
+            lblUnitPrice.Location = new Point(17, 112);
             lblUnitPrice.Name = "lblUnitPrice";
             lblUnitPrice.Size = new Size(58, 15);
             lblUnitPrice.TabIndex = 40;
@@ -520,13 +520,13 @@
             txtUnitPrice.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtUnitPrice.Font = new Font("Segoe UI", 9F);
             txtUnitPrice.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtUnitPrice.Location = new Point(8, 121);
+            txtUnitPrice.Location = new Point(8, 130);
             txtUnitPrice.Name = "txtUnitPrice";
             txtUnitPrice.PasswordChar = '\0';
             txtUnitPrice.PlaceholderText = "100.00";
             txtUnitPrice.SelectedText = "";
             txtUnitPrice.ShadowDecoration.CustomizableEdges = customizableEdges24;
-            txtUnitPrice.Size = new Size(75, 26);
+            txtUnitPrice.Size = new Size(84, 26);
             txtUnitPrice.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             txtUnitPrice.TabIndex = 39;
             // 
@@ -536,7 +536,7 @@
             lblOrderQty.BackColor = Color.White;
             lblOrderQty.Font = new Font("Segoe UI", 9F);
             lblOrderQty.ForeColor = Color.Gray;
-            lblOrderQty.Location = new Point(14, 8);
+            lblOrderQty.Location = new Point(17, 8);
             lblOrderQty.Name = "lblOrderQty";
             lblOrderQty.Size = new Size(26, 15);
             lblOrderQty.TabIndex = 46;
@@ -554,7 +554,7 @@
             txtOederQty.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtOederQty.Font = new Font("Segoe UI", 9F);
             txtOederQty.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtOederQty.Location = new Point(5, 26);
+            txtOederQty.Location = new Point(8, 26);
             txtOederQty.Name = "txtOederQty";
             txtOederQty.PasswordChar = '\0';
             txtOederQty.PlaceholderText = "00";
@@ -583,10 +583,10 @@
             guna2GradientPanel3.Controls.Add(txtOederQty);
             guna2GradientPanel3.Controls.Add(lblOrderQty);
             guna2GradientPanel3.CustomizableEdges = customizableEdges41;
-            guna2GradientPanel3.Location = new Point(384, 34);
+            guna2GradientPanel3.Location = new Point(443, 34);
             guna2GradientPanel3.Name = "guna2GradientPanel3";
             guna2GradientPanel3.ShadowDecoration.CustomizableEdges = customizableEdges42;
-            guna2GradientPanel3.Size = new Size(201, 157);
+            guna2GradientPanel3.Size = new Size(250, 169);
             guna2GradientPanel3.TabIndex = 1;
             // 
             // btnClear
@@ -600,7 +600,7 @@
             btnClear.FillColor = Color.FromArgb(230, 0, 0);
             btnClear.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnClear.ForeColor = Color.White;
-            btnClear.Location = new Point(129, 121);
+            btnClear.Location = new Point(174, 130);
             btnClear.Name = "btnClear";
             btnClear.ShadowDecoration.CustomizableEdges = customizableEdges30;
             btnClear.Size = new Size(66, 29);
@@ -618,7 +618,7 @@
             btnPurchase.FillColor = Color.FromArgb(59, 216, 94);
             btnPurchase.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnPurchase.ForeColor = Color.White;
-            btnPurchase.Location = new Point(7, 121);
+            btnPurchase.Location = new Point(65, 130);
             btnPurchase.Name = "btnPurchase";
             btnPurchase.ShadowDecoration.CustomizableEdges = customizableEdges32;
             btnPurchase.Size = new Size(97, 29);
@@ -637,13 +637,13 @@
             txtBalance.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtBalance.Font = new Font("Segoe UI", 9F);
             txtBalance.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtBalance.Location = new Point(81, 74);
+            txtBalance.Location = new Point(107, 78);
             txtBalance.Name = "txtBalance";
             txtBalance.PasswordChar = '\0';
             txtBalance.PlaceholderText = "100.00";
             txtBalance.SelectedText = "";
             txtBalance.ShadowDecoration.CustomizableEdges = customizableEdges34;
-            txtBalance.Size = new Size(72, 26);
+            txtBalance.Size = new Size(88, 26);
             txtBalance.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             txtBalance.TabIndex = 55;
             // 
@@ -653,7 +653,7 @@
             lblBalance.BackColor = Color.White;
             lblBalance.Font = new Font("Segoe UI", 9F);
             lblBalance.ForeColor = Color.Gray;
-            lblBalance.Location = new Point(91, 56);
+            lblBalance.Location = new Point(117, 60);
             lblBalance.Name = "lblBalance";
             lblBalance.Size = new Size(48, 15);
             lblBalance.TabIndex = 56;
@@ -671,13 +671,13 @@
             txtCash.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtCash.Font = new Font("Segoe UI", 9F);
             txtCash.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtCash.Location = new Point(5, 74);
+            txtCash.Location = new Point(8, 78);
             txtCash.Name = "txtCash";
             txtCash.PasswordChar = '\0';
             txtCash.PlaceholderText = "100.00";
             txtCash.SelectedText = "";
             txtCash.ShadowDecoration.CustomizableEdges = customizableEdges36;
-            txtCash.Size = new Size(70, 26);
+            txtCash.Size = new Size(86, 26);
             txtCash.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             txtCash.TabIndex = 53;
             // 
@@ -687,7 +687,7 @@
             lblCash.BackColor = Color.White;
             lblCash.Font = new Font("Segoe UI", 9F);
             lblCash.ForeColor = Color.Gray;
-            lblCash.Location = new Point(14, 56);
+            lblCash.Location = new Point(17, 60);
             lblCash.Name = "lblCash";
             lblCash.Size = new Size(33, 15);
             lblCash.TabIndex = 54;
@@ -705,13 +705,13 @@
             txtSubTotal.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtSubTotal.Font = new Font("Segoe UI", 9F);
             txtSubTotal.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtSubTotal.Location = new Point(133, 26);
+            txtSubTotal.Location = new Point(163, 26);
             txtSubTotal.Name = "txtSubTotal";
             txtSubTotal.PasswordChar = '\0';
             txtSubTotal.PlaceholderText = "100.00";
             txtSubTotal.SelectedText = "";
             txtSubTotal.ShadowDecoration.CustomizableEdges = customizableEdges38;
-            txtSubTotal.Size = new Size(60, 26);
+            txtSubTotal.Size = new Size(76, 26);
             txtSubTotal.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             txtSubTotal.TabIndex = 51;
             // 
@@ -721,7 +721,7 @@
             lblSubTotal.BackColor = Color.White;
             lblSubTotal.Font = new Font("Segoe UI", 9F);
             lblSubTotal.ForeColor = Color.Gray;
-            lblSubTotal.Location = new Point(138, 8);
+            lblSubTotal.Location = new Point(168, 8);
             lblSubTotal.Name = "lblSubTotal";
             lblSubTotal.Size = new Size(55, 15);
             lblSubTotal.TabIndex = 52;
@@ -739,13 +739,13 @@
             txtTotal.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtTotal.Font = new Font("Segoe UI", 9F);
             txtTotal.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtTotal.Location = new Point(61, 26);
+            txtTotal.Location = new Point(70, 26);
             txtTotal.Name = "txtTotal";
             txtTotal.PasswordChar = '\0';
             txtTotal.PlaceholderText = "100.00";
             txtTotal.SelectedText = "";
             txtTotal.ShadowDecoration.CustomizableEdges = customizableEdges40;
-            txtTotal.Size = new Size(64, 26);
+            txtTotal.Size = new Size(80, 26);
             txtTotal.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             txtTotal.TabIndex = 47;
             // 
@@ -755,7 +755,7 @@
             lblTotal.BackColor = Color.White;
             lblTotal.Font = new Font("Segoe UI", 9F);
             lblTotal.ForeColor = Color.Gray;
-            lblTotal.Location = new Point(70, 8);
+            lblTotal.Location = new Point(79, 8);
             lblTotal.Name = "lblTotal";
             lblTotal.Size = new Size(32, 15);
             lblTotal.TabIndex = 48;
@@ -765,7 +765,7 @@
             // 
             guna2HtmlLabel1.BackColor = Color.Transparent;
             guna2HtmlLabel1.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
-            guna2HtmlLabel1.Location = new Point(6, 12);
+            guna2HtmlLabel1.Location = new Point(12, 12);
             guna2HtmlLabel1.Name = "guna2HtmlLabel1";
             guna2HtmlLabel1.Size = new Size(94, 19);
             guna2HtmlLabel1.TabIndex = 2;
@@ -775,7 +775,7 @@
             // 
             guna2HtmlLabel2.BackColor = Color.Transparent;
             guna2HtmlLabel2.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
-            guna2HtmlLabel2.Location = new Point(195, 12);
+            guna2HtmlLabel2.Location = new Point(228, 12);
             guna2HtmlLabel2.Name = "guna2HtmlLabel2";
             guna2HtmlLabel2.Size = new Size(100, 19);
             guna2HtmlLabel2.TabIndex = 3;
@@ -805,10 +805,10 @@
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             tblCarPartDetails.DefaultCellStyle = dataGridViewCellStyle3;
             tblCarPartDetails.GridColor = Color.FromArgb(231, 229, 255);
-            tblCarPartDetails.Location = new Point(4, 206);
+            tblCarPartDetails.Location = new Point(5, 233);
             tblCarPartDetails.Name = "tblCarPartDetails";
             tblCarPartDetails.RowHeadersVisible = false;
-            tblCarPartDetails.Size = new Size(586, 156);
+            tblCarPartDetails.Size = new Size(694, 191);
             tblCarPartDetails.TabIndex = 58;
             tblCarPartDetails.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             tblCarPartDetails.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -872,7 +872,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(593, 365);
+            ClientSize = new Size(703, 430);
             Controls.Add(tblCarPartDetails);
             Controls.Add(guna2HtmlLabel2);
             Controls.Add(guna2HtmlLabel1);

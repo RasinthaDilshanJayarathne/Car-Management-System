@@ -44,6 +44,8 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             signupPicBox = new PictureBox();
             panel1 = new Panel();
+            lblAlreadyAccount = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            lblLogin = new LinkLabel();
             txtConPassword = new Guna.UI2.WinForms.Guna2TextBox();
             txtPassword = new Guna.UI2.WinForms.Guna2TextBox();
             txtEmail = new Guna.UI2.WinForms.Guna2TextBox();
@@ -76,6 +78,8 @@
             // panel1
             // 
             panel1.BackColor = Color.White;
+            panel1.Controls.Add(lblAlreadyAccount);
+            panel1.Controls.Add(lblLogin);
             panel1.Controls.Add(txtConPassword);
             panel1.Controls.Add(txtPassword);
             panel1.Controls.Add(txtEmail);
@@ -83,10 +87,34 @@
             panel1.Controls.Add(txtLastName);
             panel1.Controls.Add(txtFirstName);
             panel1.Controls.Add(btnSignUp);
-            panel1.Location = new Point(362, 53);
+            panel1.Location = new Point(362, 40);
             panel1.Name = "panel1";
-            panel1.Size = new Size(326, 356);
+            panel1.Size = new Size(326, 364);
             panel1.TabIndex = 1;
+            // 
+            // lblAlreadyAccount
+            // 
+            lblAlreadyAccount.BackColor = Color.Transparent;
+            lblAlreadyAccount.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblAlreadyAccount.Location = new Point(17, 339);
+            lblAlreadyAccount.Name = "lblAlreadyAccount";
+            lblAlreadyAccount.Size = new Size(146, 17);
+            lblAlreadyAccount.TabIndex = 33;
+            lblAlreadyAccount.Text = "Already have an account ?";
+            // 
+            // lblLogin
+            // 
+            lblLogin.AutoSize = true;
+            lblLogin.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblLogin.LinkColor = Color.FromArgb(0, 0, 192);
+            lblLogin.Location = new Point(164, 341);
+            lblLogin.Name = "lblLogin";
+            lblLogin.Size = new Size(37, 15);
+            lblLogin.TabIndex = 32;
+            lblLogin.TabStop = true;
+            lblLogin.Text = "Login";
+            lblLogin.VisitedLinkColor = Color.FromArgb(0, 0, 192);
+            lblLogin.LinkClicked += goBackLogin;
             // 
             // txtConPassword
             // 
@@ -232,7 +260,7 @@
             btnSignUp.FillColor = Color.FromArgb(59, 216, 94);
             btnSignUp.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSignUp.ForeColor = Color.White;
-            btnSignUp.Location = new Point(8, 304);
+            btnSignUp.Location = new Point(17, 300);
             btnSignUp.Name = "btnSignUp";
             btnSignUp.ShadowDecoration.CustomizableEdges = customizableEdges14;
             btnSignUp.Size = new Size(95, 33);
@@ -355,6 +383,7 @@
             Text = "Login";
             ((System.ComponentModel.ISupportInitialize)signupPicBox).EndInit();
             panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -378,5 +407,7 @@
         private Guna.UI2.WinForms.Guna2TextBox txtPassword;
         private Guna.UI2.WinForms.Guna2TextBox txtEmail;
         private Guna.UI2.WinForms.Guna2TextBox txtPhoneNo;
+        private Guna.UI2.WinForms.Guna2HtmlLabel lblAlreadyAccount;
+        private LinkLabel lblLogin;
     }
 }

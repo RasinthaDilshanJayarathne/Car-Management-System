@@ -27,7 +27,7 @@ namespace CarManagementSystem
             {
                 progressCircle.Value = 0;
                 timer1.Stop();
-                Login login = new Login();
+                frmLogin login = new frmLogin();
                 login.Show();
                 this.Hide();
             }

@@ -48,10 +48,10 @@
             guna2GradientPanel4.CustomizableEdges = customizableEdges1;
             guna2GradientPanel4.FillColor = Color.FromArgb(129, 98, 254);
             guna2GradientPanel4.FillColor2 = Color.FromArgb(129, 98, 254);
-            guna2GradientPanel4.Location = new Point(446, 21);
+            guna2GradientPanel4.Location = new Point(527, 21);
             guna2GradientPanel4.Name = "guna2GradientPanel4";
             guna2GradientPanel4.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            guna2GradientPanel4.Size = new Size(129, 45);
+            guna2GradientPanel4.Size = new Size(156, 58);
             guna2GradientPanel4.TabIndex = 18;
             // 
             // guna2GradientPanel3
@@ -60,10 +60,10 @@
             guna2GradientPanel3.CustomizableEdges = customizableEdges3;
             guna2GradientPanel3.FillColor = Color.FromArgb(86, 125, 255);
             guna2GradientPanel3.FillColor2 = Color.FromArgb(86, 125, 255);
-            guna2GradientPanel3.Location = new Point(160, 21);
+            guna2GradientPanel3.Location = new Point(188, 21);
             guna2GradientPanel3.Name = "guna2GradientPanel3";
             guna2GradientPanel3.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            guna2GradientPanel3.Size = new Size(129, 45);
+            guna2GradientPanel3.Size = new Size(156, 58);
             guna2GradientPanel3.TabIndex = 17;
             // 
             // guna2GradientPanel2
@@ -72,10 +72,10 @@
             guna2GradientPanel2.CustomizableEdges = customizableEdges5;
             guna2GradientPanel2.FillColor = Color.FromArgb(169, 83, 254);
             guna2GradientPanel2.FillColor2 = Color.FromArgb(169, 83, 254);
-            guna2GradientPanel2.Location = new Point(303, 21);
+            guna2GradientPanel2.Location = new Point(357, 21);
             guna2GradientPanel2.Name = "guna2GradientPanel2";
             guna2GradientPanel2.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            guna2GradientPanel2.Size = new Size(129, 45);
+            guna2GradientPanel2.Size = new Size(156, 58);
             guna2GradientPanel2.TabIndex = 16;
             // 
             // guna2GradientPanel1
@@ -87,7 +87,7 @@
             guna2GradientPanel1.Location = new Point(18, 21);
             guna2GradientPanel1.Name = "guna2GradientPanel1";
             guna2GradientPanel1.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            guna2GradientPanel1.Size = new Size(129, 45);
+            guna2GradientPanel1.Size = new Size(156, 58);
             guna2GradientPanel1.TabIndex = 15;
             // 
             // AdminDashboardSummery
@@ -95,7 +95,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(593, 365);
+            ClientSize = new Size(703, 430);
             Controls.Add(guna2GradientPanel4);
             Controls.Add(guna2GradientPanel3);
             Controls.Add(guna2GradientPanel2);

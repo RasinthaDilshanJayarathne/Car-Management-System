@@ -125,7 +125,6 @@
             txtEmail.Size = new Size(223, 36);
             txtEmail.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             txtEmail.TabIndex = 22;
-            txtEmail.TextChanged += guna2TextBox1_TextChanged;
             // 
             // btnLogin
             // 

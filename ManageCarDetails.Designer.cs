@@ -28,25 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges23 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges25 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges26 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges27 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges28 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges29 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges30 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges31 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges32 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             lblCarId = new Label();
             txtCarId = new Guna.UI2.WinForms.Guna2TextBox();
             lblMake = new Label();
@@ -78,7 +78,7 @@
             lblCarId.BackColor = Color.White;
             lblCarId.Font = new Font("Segoe UI", 9F);
             lblCarId.ForeColor = Color.Gray;
-            lblCarId.Location = new Point(24, 19);
+            lblCarId.Location = new Point(141, 22);
             lblCarId.Name = "lblCarId";
             lblCarId.Size = new Size(38, 15);
             lblCarId.TabIndex = 28;
@@ -87,7 +87,7 @@
             // txtCarId
             // 
             txtCarId.BorderColor = Color.White;
-            txtCarId.CustomizableEdges = customizableEdges17;
+            txtCarId.CustomizableEdges = customizableEdges1;
             txtCarId.DefaultText = "";
             txtCarId.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtCarId.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -96,12 +96,12 @@
             txtCarId.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtCarId.Font = new Font("Segoe UI", 9F);
             txtCarId.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtCarId.Location = new Point(15, 37);
+            txtCarId.Location = new Point(132, 40);
             txtCarId.Name = "txtCarId";
             txtCarId.PasswordChar = '\0';
             txtCarId.PlaceholderText = "Enter Car Id";
             txtCarId.SelectedText = "";
-            txtCarId.ShadowDecoration.CustomizableEdges = customizableEdges18;
+            txtCarId.ShadowDecoration.CustomizableEdges = customizableEdges2;
             txtCarId.Size = new Size(127, 36);
             txtCarId.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             txtCarId.TabIndex = 30;
@@ -112,7 +112,7 @@
             lblMake.BackColor = Color.White;
             lblMake.Font = new Font("Segoe UI", 9F);
             lblMake.ForeColor = Color.Gray;
-            lblMake.Location = new Point(168, 19);
+            lblMake.Location = new Point(285, 22);
             lblMake.Name = "lblMake";
             lblMake.Size = new Size(36, 15);
             lblMake.TabIndex = 29;
@@ -121,7 +121,7 @@
             // txtMake
             // 
             txtMake.BorderColor = Color.White;
-            txtMake.CustomizableEdges = customizableEdges19;
+            txtMake.CustomizableEdges = customizableEdges3;
             txtMake.DefaultText = "";
             txtMake.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtMake.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -130,12 +130,12 @@
             txtMake.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtMake.Font = new Font("Segoe UI", 9F);
             txtMake.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtMake.Location = new Point(158, 37);
+            txtMake.Location = new Point(275, 40);
             txtMake.Name = "txtMake";
             txtMake.PasswordChar = '\0';
             txtMake.PlaceholderText = "Enter Make";
             txtMake.SelectedText = "";
-            txtMake.ShadowDecoration.CustomizableEdges = customizableEdges20;
+            txtMake.ShadowDecoration.CustomizableEdges = customizableEdges4;
             txtMake.Size = new Size(127, 36);
             txtMake.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             txtMake.TabIndex = 31;
@@ -146,7 +146,7 @@
             lblPrice.BackColor = Color.White;
             lblPrice.Font = new Font("Segoe UI", 9F);
             lblPrice.ForeColor = Color.Gray;
-            lblPrice.Location = new Point(24, 92);
+            lblPrice.Location = new Point(141, 95);
             lblPrice.Name = "lblPrice";
             lblPrice.Size = new Size(33, 15);
             lblPrice.TabIndex = 32;
@@ -155,7 +155,7 @@
             // txtPrice
             // 
             txtPrice.BorderColor = Color.White;
-            txtPrice.CustomizableEdges = customizableEdges21;
+            txtPrice.CustomizableEdges = customizableEdges5;
             txtPrice.DefaultText = "";
             txtPrice.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtPrice.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -164,12 +164,12 @@
             txtPrice.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtPrice.Font = new Font("Segoe UI", 9F);
             txtPrice.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtPrice.Location = new Point(15, 110);
+            txtPrice.Location = new Point(132, 113);
             txtPrice.Name = "txtPrice";
             txtPrice.PasswordChar = '\0';
             txtPrice.PlaceholderText = "Enter Price";
             txtPrice.SelectedText = "";
-            txtPrice.ShadowDecoration.CustomizableEdges = customizableEdges22;
+            txtPrice.ShadowDecoration.CustomizableEdges = customizableEdges6;
             txtPrice.Size = new Size(127, 36);
             txtPrice.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             txtPrice.TabIndex = 34;
@@ -180,7 +180,7 @@
             lblDescription.BackColor = Color.White;
             lblDescription.Font = new Font("Segoe UI", 9F);
             lblDescription.ForeColor = Color.Gray;
-            lblDescription.Location = new Point(168, 92);
+            lblDescription.Location = new Point(285, 95);
             lblDescription.Name = "lblDescription";
             lblDescription.Size = new Size(67, 15);
             lblDescription.TabIndex = 33;
@@ -189,7 +189,7 @@
             // txtDescription
             // 
             txtDescription.BorderColor = Color.White;
-            txtDescription.CustomizableEdges = customizableEdges23;
+            txtDescription.CustomizableEdges = customizableEdges7;
             txtDescription.DefaultText = "";
             txtDescription.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtDescription.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -198,12 +198,12 @@
             txtDescription.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtDescription.Font = new Font("Segoe UI", 9F);
             txtDescription.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtDescription.Location = new Point(159, 110);
+            txtDescription.Location = new Point(276, 113);
             txtDescription.Name = "txtDescription";
             txtDescription.PasswordChar = '\0';
             txtDescription.PlaceholderText = "Enter Description ";
             txtDescription.SelectedText = "";
-            txtDescription.ShadowDecoration.CustomizableEdges = customizableEdges24;
+            txtDescription.ShadowDecoration.CustomizableEdges = customizableEdges8;
             txtDescription.Size = new Size(127, 36);
             txtDescription.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             txtDescription.TabIndex = 35;
@@ -214,7 +214,7 @@
             lblModel.BackColor = Color.White;
             lblModel.Font = new Font("Segoe UI", 9F);
             lblModel.ForeColor = Color.Gray;
-            lblModel.Location = new Point(311, 19);
+            lblModel.Location = new Point(428, 22);
             lblModel.Name = "lblModel";
             lblModel.Size = new Size(41, 15);
             lblModel.TabIndex = 36;
@@ -223,7 +223,7 @@
             // txtModel
             // 
             txtModel.BorderColor = Color.White;
-            txtModel.CustomizableEdges = customizableEdges25;
+            txtModel.CustomizableEdges = customizableEdges9;
             txtModel.DefaultText = "";
             txtModel.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtModel.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -232,12 +232,12 @@
             txtModel.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtModel.Font = new Font("Segoe UI", 9F);
             txtModel.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtModel.Location = new Point(301, 37);
+            txtModel.Location = new Point(418, 40);
             txtModel.Name = "txtModel";
             txtModel.PasswordChar = '\0';
             txtModel.PlaceholderText = "Enter Model";
             txtModel.SelectedText = "";
-            txtModel.ShadowDecoration.CustomizableEdges = customizableEdges26;
+            txtModel.ShadowDecoration.CustomizableEdges = customizableEdges10;
             txtModel.Size = new Size(127, 36);
             txtModel.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             txtModel.TabIndex = 38;
@@ -248,7 +248,7 @@
             lblYear.BackColor = Color.White;
             lblYear.Font = new Font("Segoe UI", 9F);
             lblYear.ForeColor = Color.Gray;
-            lblYear.Location = new Point(456, 19);
+            lblYear.Location = new Point(573, 22);
             lblYear.Name = "lblYear";
             lblYear.Size = new Size(29, 15);
             lblYear.TabIndex = 37;
@@ -257,7 +257,7 @@
             // txtYear
             // 
             txtYear.BorderColor = Color.White;
-            txtYear.CustomizableEdges = customizableEdges27;
+            txtYear.CustomizableEdges = customizableEdges11;
             txtYear.DefaultText = "";
             txtYear.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtYear.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -266,12 +266,12 @@
             txtYear.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtYear.Font = new Font("Segoe UI", 9F);
             txtYear.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtYear.Location = new Point(447, 37);
+            txtYear.Location = new Point(564, 40);
             txtYear.Name = "txtYear";
             txtYear.PasswordChar = '\0';
             txtYear.PlaceholderText = "Enter Year";
             txtYear.SelectedText = "";
-            txtYear.ShadowDecoration.CustomizableEdges = customizableEdges28;
+            txtYear.ShadowDecoration.CustomizableEdges = customizableEdges12;
             txtYear.Size = new Size(127, 36);
             txtYear.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             txtYear.TabIndex = 39;
@@ -279,7 +279,7 @@
             // btnCarSave
             // 
             btnCarSave.BorderRadius = 5;
-            btnCarSave.CustomizableEdges = customizableEdges29;
+            btnCarSave.CustomizableEdges = customizableEdges13;
             btnCarSave.DisabledState.BorderColor = Color.DarkGray;
             btnCarSave.DisabledState.CustomBorderColor = Color.DarkGray;
             btnCarSave.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -287,9 +287,9 @@
             btnCarSave.FillColor = Color.FromArgb(59, 216, 94);
             btnCarSave.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnCarSave.ForeColor = Color.White;
-            btnCarSave.Location = new Point(509, 110);
+            btnCarSave.Location = new Point(619, 113);
             btnCarSave.Name = "btnCarSave";
-            btnCarSave.ShadowDecoration.CustomizableEdges = customizableEdges30;
+            btnCarSave.ShadowDecoration.CustomizableEdges = customizableEdges14;
             btnCarSave.Size = new Size(72, 29);
             btnCarSave.TabIndex = 40;
             btnCarSave.Text = "SAVE";
@@ -297,7 +297,7 @@
             // btnCarDelete
             // 
             btnCarDelete.BorderRadius = 5;
-            btnCarDelete.CustomizableEdges = customizableEdges31;
+            btnCarDelete.CustomizableEdges = customizableEdges15;
             btnCarDelete.DisabledState.BorderColor = Color.DarkGray;
             btnCarDelete.DisabledState.CustomBorderColor = Color.DarkGray;
             btnCarDelete.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -305,41 +305,41 @@
             btnCarDelete.FillColor = Color.FromArgb(230, 0, 0);
             btnCarDelete.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnCarDelete.ForeColor = Color.White;
-            btnCarDelete.Location = new Point(420, 110);
+            btnCarDelete.Location = new Point(530, 113);
             btnCarDelete.Name = "btnCarDelete";
-            btnCarDelete.ShadowDecoration.CustomizableEdges = customizableEdges32;
+            btnCarDelete.ShadowDecoration.CustomizableEdges = customizableEdges16;
             btnCarDelete.Size = new Size(72, 29);
             btnCarDelete.TabIndex = 41;
             btnCarDelete.Text = "DELETE";
             // 
             // tblCarDetails
             // 
-            dataGridViewCellStyle4.BackColor = Color.White;
-            tblCarDetails.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = Color.FromArgb(100, 88, 255);
-            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle5.ForeColor = Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
-            tblCarDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.BackColor = Color.White;
+            tblCarDetails.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(100, 88, 255);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            tblCarDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             tblCarDetails.ColumnHeadersHeight = 17;
             tblCarDetails.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             tblCarDetails.Columns.AddRange(new DataGridViewColumn[] { colId, colMake, colModel, colYear, colPrice, colDescription, colAction });
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = Color.White;
-            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle6.ForeColor = Color.FromArgb(71, 69, 94);
-            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(231, 229, 255);
-            dataGridViewCellStyle6.SelectionForeColor = Color.FromArgb(71, 69, 94);
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
-            tblCarDetails.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.White;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = Color.FromArgb(71, 69, 94);
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(231, 229, 255);
+            dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            tblCarDetails.DefaultCellStyle = dataGridViewCellStyle3;
             tblCarDetails.GridColor = Color.FromArgb(231, 229, 255);
-            tblCarDetails.Location = new Point(4, 165);
+            tblCarDetails.Location = new Point(4, 186);
             tblCarDetails.Name = "tblCarDetails";
             tblCarDetails.RowHeadersVisible = false;
-            tblCarDetails.Size = new Size(586, 197);
+            tblCarDetails.Size = new Size(695, 239);
             tblCarDetails.TabIndex = 42;
             tblCarDetails.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             tblCarDetails.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -403,7 +403,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(593, 365);
+            ClientSize = new Size(703, 430);
             Controls.Add(tblCarDetails);
             Controls.Add(btnCarDelete);
             Controls.Add(btnCarSave);
