@@ -44,11 +44,13 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             lblCarId = new Label();
             txtCarId = new Guna.UI2.WinForms.Guna2TextBox();
             lblMake = new Label();
@@ -63,18 +65,20 @@
             txtYear = new Guna.UI2.WinForms.Guna2TextBox();
             btnCarSave = new Guna.UI2.WinForms.Guna2Button();
             btnCarDelete = new Guna.UI2.WinForms.Guna2Button();
-            tblCarDetails = new Guna.UI2.WinForms.Guna2DataGridView();
-            colId = new DataGridViewTextBoxColumn();
-            colMake = new DataGridViewTextBoxColumn();
-            colModel = new DataGridViewTextBoxColumn();
-            colYear = new DataGridViewTextBoxColumn();
-            colPrice = new DataGridViewTextBoxColumn();
-            colDescription = new DataGridViewTextBoxColumn();
-            colAction = new DataGridViewTextBoxColumn();
             btnUpload = new Guna.UI2.WinForms.Guna2Button();
             carImgBox = new PictureBox();
-            ((System.ComponentModel.ISupportInitialize)tblCarDetails).BeginInit();
+            txtSearch = new Guna.UI2.WinForms.Guna2TextBox();
+            searchIcon = new PictureBox();
+            colDescription = new DataGridViewTextBoxColumn();
+            colPrice = new DataGridViewTextBoxColumn();
+            colYear = new DataGridViewTextBoxColumn();
+            colModel = new DataGridViewTextBoxColumn();
+            colMake = new DataGridViewTextBoxColumn();
+            colId = new DataGridViewTextBoxColumn();
+            tblCarDetails = new Guna.UI2.WinForms.Guna2DataGridView();
             ((System.ComponentModel.ISupportInitialize)carImgBox).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)searchIcon).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)tblCarDetails).BeginInit();
             SuspendLayout();
             // 
             // lblCarId
@@ -83,7 +87,7 @@
             lblCarId.BackColor = Color.White;
             lblCarId.Font = new Font("Segoe UI", 9F);
             lblCarId.ForeColor = Color.Gray;
-            lblCarId.Location = new Point(141, 22);
+            lblCarId.Location = new Point(141, 96);
             lblCarId.Name = "lblCarId";
             lblCarId.Size = new Size(38, 15);
             lblCarId.TabIndex = 28;
@@ -101,7 +105,7 @@
             txtCarId.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtCarId.Font = new Font("Segoe UI", 9F);
             txtCarId.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtCarId.Location = new Point(132, 40);
+            txtCarId.Location = new Point(132, 114);
             txtCarId.Name = "txtCarId";
             txtCarId.PasswordChar = '\0';
             txtCarId.PlaceholderText = "Enter Car Id";
@@ -117,7 +121,7 @@
             lblMake.BackColor = Color.White;
             lblMake.Font = new Font("Segoe UI", 9F);
             lblMake.ForeColor = Color.Gray;
-            lblMake.Location = new Point(285, 22);
+            lblMake.Location = new Point(285, 96);
             lblMake.Name = "lblMake";
             lblMake.Size = new Size(36, 15);
             lblMake.TabIndex = 29;
@@ -135,7 +139,7 @@
             txtMake.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtMake.Font = new Font("Segoe UI", 9F);
             txtMake.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtMake.Location = new Point(275, 40);
+            txtMake.Location = new Point(275, 114);
             txtMake.Name = "txtMake";
             txtMake.PasswordChar = '\0';
             txtMake.PlaceholderText = "Enter Make";
@@ -151,7 +155,7 @@
             lblPrice.BackColor = Color.White;
             lblPrice.Font = new Font("Segoe UI", 9F);
             lblPrice.ForeColor = Color.Gray;
-            lblPrice.Location = new Point(141, 95);
+            lblPrice.Location = new Point(141, 169);
             lblPrice.Name = "lblPrice";
             lblPrice.Size = new Size(33, 15);
             lblPrice.TabIndex = 32;
@@ -169,7 +173,7 @@
             txtPrice.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtPrice.Font = new Font("Segoe UI", 9F);
             txtPrice.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtPrice.Location = new Point(132, 113);
+            txtPrice.Location = new Point(132, 187);
             txtPrice.Name = "txtPrice";
             txtPrice.PasswordChar = '\0';
             txtPrice.PlaceholderText = "Enter Price";
@@ -185,7 +189,7 @@
             lblDescription.BackColor = Color.White;
             lblDescription.Font = new Font("Segoe UI", 9F);
             lblDescription.ForeColor = Color.Gray;
-            lblDescription.Location = new Point(285, 95);
+            lblDescription.Location = new Point(285, 169);
             lblDescription.Name = "lblDescription";
             lblDescription.Size = new Size(67, 15);
             lblDescription.TabIndex = 33;
@@ -203,7 +207,7 @@
             txtDescription.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtDescription.Font = new Font("Segoe UI", 9F);
             txtDescription.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtDescription.Location = new Point(276, 113);
+            txtDescription.Location = new Point(276, 187);
             txtDescription.Name = "txtDescription";
             txtDescription.PasswordChar = '\0';
             txtDescription.PlaceholderText = "Enter Description ";
@@ -219,7 +223,7 @@
             lblModel.BackColor = Color.White;
             lblModel.Font = new Font("Segoe UI", 9F);
             lblModel.ForeColor = Color.Gray;
-            lblModel.Location = new Point(428, 22);
+            lblModel.Location = new Point(428, 96);
             lblModel.Name = "lblModel";
             lblModel.Size = new Size(41, 15);
             lblModel.TabIndex = 36;
@@ -237,7 +241,7 @@
             txtModel.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtModel.Font = new Font("Segoe UI", 9F);
             txtModel.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtModel.Location = new Point(418, 40);
+            txtModel.Location = new Point(418, 114);
             txtModel.Name = "txtModel";
             txtModel.PasswordChar = '\0';
             txtModel.PlaceholderText = "Enter Model";
@@ -253,7 +257,7 @@
             lblYear.BackColor = Color.White;
             lblYear.Font = new Font("Segoe UI", 9F);
             lblYear.ForeColor = Color.Gray;
-            lblYear.Location = new Point(573, 22);
+            lblYear.Location = new Point(573, 96);
             lblYear.Name = "lblYear";
             lblYear.Size = new Size(29, 15);
             lblYear.TabIndex = 37;
@@ -271,7 +275,7 @@
             txtYear.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtYear.Font = new Font("Segoe UI", 9F);
             txtYear.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtYear.Location = new Point(564, 40);
+            txtYear.Location = new Point(564, 114);
             txtYear.Name = "txtYear";
             txtYear.PasswordChar = '\0';
             txtYear.PlaceholderText = "Enter Year";
@@ -292,12 +296,13 @@
             btnCarSave.FillColor = Color.FromArgb(59, 216, 94);
             btnCarSave.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnCarSave.ForeColor = Color.White;
-            btnCarSave.Location = new Point(619, 113);
+            btnCarSave.Location = new Point(619, 187);
             btnCarSave.Name = "btnCarSave";
             btnCarSave.ShadowDecoration.CustomizableEdges = customizableEdges14;
             btnCarSave.Size = new Size(72, 29);
             btnCarSave.TabIndex = 40;
             btnCarSave.Text = "SAVE";
+            btnCarSave.Click += btnSaveCar_Click;
             // 
             // btnCarDelete
             // 
@@ -310,12 +315,110 @@
             btnCarDelete.FillColor = Color.FromArgb(230, 0, 0);
             btnCarDelete.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnCarDelete.ForeColor = Color.White;
-            btnCarDelete.Location = new Point(530, 113);
+            btnCarDelete.Location = new Point(530, 187);
             btnCarDelete.Name = "btnCarDelete";
             btnCarDelete.ShadowDecoration.CustomizableEdges = customizableEdges16;
             btnCarDelete.Size = new Size(72, 29);
             btnCarDelete.TabIndex = 41;
             btnCarDelete.Text = "DELETE";
+            btnCarDelete.Click += btnDeleteCar_Click;
+            // 
+            // btnUpload
+            // 
+            btnUpload.BorderRadius = 5;
+            btnUpload.CustomizableEdges = customizableEdges17;
+            btnUpload.DisabledState.BorderColor = Color.DarkGray;
+            btnUpload.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnUpload.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnUpload.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnUpload.FillColor = Color.FromArgb(59, 216, 94);
+            btnUpload.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnUpload.ForeColor = Color.White;
+            btnUpload.Location = new Point(13, 202);
+            btnUpload.Name = "btnUpload";
+            btnUpload.ShadowDecoration.CustomizableEdges = customizableEdges18;
+            btnUpload.Size = new Size(104, 21);
+            btnUpload.TabIndex = 44;
+            btnUpload.Text = "UPLOAD";
+            btnUpload.Click += uploadImage;
+            // 
+            // carImgBox
+            // 
+            carImgBox.Location = new Point(9, 73);
+            carImgBox.Name = "carImgBox";
+            carImgBox.Size = new Size(114, 123);
+            carImgBox.SizeMode = PictureBoxSizeMode.Zoom;
+            carImgBox.TabIndex = 45;
+            carImgBox.TabStop = false;
+            // 
+            // txtSearch
+            // 
+            txtSearch.BorderColor = Color.White;
+            txtSearch.CustomizableEdges = customizableEdges19;
+            txtSearch.DefaultText = "";
+            txtSearch.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txtSearch.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txtSearch.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txtSearch.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txtSearch.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtSearch.Font = new Font("Segoe UI", 9F);
+            txtSearch.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtSearch.Location = new Point(9, 21);
+            txtSearch.Name = "txtSearch";
+            txtSearch.PasswordChar = '\0';
+            txtSearch.PlaceholderText = "Search by Car Id / Model / Year ";
+            txtSearch.SelectedText = "";
+            txtSearch.ShadowDecoration.CustomizableEdges = customizableEdges20;
+            txtSearch.Size = new Size(213, 36);
+            txtSearch.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
+            txtSearch.TabIndex = 47;
+            // 
+            // searchIcon
+            // 
+            searchIcon.Image = Properties.Resources.download__1_;
+            searchIcon.Location = new Point(198, 27);
+            searchIcon.Name = "searchIcon";
+            searchIcon.Size = new Size(24, 25);
+            searchIcon.SizeMode = PictureBoxSizeMode.Zoom;
+            searchIcon.TabIndex = 48;
+            searchIcon.TabStop = false;
+            searchIcon.Click += btnSearching_Click;
+            // 
+            // colDescription
+            // 
+            colDescription.DataPropertyName = "description";
+            colDescription.HeaderText = "Description";
+            colDescription.Name = "colDescription";
+            // 
+            // colPrice
+            // 
+            colPrice.DataPropertyName = "price";
+            colPrice.HeaderText = "Price";
+            colPrice.Name = "colPrice";
+            // 
+            // colYear
+            // 
+            colYear.DataPropertyName = "year";
+            colYear.HeaderText = "Year";
+            colYear.Name = "colYear";
+            // 
+            // colModel
+            // 
+            colModel.DataPropertyName = "model";
+            colModel.HeaderText = "Model";
+            colModel.Name = "colModel";
+            // 
+            // colMake
+            // 
+            colMake.DataPropertyName = "make";
+            colMake.HeaderText = "Make";
+            colMake.Name = "colMake";
+            // 
+            // colId
+            // 
+            colId.DataPropertyName = "carId";
+            colId.HeaderText = "Id";
+            colId.Name = "colId";
             // 
             // tblCarDetails
             // 
@@ -331,7 +434,7 @@
             tblCarDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             tblCarDetails.ColumnHeadersHeight = 17;
             tblCarDetails.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            tblCarDetails.Columns.AddRange(new DataGridViewColumn[] { colId, colMake, colModel, colYear, colPrice, colDescription, colAction });
+            tblCarDetails.Columns.AddRange(new DataGridViewColumn[] { colId, colMake, colModel, colYear, colPrice, colDescription });
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.White;
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
@@ -341,10 +444,10 @@
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             tblCarDetails.DefaultCellStyle = dataGridViewCellStyle3;
             tblCarDetails.GridColor = Color.FromArgb(231, 229, 255);
-            tblCarDetails.Location = new Point(4, 186);
+            tblCarDetails.Location = new Point(4, 249);
             tblCarDetails.Name = "tblCarDetails";
             tblCarDetails.RowHeadersVisible = false;
-            tblCarDetails.Size = new Size(695, 239);
+            tblCarDetails.Size = new Size(695, 176);
             tblCarDetails.TabIndex = 42;
             tblCarDetails.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             tblCarDetails.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -367,68 +470,7 @@
             tblCarDetails.ThemeStyle.RowsStyle.Height = 25;
             tblCarDetails.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             tblCarDetails.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
-            // 
-            // colId
-            // 
-            colId.HeaderText = "Id";
-            colId.Name = "colId";
-            // 
-            // colMake
-            // 
-            colMake.HeaderText = "Make";
-            colMake.Name = "colMake";
-            // 
-            // colModel
-            // 
-            colModel.HeaderText = "Model";
-            colModel.Name = "colModel";
-            // 
-            // colYear
-            // 
-            colYear.HeaderText = "Year";
-            colYear.Name = "colYear";
-            // 
-            // colPrice
-            // 
-            colPrice.HeaderText = "Price";
-            colPrice.Name = "colPrice";
-            // 
-            // colDescription
-            // 
-            colDescription.HeaderText = "Description";
-            colDescription.Name = "colDescription";
-            // 
-            // colAction
-            // 
-            colAction.HeaderText = "Action";
-            colAction.Name = "colAction";
-            // 
-            // btnUpload
-            // 
-            btnUpload.BorderRadius = 5;
-            btnUpload.CustomizableEdges = customizableEdges17;
-            btnUpload.DisabledState.BorderColor = Color.DarkGray;
-            btnUpload.DisabledState.CustomBorderColor = Color.DarkGray;
-            btnUpload.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            btnUpload.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnUpload.FillColor = Color.FromArgb(59, 216, 94);
-            btnUpload.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnUpload.ForeColor = Color.White;
-            btnUpload.Location = new Point(12, 128);
-            btnUpload.Name = "btnUpload";
-            btnUpload.ShadowDecoration.CustomizableEdges = customizableEdges18;
-            btnUpload.Size = new Size(104, 21);
-            btnUpload.TabIndex = 44;
-            btnUpload.Text = "UPLOAD";
-            btnUpload.Click += uploadImage;
-            // 
-            // carImgBox
-            // 
-            carImgBox.Location = new Point(12, 22);
-            carImgBox.Name = "carImgBox";
-            carImgBox.Size = new Size(104, 100);
-            carImgBox.TabIndex = 45;
-            carImgBox.TabStop = false;
+            tblCarDetails.CellContentClick += carDataGridView_CellClick;
             // 
             // frmManageCarDetails
             // 
@@ -436,6 +478,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(703, 430);
+            Controls.Add(searchIcon);
+            Controls.Add(txtSearch);
             Controls.Add(carImgBox);
             Controls.Add(btnUpload);
             Controls.Add(tblCarDetails);
@@ -456,8 +500,9 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "frmManageCarDetails";
             Text = "ManageCarDetails";
-            ((System.ComponentModel.ISupportInitialize)tblCarDetails).EndInit();
             ((System.ComponentModel.ISupportInitialize)carImgBox).EndInit();
+            ((System.ComponentModel.ISupportInitialize)searchIcon).EndInit();
+            ((System.ComponentModel.ISupportInitialize)tblCarDetails).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -477,15 +522,16 @@
         private Guna.UI2.WinForms.Guna2TextBox txtYear;
         private Guna.UI2.WinForms.Guna2Button btnCarSave;
         private Guna.UI2.WinForms.Guna2Button btnCarDelete;
-        private Guna.UI2.WinForms.Guna2DataGridView tblCarDetails;
-        private DataGridViewTextBoxColumn colId;
-        private DataGridViewTextBoxColumn colMake;
-        private DataGridViewTextBoxColumn colModel;
-        private DataGridViewTextBoxColumn colYear;
-        private DataGridViewTextBoxColumn colPrice;
-        private DataGridViewTextBoxColumn colDescription;
-        private DataGridViewTextBoxColumn colAction;
         private Guna.UI2.WinForms.Guna2Button btnUpload;
         private PictureBox carImgBox;
+        private Guna.UI2.WinForms.Guna2TextBox txtSearch;
+        private PictureBox searchIcon;
+        private DataGridViewTextBoxColumn colDescription;
+        private DataGridViewTextBoxColumn colPrice;
+        private DataGridViewTextBoxColumn colYear;
+        private DataGridViewTextBoxColumn colModel;
+        private DataGridViewTextBoxColumn colMake;
+        private DataGridViewTextBoxColumn colId;
+        private Guna.UI2.WinForms.Guna2DataGridView tblCarDetails;
     }
 }

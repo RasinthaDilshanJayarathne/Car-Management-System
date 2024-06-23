@@ -1,6 +1,6 @@
 ﻿namespace CarManagementSystem
 {
-    partial class Login
+    partial class frmLogin
     {
         /// <summary>
         /// Required designer variable.
@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             loginPicBox = new PictureBox();
             lblPassword = new Label();
             lblEmail = new Label();
@@ -52,7 +52,7 @@
             loginPicBox.Image = Properties.Resources.anupam_debnath_artboard_1__1___1_;
             loginPicBox.Location = new Point(-1, 0);
             loginPicBox.Name = "loginPicBox";
-            loginPicBox.Size = new Size(776, 434);
+            loginPicBox.Size = new Size(777, 434);
             loginPicBox.SizeMode = PictureBoxSizeMode.StretchImage;
             loginPicBox.TabIndex = 0;
             loginPicBox.TabStop = false;
@@ -106,7 +106,7 @@
             // txtEmail
             // 
             txtEmail.BorderColor = Color.FromArgb(255, 252, 247);
-            txtEmail.CustomizableEdges = customizableEdges1;
+            txtEmail.CustomizableEdges = customizableEdges7;
             txtEmail.DefaultText = "";
             txtEmail.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtEmail.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -121,7 +121,7 @@
             txtEmail.PasswordChar = '\0';
             txtEmail.PlaceholderText = "Enter Email";
             txtEmail.SelectedText = "";
-            txtEmail.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            txtEmail.ShadowDecoration.CustomizableEdges = customizableEdges8;
             txtEmail.Size = new Size(223, 36);
             txtEmail.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             txtEmail.TabIndex = 22;
@@ -130,7 +130,7 @@
             // 
             btnLogin.BackColor = Color.FromArgb(255, 252, 247);
             btnLogin.BorderRadius = 10;
-            btnLogin.CustomizableEdges = customizableEdges3;
+            btnLogin.CustomizableEdges = customizableEdges9;
             btnLogin.DisabledState.BorderColor = Color.DarkGray;
             btnLogin.DisabledState.CustomBorderColor = Color.DarkGray;
             btnLogin.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -140,7 +140,7 @@
             btnLogin.ForeColor = Color.White;
             btnLogin.Location = new Point(58, 336);
             btnLogin.Name = "btnLogin";
-            btnLogin.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            btnLogin.ShadowDecoration.CustomizableEdges = customizableEdges10;
             btnLogin.Size = new Size(114, 37);
             btnLogin.TabIndex = 24;
             btnLogin.Text = "LOGIN";
@@ -149,7 +149,7 @@
             // txtPassword
             // 
             txtPassword.BorderColor = Color.FromArgb(255, 252, 247);
-            txtPassword.CustomizableEdges = customizableEdges5;
+            txtPassword.CustomizableEdges = customizableEdges11;
             txtPassword.DefaultText = "";
             txtPassword.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtPassword.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -164,7 +164,7 @@
             txtPassword.PasswordChar = '\0';
             txtPassword.PlaceholderText = "Enter Email";
             txtPassword.SelectedText = "";
-            txtPassword.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            txtPassword.ShadowDecoration.CustomizableEdges = customizableEdges12;
             txtPassword.Size = new Size(223, 36);
             txtPassword.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             txtPassword.TabIndex = 25;
@@ -193,7 +193,7 @@
             lblNewMember.TabIndex = 27;
             lblNewMember.Text = "New Member ? ";
             // 
-            // Login
+            // frmLogin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -209,7 +209,7 @@
             Controls.Add(lblPassword);
             Controls.Add(loginPicBox);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "Login";
+            Name = "frmLogin";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Login";
             ((System.ComponentModel.ISupportInitialize)loginPicBox).EndInit();

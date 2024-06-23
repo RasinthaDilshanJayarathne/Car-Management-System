@@ -35,7 +35,7 @@ namespace CarManagementSystem
                 MessageBox.Show("Customer successfully registered.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 // Example of navigating to another form (assuming 'Login' is another form)
-                Login login = new Login();
+                frmLogin login = new frmLogin();
                 this.Hide();
                 login.Show();
             }
@@ -61,10 +61,13 @@ namespace CarManagementSystem
                 {
                     db.OpenConnection();
 
-                    string query = "INSERT INTO customer (FirstName, LastName, Phone, Email, Password, ConfPassword) VALUES (@fName, @lName, @contact, @Email, @pswrd, @confPswrd)";
+                    string custId = "COO-"+ getCurrentCustomerId();
+
+                    string query = "INSERT INTO customer (CustomerId, FirstName, LastName, Phone, Email, Password, ConfPassword) VALUES (@custId, @fName, @lName, @contact, @Email, @pswrd, @confPswrd)";
 
                     using (MySqlCommand command = new MySqlCommand(query, db.GetConnection()))
                     {
+                        command.Parameters.Add("@custId", MySqlDbType.VarChar).Value = custId;
                         command.Parameters.Add("@fName", MySqlDbType.VarChar).Value = firstName;
                         command.Parameters.Add("@lName", MySqlDbType.VarChar).Value = lastName;
                         command.Parameters.Add("@contact", MySqlDbType.VarChar).Value = contactNumber;
@@ -128,9 +131,44 @@ namespace CarManagementSystem
 
         private void goBackLogin(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Login frmLogin = new Login();
+            frmLogin frmLogin = new frmLogin();
             frmLogin.Show();
             this.Hide();
         }
+
+        private string getCurrentCustomerId()
+        {
+            string currentCustId = null;
+            try
+            {
+                using (var db = new CarManagementSystem.DBConnection.DBConnection())
+                {
+                    db.OpenConnection();
+
+                    string query = "SELECT IFNULL(MAX(customerId), 0) + 1 FROM customer";
+                    using (MySqlCommand command = new MySqlCommand(query, db.GetConnection()))
+                    {
+                        object result = command.ExecuteScalar();
+                        if (result != null)
+                        {
+                            currentCustId = result.ToString();
+                        }
+                        else
+                        {
+                            currentCustId = "1";
+                        }
+                    }
+
+                    db.CloseConnection();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return currentCustId;
+        }
+
     }
 }

@@ -197,10 +197,10 @@
             // 
             pnlDashboard.CustomizableEdges = customizableEdges13;
             pnlDashboard.FillColor = Color.FromArgb(248, 247, 252);
-            pnlDashboard.Location = new Point(213, 52);
+            pnlDashboard.Location = new Point(212, 53);
             pnlDashboard.Name = "pnlDashboard";
             pnlDashboard.ShadowDecoration.CustomizableEdges = customizableEdges14;
-            pnlDashboard.Size = new Size(703, 430);
+            pnlDashboard.Size = new Size(709, 436);
             pnlDashboard.TabIndex = 1;
             // 
             // lblTitle

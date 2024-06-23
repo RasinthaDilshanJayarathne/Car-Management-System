@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             pictureBox1 = new PictureBox();
             progressCircle = new Guna.UI2.WinForms.Guna2CircleProgressBar();
             lblPercentage = new Label();
@@ -63,7 +63,7 @@
             progressCircle.ProgressColor = Color.FromArgb(0, 192, 0);
             progressCircle.ProgressColor2 = Color.FromArgb(0, 192, 0);
             progressCircle.ProgressThickness = 8;
-            progressCircle.ShadowDecoration.CustomizableEdges = customizableEdges1;
+            progressCircle.ShadowDecoration.CustomizableEdges = customizableEdges2;
             progressCircle.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             progressCircle.Size = new Size(167, 167);
             progressCircle.TabIndex = 1;

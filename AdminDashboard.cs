@@ -112,7 +112,7 @@ namespace CarManagementSystem
 
         private void clickLogout(object sender, EventArgs e)
         {
-            Login login = new Login();
+            frmLogin login = new frmLogin();
             this.Hide();
             login.Show();
         }
