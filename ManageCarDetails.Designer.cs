@@ -47,6 +47,8 @@
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             lblCarId = new Label();
             txtCarId = new Guna.UI2.WinForms.Guna2TextBox();
             lblMake = new Label();
@@ -69,7 +71,10 @@
             colPrice = new DataGridViewTextBoxColumn();
             colDescription = new DataGridViewTextBoxColumn();
             colAction = new DataGridViewTextBoxColumn();
+            btnUpload = new Guna.UI2.WinForms.Guna2Button();
+            carImgBox = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)tblCarDetails).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)carImgBox).BeginInit();
             SuspendLayout();
             // 
             // lblCarId
@@ -398,12 +403,41 @@
             colAction.HeaderText = "Action";
             colAction.Name = "colAction";
             // 
+            // btnUpload
+            // 
+            btnUpload.BorderRadius = 5;
+            btnUpload.CustomizableEdges = customizableEdges17;
+            btnUpload.DisabledState.BorderColor = Color.DarkGray;
+            btnUpload.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnUpload.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnUpload.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnUpload.FillColor = Color.FromArgb(59, 216, 94);
+            btnUpload.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnUpload.ForeColor = Color.White;
+            btnUpload.Location = new Point(12, 128);
+            btnUpload.Name = "btnUpload";
+            btnUpload.ShadowDecoration.CustomizableEdges = customizableEdges18;
+            btnUpload.Size = new Size(104, 21);
+            btnUpload.TabIndex = 44;
+            btnUpload.Text = "UPLOAD";
+            btnUpload.Click += uploadImage;
+            // 
+            // carImgBox
+            // 
+            carImgBox.Location = new Point(12, 22);
+            carImgBox.Name = "carImgBox";
+            carImgBox.Size = new Size(104, 100);
+            carImgBox.TabIndex = 45;
+            carImgBox.TabStop = false;
+            // 
             // frmManageCarDetails
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(703, 430);
+            Controls.Add(carImgBox);
+            Controls.Add(btnUpload);
             Controls.Add(tblCarDetails);
             Controls.Add(btnCarDelete);
             Controls.Add(btnCarSave);
@@ -423,6 +457,7 @@
             Name = "frmManageCarDetails";
             Text = "ManageCarDetails";
             ((System.ComponentModel.ISupportInitialize)tblCarDetails).EndInit();
+            ((System.ComponentModel.ISupportInitialize)carImgBox).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -450,5 +485,7 @@
         private DataGridViewTextBoxColumn colPrice;
         private DataGridViewTextBoxColumn colDescription;
         private DataGridViewTextBoxColumn colAction;
+        private Guna.UI2.WinForms.Guna2Button btnUpload;
+        private PictureBox carImgBox;
     }
 }
