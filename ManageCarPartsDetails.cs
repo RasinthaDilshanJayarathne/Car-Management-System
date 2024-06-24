@@ -44,7 +44,6 @@ namespace CarManagementSystem
             if (!IsValidInput(partId, name, model, price, qtyOnHand, description))
                 return;
 
-
             int count = btnCarPartSave.Text == "SAVE" ?
                         InsertOrUpdateCarPart(partId, name, model, price, qtyOnHand, description, imagePath, isUpdate: false) :
                         InsertOrUpdateCarPart(partId, name, model, price, qtyOnHand, description, imagePath, isUpdate: true);
@@ -53,7 +52,7 @@ namespace CarManagementSystem
 
             if (count > 0)
             {
-                MessageBox.Show($"Car successfully {message}.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($"Car part successfully {message}.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ClearFields();
                 LoadTableData();
                 if (btnCarPartSave.Text == "UPDATE")
@@ -64,7 +63,7 @@ namespace CarManagementSystem
             }
             else
             {
-                MessageBox.Show($"Failed to {message} car.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Failed to {message} car part.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -122,6 +121,9 @@ namespace CarManagementSystem
                             dataAdapter.Fill(dataTable);
 
                             tblCarPartDetails.DataSource = dataTable;
+
+                            // Hide the ImagePath column
+                            tblCarPartDetails.Columns["ImagePath"].Visible = false;
                         }
                     }
                     db.CloseConnection();
@@ -192,17 +194,28 @@ namespace CarManagementSystem
                 return;
             }
 
-            int count = DeleteCarPart(partId);
+            // Confirmation prompt
+            DialogResult result = MessageBox.Show("Are you sure you want to delete this car part?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-            if (count > 0)
+            if (result == DialogResult.Yes)
             {
-                MessageBox.Show("Car Part successfully deleted.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                ClearFields();
-                LoadTableData();
+                int count = DeleteCarPart(partId);
+
+                if (count > 0)
+                {
+                    MessageBox.Show("Car Part successfully deleted.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ClearFields();
+                    LoadTableData();
+                }
+                else
+                {
+                    MessageBox.Show("Failed to delete car part.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {
-                MessageBox.Show("Failed to delete car part.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // User chose not to delete the car part
+                MessageBox.Show("Car part deletion canceled.", "Canceled", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -227,7 +240,7 @@ namespace CarManagementSystem
             catch (Exception ex)
             {
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                
+
             }
             return count;
         }

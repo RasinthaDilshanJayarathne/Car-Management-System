@@ -38,6 +38,7 @@ namespace CarManagementSystem
                             dataAdapter.Fill(dataTable);
 
                             tblCustomerDetails.DataSource = dataTable;
+                            SetColumnOrder();
                         }
                     }
 
@@ -59,36 +60,47 @@ namespace CarManagementSystem
                 return;
             }
 
-            try
+            // Confirmation prompt
+            DialogResult result = MessageBox.Show("Are you sure you want to delete this customer?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
             {
-                using (var db = new CarManagementSystem.DBConnection.DBConnection())
+                try
                 {
-                    db.OpenConnection();
-
-                    string query = "DELETE FROM customer WHERE customerId = @custId";
-                    using (MySqlCommand command = new MySqlCommand(query, db.GetConnection()))
+                    using (var db = new CarManagementSystem.DBConnection.DBConnection())
                     {
-                        command.Parameters.AddWithValue("@custId", custId);
-                        int count = command.ExecuteNonQuery();
+                        db.OpenConnection();
 
-                        if (count > 0)
+                        string query = "DELETE FROM customer WHERE customerId = @custId";
+                        using (MySqlCommand command = new MySqlCommand(query, db.GetConnection()))
                         {
-                            MessageBox.Show("Customer successfully deleted.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            ClearFields();
-                            LoadTableData();
+                            command.Parameters.AddWithValue("@custId", custId);
+                            int count = command.ExecuteNonQuery();
+
+                            if (count > 0)
+                            {
+                                MessageBox.Show("Customer successfully deleted.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                ClearFields();
+                                LoadTableData();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Failed to delete customer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
                         }
-                        else
-                        {
-                            MessageBox.Show("Failed to delete customer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
+
+                        db.CloseConnection();
                     }
-
-                    db.CloseConnection();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // User chose not to delete the customer
+                MessageBox.Show("Customer deletion canceled.", "Canceled", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -100,22 +112,33 @@ namespace CarManagementSystem
             string phoneNo = txtPhoneNo.Text;
             string email = txtEmail.Text;
             string password = txtPassword.Text;
-            string confPassword = txtConPassword.Text;
+            string confPassword = txtConfPassword.Text;
 
-            if (!IsValidInput(custId, firstName, lastName, phoneNo, email, password, confPassword))
-                return;
+            /*if (!IsValidInput(custId, firstName, lastName, phoneNo, email, password, confPassword))
+                return;*/
 
-            int count = UpdateCustomer(custId, firstName, lastName, phoneNo, email, password);
+            // Confirmation prompt
+            DialogResult result = MessageBox.Show("Are you sure you want to update this customer?", "Confirm Update", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-            if (count > 0)
+            if (result == DialogResult.Yes)
             {
-                MessageBox.Show($"Customer successfully updated.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                ClearFields();
-                LoadTableData();
+                int count = UpdateCustomer(custId, firstName, lastName, phoneNo, email, password);
+
+                if (count > 0)
+                {
+                    MessageBox.Show("Customer successfully updated.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ClearFields();
+                    LoadTableData();
+                }
+                else
+                {
+                    MessageBox.Show("Failed to update customer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {
-                MessageBox.Show($"Failed to update customer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // User chose not to update the customer
+                MessageBox.Show("Customer update canceled.", "Canceled", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -127,7 +150,7 @@ namespace CarManagementSystem
                 {
                     db.OpenConnection();
 
-                    string query = "UPDATE customer SET firstName = @firstName, lastName = @lastName, phone = @phoneNo, email = @Email, password = @password, confPassword = @password  WHERE customerId = @custId";
+                    string query = "UPDATE customer SET firstName = @firstName, lastName = @lastName, phone = @phoneNo, email = @Email, password = @password, confPassword = @password WHERE customerId = @custId";
                     using (MySqlCommand command = new MySqlCommand(query, db.GetConnection()))
                     {
                         command.Parameters.AddWithValue("@custId", custId);
@@ -135,7 +158,6 @@ namespace CarManagementSystem
                         command.Parameters.AddWithValue("@lastName", lastName);
                         command.Parameters.AddWithValue("@phoneNo", phoneNo);
                         command.Parameters.AddWithValue("@Email", email);
-                        command.Parameters.AddWithValue("@password", password);
                         command.Parameters.AddWithValue("@password", password);
 
                         return command.ExecuteNonQuery();
@@ -149,6 +171,7 @@ namespace CarManagementSystem
                 return 0;
             }
         }
+
 
         private bool IsValidInput(string custId, string firstName, string lastName, string phoneNo, string email, string password, string confPassword)
         {
@@ -204,6 +227,7 @@ namespace CarManagementSystem
                             dataAdapter.Fill(dataTable);
 
                             tblCustomerDetails.DataSource = dataTable;
+                            SetColumnOrder();
                         }
                     }
 
@@ -225,6 +249,16 @@ namespace CarManagementSystem
             txtEmail.Clear();
             txtPassword.Clear();
             txtConfPassword.Clear();
+        }
+
+        private void SetColumnOrder()
+        {
+            tblCustomerDetails.Columns["customerId"].DisplayIndex = 0;
+            tblCustomerDetails.Columns["colFirstName"].DisplayIndex = 1;
+            tblCustomerDetails.Columns["colLastName"].DisplayIndex = 2;
+            tblCustomerDetails.Columns["colPhone"].DisplayIndex = 3;
+            tblCustomerDetails.Columns["colEmail"].DisplayIndex = 4;
+            tblCustomerDetails.Columns["colPassword"].DisplayIndex = 5;
         }
     }
 }

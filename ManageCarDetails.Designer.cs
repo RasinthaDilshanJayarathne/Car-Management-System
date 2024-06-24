@@ -389,36 +389,42 @@
             colDescription.DataPropertyName = "description";
             colDescription.HeaderText = "Description";
             colDescription.Name = "colDescription";
+            colDescription.ReadOnly = true;
             // 
             // colPrice
             // 
             colPrice.DataPropertyName = "price";
             colPrice.HeaderText = "Price";
             colPrice.Name = "colPrice";
+            colPrice.ReadOnly = true;
             // 
             // colYear
             // 
             colYear.DataPropertyName = "year";
             colYear.HeaderText = "Year";
             colYear.Name = "colYear";
+            colYear.ReadOnly = true;
             // 
             // colModel
             // 
             colModel.DataPropertyName = "model";
             colModel.HeaderText = "Model";
             colModel.Name = "colModel";
+            colModel.ReadOnly = true;
             // 
             // colMake
             // 
             colMake.DataPropertyName = "make";
             colMake.HeaderText = "Make";
             colMake.Name = "colMake";
+            colMake.ReadOnly = true;
             // 
             // colId
             // 
             colId.DataPropertyName = "carId";
             colId.HeaderText = "Id";
             colId.Name = "colId";
+            colId.ReadOnly = true;
             // 
             // tblCarDetails
             // 
@@ -446,6 +452,7 @@
             tblCarDetails.GridColor = Color.FromArgb(231, 229, 255);
             tblCarDetails.Location = new Point(4, 249);
             tblCarDetails.Name = "tblCarDetails";
+            tblCarDetails.ReadOnly = true;
             tblCarDetails.RowHeadersVisible = false;
             tblCarDetails.Size = new Size(695, 176);
             tblCarDetails.TabIndex = 42;
@@ -462,7 +469,7 @@
             tblCarDetails.ThemeStyle.HeaderStyle.ForeColor = Color.White;
             tblCarDetails.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             tblCarDetails.ThemeStyle.HeaderStyle.Height = 17;
-            tblCarDetails.ThemeStyle.ReadOnly = false;
+            tblCarDetails.ThemeStyle.ReadOnly = true;
             tblCarDetails.ThemeStyle.RowsStyle.BackColor = Color.White;
             tblCarDetails.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             tblCarDetails.ThemeStyle.RowsStyle.Font = new Font("Segoe UI", 9F);

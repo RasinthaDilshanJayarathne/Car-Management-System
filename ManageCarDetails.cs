@@ -130,19 +130,32 @@ namespace CarManagementSystem
                 return;
             }
 
-            int count = DeleteCar(carId);
+            // Confirmation prompt
+            DialogResult result = MessageBox.Show("Are you sure you want to delete this car?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-            if (count > 0)
+            if (result == DialogResult.Yes)
             {
-                MessageBox.Show("Car successfully deleted.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                ClearFields();
-                LoadTableData();
+                int count = DeleteCar(carId);
+
+                if (count > 0)
+                {
+                    MessageBox.Show("Car successfully deleted.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ClearFields();
+                    LoadTableData();
+                    txtCarId.Text = "";
+                }
+                else
+                {
+                    MessageBox.Show("Failed to delete car.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {
-                MessageBox.Show("Failed to delete car.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // User chose not to delete the car
+                MessageBox.Show("Car deletion canceled.", "Canceled", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
 
         private int DeleteCar(string carId)
         {
@@ -190,6 +203,8 @@ namespace CarManagementSystem
                             dataAdapter.Fill(dataTable);
 
                             tblCarDetails.DataSource = dataTable;
+                            // Hide the ImagePath column
+                            tblCarDetails.Columns["ImagePath"].Visible = false;
                         }
                     }
 
