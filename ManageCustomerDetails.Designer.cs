@@ -66,6 +66,11 @@
             lblConPassword = new Label();
             txtConPassword = new Guna.UI2.WinForms.Guna2TextBox();
             tblCustomerDetails = new Guna.UI2.WinForms.Guna2DataGridView();
+            colFirstName = new DataGridViewTextBoxColumn();
+            colLastName = new DataGridViewTextBoxColumn();
+            colPhone = new DataGridViewTextBoxColumn();
+            colEmail = new DataGridViewTextBoxColumn();
+            colPassword = new DataGridViewTextBoxColumn();
             btnCustomerDelete = new Guna.UI2.WinForms.Guna2Button();
             btnCustomerUpdate = new Guna.UI2.WinForms.Guna2Button();
             searchIcon = new PictureBox();
@@ -73,11 +78,6 @@
             txtConfPassword = new Guna.UI2.WinForms.Guna2TextBox();
             lblCustomerId = new Label();
             txtCustomerId = new Guna.UI2.WinForms.Guna2TextBox();
-            colFirstName = new DataGridViewTextBoxColumn();
-            colLastName = new DataGridViewTextBoxColumn();
-            colPhone = new DataGridViewTextBoxColumn();
-            colEmail = new DataGridViewTextBoxColumn();
-            colPassword = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)tblCustomerDetails).BeginInit();
             ((System.ComponentModel.ISupportInitialize)searchIcon).BeginInit();
             SuspendLayout();
@@ -312,6 +312,7 @@
             tblCustomerDetails.GridColor = Color.FromArgb(231, 229, 255);
             tblCustomerDetails.Location = new Point(4, 250);
             tblCustomerDetails.Name = "tblCustomerDetails";
+            tblCustomerDetails.ReadOnly = true;
             tblCustomerDetails.RowHeadersVisible = false;
             tblCustomerDetails.Size = new Size(694, 175);
             tblCustomerDetails.TabIndex = 60;
@@ -328,7 +329,7 @@
             tblCustomerDetails.ThemeStyle.HeaderStyle.ForeColor = Color.White;
             tblCustomerDetails.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             tblCustomerDetails.ThemeStyle.HeaderStyle.Height = 17;
-            tblCustomerDetails.ThemeStyle.ReadOnly = false;
+            tblCustomerDetails.ThemeStyle.ReadOnly = true;
             tblCustomerDetails.ThemeStyle.RowsStyle.BackColor = Color.White;
             tblCustomerDetails.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             tblCustomerDetails.ThemeStyle.RowsStyle.Font = new Font("Segoe UI", 9F);
@@ -337,6 +338,41 @@
             tblCustomerDetails.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             tblCustomerDetails.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
             tblCustomerDetails.CellContentClick += customerDataGridView_CellClick;
+            // 
+            // colFirstName
+            // 
+            colFirstName.DataPropertyName = "firstName";
+            colFirstName.HeaderText = "F Name";
+            colFirstName.Name = "colFirstName";
+            colFirstName.ReadOnly = true;
+            // 
+            // colLastName
+            // 
+            colLastName.DataPropertyName = "lastName";
+            colLastName.HeaderText = "L Name";
+            colLastName.Name = "colLastName";
+            colLastName.ReadOnly = true;
+            // 
+            // colPhone
+            // 
+            colPhone.DataPropertyName = "phone";
+            colPhone.HeaderText = "Phone";
+            colPhone.Name = "colPhone";
+            colPhone.ReadOnly = true;
+            // 
+            // colEmail
+            // 
+            colEmail.DataPropertyName = "email";
+            colEmail.HeaderText = "Email";
+            colEmail.Name = "colEmail";
+            colEmail.ReadOnly = true;
+            // 
+            // colPassword
+            // 
+            colPassword.DataPropertyName = "password";
+            colPassword.HeaderText = "Password";
+            colPassword.Name = "colPassword";
+            colPassword.ReadOnly = true;
             // 
             // btnCustomerDelete
             // 
@@ -464,36 +500,6 @@
             txtCustomerId.Size = new Size(136, 36);
             txtCustomerId.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             txtCustomerId.TabIndex = 64;
-            // 
-            // colFirstName
-            // 
-            colFirstName.DataPropertyName = "firstName";
-            colFirstName.HeaderText = "F Name";
-            colFirstName.Name = "colFirstName";
-            // 
-            // colLastName
-            // 
-            colLastName.DataPropertyName = "lastName";
-            colLastName.HeaderText = "L Name";
-            colLastName.Name = "colLastName";
-            // 
-            // colPhone
-            // 
-            colPhone.DataPropertyName = "phone";
-            colPhone.HeaderText = "Phone";
-            colPhone.Name = "colPhone";
-            // 
-            // colEmail
-            // 
-            colEmail.DataPropertyName = "email";
-            colEmail.HeaderText = "Email";
-            colEmail.Name = "colEmail";
-            // 
-            // colPassword
-            // 
-            colPassword.DataPropertyName = "password";
-            colPassword.HeaderText = "Password";
-            colPassword.Name = "colPassword";
             // 
             // frmManageCustomerDetails
             // 

@@ -410,6 +410,7 @@
             tblCarPartDetails.GridColor = Color.FromArgb(231, 229, 255);
             tblCarPartDetails.Location = new Point(4, 249);
             tblCarPartDetails.Name = "tblCarPartDetails";
+            tblCarPartDetails.ReadOnly = true;
             tblCarPartDetails.RowHeadersVisible = false;
             tblCarPartDetails.Size = new Size(695, 176);
             tblCarPartDetails.TabIndex = 66;
@@ -426,7 +427,7 @@
             tblCarPartDetails.ThemeStyle.HeaderStyle.ForeColor = Color.White;
             tblCarPartDetails.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             tblCarPartDetails.ThemeStyle.HeaderStyle.Height = 17;
-            tblCarPartDetails.ThemeStyle.ReadOnly = false;
+            tblCarPartDetails.ThemeStyle.ReadOnly = true;
             tblCarPartDetails.ThemeStyle.RowsStyle.BackColor = Color.White;
             tblCarPartDetails.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             tblCarPartDetails.ThemeStyle.RowsStyle.Font = new Font("Segoe UI", 9F);
@@ -441,36 +442,42 @@
             colId.DataPropertyName = "partId";
             colId.HeaderText = "Id";
             colId.Name = "colId";
+            colId.ReadOnly = true;
             // 
             // colPartName
             // 
             colPartName.DataPropertyName = "partName";
             colPartName.HeaderText = "Part Name";
             colPartName.Name = "colPartName";
+            colPartName.ReadOnly = true;
             // 
             // colModel
             // 
             colModel.DataPropertyName = "model";
             colModel.HeaderText = "Model";
             colModel.Name = "colModel";
+            colModel.ReadOnly = true;
             // 
             // colYear
             // 
             colYear.DataPropertyName = "price";
             colYear.HeaderText = "Price";
             colYear.Name = "colYear";
+            colYear.ReadOnly = true;
             // 
             // colQtyOnHand
             // 
             colQtyOnHand.DataPropertyName = "qtyOnHand";
             colQtyOnHand.HeaderText = "QtyOnHand";
             colQtyOnHand.Name = "colQtyOnHand";
+            colQtyOnHand.ReadOnly = true;
             // 
             // colDescription
             // 
             colDescription.DataPropertyName = "description";
             colDescription.HeaderText = "Description";
             colDescription.Name = "colDescription";
+            colDescription.ReadOnly = true;
             // 
             // frmManageCarPartsDetails
             // 
