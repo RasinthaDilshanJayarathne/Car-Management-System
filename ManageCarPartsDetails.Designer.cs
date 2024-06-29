@@ -124,7 +124,7 @@
             lblModel.AutoSize = true;
             lblModel.BackColor = Color.White;
             lblModel.Font = new Font("Segoe UI", 9F);
-            lblModel.ForeColor = Color.Gray;
+            lblModel.ForeColor = Color.Black;
             lblModel.Location = new Point(432, 91);
             lblModel.Name = "lblModel";
             lblModel.Size = new Size(41, 15);
@@ -158,7 +158,7 @@
             lblPartId.AutoSize = true;
             lblPartId.BackColor = Color.White;
             lblPartId.Font = new Font("Segoe UI", 9F);
-            lblPartId.ForeColor = Color.Gray;
+            lblPartId.ForeColor = Color.Black;
             lblPartId.Location = new Point(145, 91);
             lblPartId.Name = "lblPartId";
             lblPartId.Size = new Size(41, 15);
@@ -192,7 +192,7 @@
             lblPartName.AutoSize = true;
             lblPartName.BackColor = Color.White;
             lblPartName.Font = new Font("Segoe UI", 9F);
-            lblPartName.ForeColor = Color.Gray;
+            lblPartName.ForeColor = Color.Black;
             lblPartName.Location = new Point(289, 91);
             lblPartName.Name = "lblPartName";
             lblPartName.Size = new Size(63, 15);
@@ -248,7 +248,7 @@
             lblQtyOnHand.AutoSize = true;
             lblQtyOnHand.BackColor = Color.White;
             lblQtyOnHand.Font = new Font("Segoe UI", 9F);
-            lblQtyOnHand.ForeColor = Color.Gray;
+            lblQtyOnHand.ForeColor = Color.Black;
             lblQtyOnHand.Location = new Point(145, 164);
             lblQtyOnHand.Name = "lblQtyOnHand";
             lblQtyOnHand.Size = new Size(77, 15);
@@ -260,7 +260,7 @@
             lblPrice.AutoSize = true;
             lblPrice.BackColor = Color.White;
             lblPrice.Font = new Font("Segoe UI", 9F);
-            lblPrice.ForeColor = Color.Gray;
+            lblPrice.ForeColor = Color.Black;
             lblPrice.Location = new Point(574, 91);
             lblPrice.Name = "lblPrice";
             lblPrice.Size = new Size(33, 15);
@@ -294,7 +294,7 @@
             lblDescription.AutoSize = true;
             lblDescription.BackColor = Color.White;
             lblDescription.Font = new Font("Segoe UI", 9F);
-            lblDescription.ForeColor = Color.Gray;
+            lblDescription.ForeColor = Color.Black;
             lblDescription.Location = new Point(289, 164);
             lblDescription.Name = "lblDescription";
             lblDescription.Size = new Size(67, 15);

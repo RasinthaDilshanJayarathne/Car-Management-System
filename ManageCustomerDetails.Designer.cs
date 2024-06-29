@@ -87,7 +87,7 @@
             lblLastName.AutoSize = true;
             lblLastName.BackColor = Color.White;
             lblLastName.Font = new Font("Segoe UI", 9F);
-            lblLastName.ForeColor = Color.Gray;
+            lblLastName.ForeColor = Color.Black;
             lblLastName.Location = new Point(383, 84);
             lblLastName.Name = "lblLastName";
             lblLastName.Size = new Size(63, 15);
@@ -99,7 +99,7 @@
             lblFirstName.AutoSize = true;
             lblFirstName.BackColor = Color.White;
             lblFirstName.Font = new Font("Segoe UI", 9F);
-            lblFirstName.ForeColor = Color.Gray;
+            lblFirstName.ForeColor = Color.Black;
             lblFirstName.Location = new Point(207, 84);
             lblFirstName.Name = "lblFirstName";
             lblFirstName.Size = new Size(64, 15);
@@ -155,7 +155,7 @@
             lblPhoneNo.AutoSize = true;
             lblPhoneNo.BackColor = Color.White;
             lblPhoneNo.Font = new Font("Segoe UI", 9F);
-            lblPhoneNo.ForeColor = Color.Gray;
+            lblPhoneNo.ForeColor = Color.Black;
             lblPhoneNo.Location = new Point(561, 84);
             lblPhoneNo.Name = "lblPhoneNo";
             lblPhoneNo.Size = new Size(41, 15);
@@ -189,7 +189,7 @@
             lblEmail.AutoSize = true;
             lblEmail.BackColor = Color.White;
             lblEmail.Font = new Font("Segoe UI", 9F);
-            lblEmail.ForeColor = Color.Gray;
+            lblEmail.ForeColor = Color.Black;
             lblEmail.Location = new Point(24, 153);
             lblEmail.Name = "lblEmail";
             lblEmail.Size = new Size(36, 15);
@@ -223,7 +223,7 @@
             lblPassword.AutoSize = true;
             lblPassword.BackColor = Color.White;
             lblPassword.Font = new Font("Segoe UI", 9F);
-            lblPassword.ForeColor = Color.Gray;
+            lblPassword.ForeColor = Color.Black;
             lblPassword.Location = new Point(206, 153);
             lblPassword.Name = "lblPassword";
             lblPassword.Size = new Size(57, 15);
@@ -257,7 +257,7 @@
             lblConPassword.AutoSize = true;
             lblConPassword.BackColor = Color.White;
             lblConPassword.Font = new Font("Segoe UI", 9F);
-            lblConPassword.ForeColor = Color.Gray;
+            lblConPassword.ForeColor = Color.Black;
             lblConPassword.Location = new Point(383, 153);
             lblConPassword.Name = "lblConPassword";
             lblConPassword.Size = new Size(108, 15);
@@ -472,7 +472,7 @@
             lblCustomerId.AutoSize = true;
             lblCustomerId.BackColor = Color.White;
             lblCustomerId.Font = new Font("Segoe UI", 9F);
-            lblCustomerId.ForeColor = Color.Gray;
+            lblCustomerId.ForeColor = Color.Black;
             lblCustomerId.Location = new Point(24, 84);
             lblCustomerId.Name = "lblCustomerId";
             lblCustomerId.Size = new Size(72, 15);
