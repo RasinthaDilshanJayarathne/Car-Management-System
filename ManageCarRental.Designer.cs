@@ -28,18 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            txtRentalStartDate = new DateTimePicker();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            dtpRentalStartDate = new DateTimePicker();
             searchIcon = new PictureBox();
             txtSearch = new Guna.UI2.WinForms.Guna2TextBox();
             guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -60,18 +62,19 @@
             lblRentalId = new Label();
             guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2GradientPanel3 = new Guna.UI2.WinForms.Guna2GradientPanel();
+            txtDailyRate = new Guna.UI2.WinForms.Guna2TextBox();
             btnRentNow = new Guna.UI2.WinForms.Guna2Button();
             txtTotalCost = new Label();
             lblRentalEndDate = new Label();
             txtTotalDays = new Label();
-            dateTimePicker1 = new DateTimePicker();
+            dtpRentalEndDate = new DateTimePicker();
             lblRentalStartDate = new Label();
-            txtDailyRate = new Label();
             lblTotalCost = new Label();
             lblTotalDays = new Label();
             lblDailyRate = new Label();
             tblRentalDetails = new Guna.UI2.WinForms.Guna2DataGridView();
             carImgBox = new PictureBox();
+            lblCarAvailable = new Label();
             ((System.ComponentModel.ISupportInitialize)searchIcon).BeginInit();
             guna2GradientPanel1.SuspendLayout();
             guna2GradientPanel3.SuspendLayout();
@@ -79,17 +82,19 @@
             ((System.ComponentModel.ISupportInitialize)carImgBox).BeginInit();
             SuspendLayout();
             // 
-            // txtRentalStartDate
+            // dtpRentalStartDate
             // 
-            txtRentalStartDate.CalendarForeColor = Color.White;
-            txtRentalStartDate.CalendarMonthBackground = Color.White;
-            txtRentalStartDate.CalendarTitleBackColor = SystemColors.ControlText;
-            txtRentalStartDate.CalendarTitleForeColor = Color.White;
-            txtRentalStartDate.CalendarTrailingForeColor = Color.White;
-            txtRentalStartDate.Location = new Point(13, 26);
-            txtRentalStartDate.Name = "txtRentalStartDate";
-            txtRentalStartDate.Size = new Size(206, 23);
-            txtRentalStartDate.TabIndex = 69;
+            dtpRentalStartDate.CalendarForeColor = Color.White;
+            dtpRentalStartDate.CalendarMonthBackground = Color.White;
+            dtpRentalStartDate.CalendarTitleBackColor = SystemColors.ControlText;
+            dtpRentalStartDate.CalendarTitleForeColor = Color.White;
+            dtpRentalStartDate.CalendarTrailingForeColor = Color.White;
+            dtpRentalStartDate.Location = new Point(13, 26);
+            dtpRentalStartDate.Name = "dtpRentalStartDate";
+            dtpRentalStartDate.Size = new Size(206, 23);
+            dtpRentalStartDate.TabIndex = 69;
+            dtpRentalStartDate.Value = new DateTime(2024, 6, 30, 0, 0, 0, 0);
+            dtpRentalStartDate.ValueChanged += dtpRentalStartDate_ValueChanged;
             // 
             // searchIcon
             // 
@@ -100,11 +105,12 @@
             searchIcon.SizeMode = PictureBoxSizeMode.Zoom;
             searchIcon.TabIndex = 73;
             searchIcon.TabStop = false;
+            searchIcon.Click += btnSearching_Click;
             // 
             // txtSearch
             // 
             txtSearch.BorderColor = Color.White;
-            txtSearch.CustomizableEdges = customizableEdges9;
+            txtSearch.CustomizableEdges = customizableEdges1;
             txtSearch.DefaultText = "";
             txtSearch.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtSearch.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -116,9 +122,9 @@
             txtSearch.Location = new Point(24, 12);
             txtSearch.Name = "txtSearch";
             txtSearch.PasswordChar = '\0';
-            txtSearch.PlaceholderText = "Search by Car Id / Cust Id / Mode ";
+            txtSearch.PlaceholderText = "Search by Car Id  / Mode ";
             txtSearch.SelectedText = "";
-            txtSearch.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            txtSearch.ShadowDecoration.CustomizableEdges = customizableEdges2;
             txtSearch.Size = new Size(196, 29);
             txtSearch.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             txtSearch.TabIndex = 72;
@@ -153,10 +159,10 @@
             guna2GradientPanel1.Controls.Add(lblPrice);
             guna2GradientPanel1.Controls.Add(lblCarId);
             guna2GradientPanel1.Controls.Add(lblRentalId);
-            guna2GradientPanel1.CustomizableEdges = customizableEdges11;
+            guna2GradientPanel1.CustomizableEdges = customizableEdges3;
             guna2GradientPanel1.Location = new Point(220, 76);
             guna2GradientPanel1.Name = "guna2GradientPanel1";
-            guna2GradientPanel1.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            guna2GradientPanel1.ShadowDecoration.CustomizableEdges = customizableEdges4;
             guna2GradientPanel1.Size = new Size(208, 202);
             guna2GradientPanel1.TabIndex = 74;
             // 
@@ -332,28 +338,51 @@
             guna2GradientPanel3.BorderColor = Color.Black;
             guna2GradientPanel3.BorderRadius = 5;
             guna2GradientPanel3.BorderThickness = 1;
+            guna2GradientPanel3.Controls.Add(txtDailyRate);
             guna2GradientPanel3.Controls.Add(btnRentNow);
             guna2GradientPanel3.Controls.Add(txtTotalCost);
             guna2GradientPanel3.Controls.Add(lblRentalEndDate);
             guna2GradientPanel3.Controls.Add(txtTotalDays);
-            guna2GradientPanel3.Controls.Add(dateTimePicker1);
+            guna2GradientPanel3.Controls.Add(dtpRentalEndDate);
             guna2GradientPanel3.Controls.Add(lblRentalStartDate);
-            guna2GradientPanel3.Controls.Add(txtDailyRate);
-            guna2GradientPanel3.Controls.Add(txtRentalStartDate);
+            guna2GradientPanel3.Controls.Add(dtpRentalStartDate);
             guna2GradientPanel3.Controls.Add(lblTotalCost);
             guna2GradientPanel3.Controls.Add(lblTotalDays);
             guna2GradientPanel3.Controls.Add(lblDailyRate);
-            guna2GradientPanel3.CustomizableEdges = customizableEdges15;
+            guna2GradientPanel3.CustomizableEdges = customizableEdges9;
             guna2GradientPanel3.Location = new Point(449, 76);
             guna2GradientPanel3.Name = "guna2GradientPanel3";
-            guna2GradientPanel3.ShadowDecoration.CustomizableEdges = customizableEdges16;
+            guna2GradientPanel3.ShadowDecoration.CustomizableEdges = customizableEdges10;
             guna2GradientPanel3.Size = new Size(235, 202);
             guna2GradientPanel3.TabIndex = 76;
+            // 
+            // txtDailyRate
+            // 
+            txtDailyRate.BorderColor = Color.White;
+            txtDailyRate.CustomizableEdges = customizableEdges5;
+            txtDailyRate.DefaultText = "";
+            txtDailyRate.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txtDailyRate.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txtDailyRate.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txtDailyRate.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txtDailyRate.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtDailyRate.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtDailyRate.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtDailyRate.Location = new Point(14, 125);
+            txtDailyRate.Margin = new Padding(3, 4, 3, 4);
+            txtDailyRate.Name = "txtDailyRate";
+            txtDailyRate.PasswordChar = '\0';
+            txtDailyRate.PlaceholderText = "00.00";
+            txtDailyRate.SelectedText = "";
+            txtDailyRate.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            txtDailyRate.Size = new Size(78, 27);
+            txtDailyRate.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
+            txtDailyRate.TabIndex = 87;
             // 
             // btnRentNow
             // 
             btnRentNow.BorderRadius = 5;
-            btnRentNow.CustomizableEdges = customizableEdges13;
+            btnRentNow.CustomizableEdges = customizableEdges7;
             btnRentNow.DisabledState.BorderColor = Color.DarkGray;
             btnRentNow.DisabledState.CustomBorderColor = Color.DarkGray;
             btnRentNow.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -363,10 +392,11 @@
             btnRentNow.ForeColor = Color.White;
             btnRentNow.Location = new Point(122, 167);
             btnRentNow.Name = "btnRentNow";
-            btnRentNow.ShadowDecoration.CustomizableEdges = customizableEdges14;
+            btnRentNow.ShadowDecoration.CustomizableEdges = customizableEdges8;
             btnRentNow.Size = new Size(97, 29);
             btnRentNow.TabIndex = 86;
             btnRentNow.Text = "RENT NOW";
+            btnRentNow.Click += btnRentNow_Click;
             // 
             // txtTotalCost
             // 
@@ -374,7 +404,7 @@
             txtTotalCost.BackColor = Color.White;
             txtTotalCost.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtTotalCost.ForeColor = Color.Gray;
-            txtTotalCost.Location = new Point(11, 176);
+            txtTotalCost.Location = new Point(14, 176);
             txtTotalCost.Name = "txtTotalCost";
             txtTotalCost.Size = new Size(0, 20);
             txtTotalCost.TabIndex = 85;
@@ -397,22 +427,24 @@
             txtTotalDays.BackColor = Color.White;
             txtTotalDays.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtTotalDays.ForeColor = Color.Gray;
-            txtTotalDays.Location = new Point(105, 128);
+            txtTotalDays.Location = new Point(109, 128);
             txtTotalDays.Name = "txtTotalDays";
             txtTotalDays.Size = new Size(0, 20);
             txtTotalDays.TabIndex = 84;
             // 
-            // dateTimePicker1
+            // dtpRentalEndDate
             // 
-            dateTimePicker1.CalendarForeColor = Color.White;
-            dateTimePicker1.CalendarMonthBackground = Color.White;
-            dateTimePicker1.CalendarTitleBackColor = SystemColors.ControlText;
-            dateTimePicker1.CalendarTitleForeColor = Color.White;
-            dateTimePicker1.CalendarTrailingForeColor = Color.White;
-            dateTimePicker1.Location = new Point(13, 76);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(206, 23);
-            dateTimePicker1.TabIndex = 79;
+            dtpRentalEndDate.CalendarForeColor = Color.White;
+            dtpRentalEndDate.CalendarMonthBackground = Color.White;
+            dtpRentalEndDate.CalendarTitleBackColor = SystemColors.ControlText;
+            dtpRentalEndDate.CalendarTitleForeColor = Color.White;
+            dtpRentalEndDate.CalendarTrailingForeColor = Color.White;
+            dtpRentalEndDate.Location = new Point(13, 76);
+            dtpRentalEndDate.Name = "dtpRentalEndDate";
+            dtpRentalEndDate.Size = new Size(206, 23);
+            dtpRentalEndDate.TabIndex = 79;
+            dtpRentalEndDate.Value = new DateTime(2024, 6, 30, 0, 0, 0, 0);
+            dtpRentalEndDate.ValueChanged += dtpRentalEndDate_ValueChanged;
             // 
             // lblRentalStartDate
             // 
@@ -425,17 +457,6 @@
             lblRentalStartDate.Size = new Size(94, 15);
             lblRentalStartDate.TabIndex = 78;
             lblRentalStartDate.Text = "Rental Start Date";
-            // 
-            // txtDailyRate
-            // 
-            txtDailyRate.AutoSize = true;
-            txtDailyRate.BackColor = Color.White;
-            txtDailyRate.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtDailyRate.ForeColor = Color.Gray;
-            txtDailyRate.Location = new Point(11, 127);
-            txtDailyRate.Name = "txtDailyRate";
-            txtDailyRate.Size = new Size(0, 20);
-            txtDailyRate.TabIndex = 82;
             // 
             // lblTotalCost
             // 
@@ -475,26 +496,26 @@
             // 
             // tblRentalDetails
             // 
-            dataGridViewCellStyle4.BackColor = Color.White;
-            tblRentalDetails.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = Color.FromArgb(100, 88, 255);
-            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle5.ForeColor = Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
-            tblRentalDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.BackColor = Color.White;
+            tblRentalDetails.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(100, 88, 255);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            tblRentalDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             tblRentalDetails.ColumnHeadersHeight = 17;
             tblRentalDetails.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = Color.White;
-            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle6.ForeColor = Color.FromArgb(71, 69, 94);
-            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(231, 229, 255);
-            dataGridViewCellStyle6.SelectionForeColor = Color.FromArgb(71, 69, 94);
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
-            tblRentalDetails.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.White;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = Color.FromArgb(71, 69, 94);
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(231, 229, 255);
+            dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            tblRentalDetails.DefaultCellStyle = dataGridViewCellStyle3;
             tblRentalDetails.GridColor = Color.FromArgb(231, 229, 255);
             tblRentalDetails.Location = new Point(4, 289);
             tblRentalDetails.Name = "tblRentalDetails";
@@ -532,12 +553,25 @@
             carImgBox.TabIndex = 79;
             carImgBox.TabStop = false;
             // 
+            // lblCarAvailable
+            // 
+            lblCarAvailable.AutoSize = true;
+            lblCarAvailable.BackColor = Color.FromArgb(59, 216, 94);
+            lblCarAvailable.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblCarAvailable.ForeColor = Color.White;
+            lblCarAvailable.Location = new Point(73, 76);
+            lblCarAvailable.Name = "lblCarAvailable";
+            lblCarAvailable.Size = new Size(73, 20);
+            lblCarAvailable.TabIndex = 80;
+            lblCarAvailable.Text = "Available";
+            // 
             // frmManageCarRental
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(703, 430);
+            Controls.Add(lblCarAvailable);
             Controls.Add(carImgBox);
             Controls.Add(tblRentalDetails);
             Controls.Add(guna2HtmlLabel2);
@@ -561,7 +595,7 @@
         }
 
         #endregion
-        private DateTimePicker txtRentalStartDate;
+        private DateTimePicker dtpRentalStartDate;
         private PictureBox searchIcon;
         private Guna.UI2.WinForms.Guna2TextBox txtSearch;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
@@ -586,13 +620,14 @@
         private Label txtTotalCost;
         private Label lblRentalEndDate;
         private Label txtTotalDays;
-        private DateTimePicker dateTimePicker1;
-        private Label txtDailyRate;
+        private DateTimePicker dtpRentalEndDate;
         private Label lblTotalCost;
         private Label lblTotalDays;
         private Label lblDailyRate;
         private Guna.UI2.WinForms.Guna2DataGridView tblRentalDetails;
         private PictureBox carImgBox;
         private Guna.UI2.WinForms.Guna2Button btnRentNow;
+        private Guna.UI2.WinForms.Guna2TextBox txtDailyRate;
+        private Label lblCarAvailable;
     }
 }

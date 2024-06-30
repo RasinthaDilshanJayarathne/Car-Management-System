@@ -141,6 +141,12 @@ namespace CarManagementSystem
             txtOrderId.Enabled = false;
             cmbProductId.Enabled = false;
             txtOederQty.Enabled = false;
+            btnAdd.Enabled = false;
+            txtTotal.Enabled = false;
+            txtCash.Enabled = false;
+            txtBalance.Enabled = false;
+            btnPurchase.Enabled = false;
+            btnClear.Enabled = false;
         }
 
         private void EnableProductSection()
@@ -182,6 +188,11 @@ namespace CarManagementSystem
                 if (selectedPart != null)
                 {
                     PopulateProductFields(selectedPart);
+                    btnAdd.Enabled = true;
+                    txtTotal.Enabled = true;
+                    txtCash.Enabled = true;
+                    txtBalance.Enabled = true;
+                    btnClear.Enabled = true;
                 }
             }
         }
@@ -206,26 +217,37 @@ namespace CarManagementSystem
                 orderQty > qtyOnHand)
             {
                 ShowWarningMessage("Out of quantity");
-                txtOederQty.Text = qtyOnHand.ToString(); // Reset orderQty to max available quantity
+                txtOederQty.Text = qtyOnHand.ToString();
             }
         }
 
         private void btnAddOrder_Click(object sender, EventArgs e)
         {
-            string partId = cmbProductId.SelectedItem?.ToString();
-            string orderQtyText = txtOederQty.Text;
-
-            if (IsValidOrderInput(partId, orderQtyText, out int orderQty))
+            if (int.TryParse(txtOederQty.Text, out int orderQty) && orderQty > 0)
             {
-                AddOrderDetail(partId, orderQty);
-                UpdateOrderDetailsTable();
-                ClearProductSelection();
+                string partId = cmbProductId.SelectedItem?.ToString();
+
+                if (IsValidOrderInput(partId, txtOederQty.Text, out orderQty))
+                {
+                    AddOrderDetail(partId, orderQty);
+                    UpdateOrderDetailsTable();
+                    ClearProductSelection();
+                }
+                else
+                {
+                    ShowErrorMessage("Invalid order input.");
+                }
+            }
+            else
+            {
+                ShowErrorMessage("Invalid order quantity.");
             }
         }
 
         private bool IsValidOrderInput(string partId, string orderQtyText, out int orderQty)
         {
             orderQty = 0;
+
             if (string.IsNullOrEmpty(partId) || string.IsNullOrEmpty(orderQtyText) || !int.TryParse(orderQtyText, out orderQty))
             {
                 ShowWarningMessage("Please ensure all product details are selected and filled.");
@@ -301,6 +323,7 @@ namespace CarManagementSystem
 
         private void btnPurchaseOrder_Click(object sender, EventArgs e)
         {
+
             if (IsValidPurchaseInput(out string orderId, out string customerId, out decimal cash, out decimal balance))
             {
                 ProcessPurchase(orderId, customerId, cash, balance);
@@ -355,7 +378,7 @@ namespace CarManagementSystem
         private void InsertOrder(string orderId, string customerId, decimal totalPrice, decimal cash, decimal balance)
         {
             string queryOrder = "INSERT INTO `order` (orderId, customerId, orderDate, total, cash, balance) VALUES (@orderId, @customerId, @orderDate, @total, @cash, @balance)";
-            ExecuteNonQuery(queryOrder,("@orderId", orderId), ("@customerId", customerId), ("@orderDate", DateTime.Now), ("@total", totalPrice), ("@cash", cash), ("@balance", balance));
+            ExecuteNonQuery(queryOrder, ("@orderId", orderId), ("@customerId", customerId), ("@orderDate", DateTime.Now), ("@total", totalPrice), ("@cash", cash), ("@balance", balance));
         }
 
 
@@ -438,13 +461,24 @@ namespace CarManagementSystem
             if (decimal.TryParse(txtCash.Text, out decimal cash))
             {
                 decimal balance = cash - totalOrderPrice;
-                txtBalance.Text = balance.ToString("F2"); // Update the balance label in real-time
+                txtBalance.Text = balance.ToString("F2");
+
+                if (balance >= 0)
+                {
+                    btnPurchase.Enabled = true;
+                }
+                else
+                {
+                    btnPurchase.Enabled = false;
+                }
             }
             else
             {
                 txtBalance.Text = "0.00";
+                btnPurchase.Enabled = false;
             }
         }
+
 
         private void ShowWarningMessage(string message)
         {
@@ -509,6 +543,34 @@ namespace CarManagementSystem
             public decimal UnitPrice { get; set; }
             public int OrderQty { get; set; }
             public decimal TotalPrice { get; set; }
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            
+            cmbCustId.Text = "";
+            txtFirstName.Text = "";
+            txtLastName.Text = "";
+            txtPhoneNo.Text = "";
+            txtEmail.Text = "";
+
+            cmbCustId.SelectedIndex = -1;
+            txtFirstName.Text = "";
+            txtLastName.Text = "";
+            txtPhoneNo.Text = "";
+            txtEmail.Text = "";
+            cmbProductId.SelectedIndex = -1;
+            txtPartName.Text = "";
+            txtModel.Text = "";
+            txtPrice.Text = "";
+            txtQty.Text = "";
+            txtOederQty.Text = "";
+            txtBalance.Text = "";
+            txtCash.Text = "";
+            txtTotal.Text = "";
+            orderDetails.Clear();
+            tblOrderDetails.DataSource = null;
+            totalOrderPrice = 0.00m;
         }
     }
 }

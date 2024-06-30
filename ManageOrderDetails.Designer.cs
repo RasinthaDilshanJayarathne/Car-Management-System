@@ -510,6 +510,7 @@
             btnClear.Size = new Size(66, 29);
             btnClear.TabIndex = 61;
             btnClear.Text = "CLEAR";
+            btnClear.Click += btnClear_Click;
             // 
             // btnPurchase
             // 
@@ -557,7 +558,7 @@
             txtCash.Margin = new Padding(3, 4, 3, 4);
             txtCash.Name = "txtCash";
             txtCash.PasswordChar = '\0';
-            txtCash.PlaceholderText = "100.00";
+            txtCash.PlaceholderText = "00.00";
             txtCash.SelectedText = "";
             txtCash.ShadowDecoration.CustomizableEdges = customizableEdges14;
             txtCash.Size = new Size(84, 26);
