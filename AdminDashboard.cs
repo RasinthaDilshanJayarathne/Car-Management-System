@@ -110,11 +110,25 @@ namespace CarManagementSystem
             manageCustomerDetails.Show();
         }
 
+        private void getManageCarRentalDetails(object sender, EventArgs e)
+        {
+            lblTitle.Text = "MANAGE CAR RENTAL DETAILS";
+            frmManageCarRental manageCarRental = new frmManageCarRental();
+            manageCarRental.TopLevel = false;
+            manageCarRental.FormBorderStyle = FormBorderStyle.None;
+            manageCarRental.Dock = DockStyle.Fill;
+
+            this.pnlDashboard.Controls.Clear();
+            this.pnlDashboard.Controls.Add(manageCarRental);
+            manageCarRental.Show();
+        }
+
         private void clickLogout(object sender, EventArgs e)
         {
             frmLogin login = new frmLogin();
             this.Hide();
             login.Show();
         }
+        
     }
 }

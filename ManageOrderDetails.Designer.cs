@@ -87,19 +87,13 @@
             lblTotal = new Label();
             guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            tblCarPartDetails = new Guna.UI2.WinForms.Guna2DataGridView();
+            tblOrderDetails = new Guna.UI2.WinForms.Guna2DataGridView();
             searchIcon = new PictureBox();
             txtSearch = new Guna.UI2.WinForms.Guna2TextBox();
-            colId = new DataGridViewTextBoxColumn();
-            colParName = new DataGridViewTextBoxColumn();
-            colCarId = new DataGridViewTextBoxColumn();
-            colPrice = new DataGridViewTextBoxColumn();
-            colOrderQty = new DataGridViewTextBoxColumn();
-            colTotal = new DataGridViewTextBoxColumn();
             guna2GradientPanel1.SuspendLayout();
             guna2GradientPanel2.SuspendLayout();
             guna2GradientPanel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)tblCarPartDetails).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)tblOrderDetails).BeginInit();
             ((System.ComponentModel.ISupportInitialize)searchIcon).BeginInit();
             SuspendLayout();
             // 
@@ -134,7 +128,7 @@
             txtEmail.BackColor = Color.White;
             txtEmail.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtEmail.ForeColor = Color.Gray;
-            txtEmail.Location = new Point(11, 173);
+            txtEmail.Location = new Point(11, 174);
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(0, 20);
             txtEmail.TabIndex = 42;
@@ -145,7 +139,7 @@
             txtPhoneNo.BackColor = Color.White;
             txtPhoneNo.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtPhoneNo.ForeColor = Color.Gray;
-            txtPhoneNo.Location = new Point(105, 125);
+            txtPhoneNo.Location = new Point(105, 126);
             txtPhoneNo.Name = "txtPhoneNo";
             txtPhoneNo.Size = new Size(0, 20);
             txtPhoneNo.TabIndex = 41;
@@ -156,7 +150,7 @@
             txtLastName.BackColor = Color.White;
             txtLastName.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtLastName.ForeColor = Color.Gray;
-            txtLastName.Location = new Point(11, 124);
+            txtLastName.Location = new Point(11, 125);
             txtLastName.Name = "txtLastName";
             txtLastName.Size = new Size(0, 20);
             txtLastName.TabIndex = 40;
@@ -198,7 +192,7 @@
             lblEmail.BackColor = Color.White;
             lblEmail.Font = new Font("Segoe UI", 9F);
             lblEmail.ForeColor = Color.Black;
-            lblEmail.Location = new Point(12, 153);
+            lblEmail.Location = new Point(12, 154);
             lblEmail.Name = "lblEmail";
             lblEmail.Size = new Size(36, 15);
             lblEmail.TabIndex = 36;
@@ -210,7 +204,7 @@
             lblPhoneNo.BackColor = Color.White;
             lblPhoneNo.Font = new Font("Segoe UI", 9F);
             lblPhoneNo.ForeColor = Color.Black;
-            lblPhoneNo.Location = new Point(108, 104);
+            lblPhoneNo.Location = new Point(108, 105);
             lblPhoneNo.Name = "lblPhoneNo";
             lblPhoneNo.Size = new Size(60, 15);
             lblPhoneNo.TabIndex = 34;
@@ -222,7 +216,7 @@
             lblLastName.BackColor = Color.White;
             lblLastName.Font = new Font("Segoe UI", 9F);
             lblLastName.ForeColor = Color.Black;
-            lblLastName.Location = new Point(12, 104);
+            lblLastName.Location = new Point(12, 105);
             lblLastName.Name = "lblLastName";
             lblLastName.Size = new Size(63, 15);
             lblLastName.TabIndex = 32;
@@ -483,7 +477,7 @@
             txtBalance.BackColor = Color.White;
             txtBalance.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtBalance.ForeColor = Color.Gray;
-            txtBalance.Location = new Point(134, 75);
+            txtBalance.Location = new Point(131, 75);
             txtBalance.Name = "txtBalance";
             txtBalance.Size = new Size(0, 20);
             txtBalance.TabIndex = 75;
@@ -516,7 +510,6 @@
             btnClear.Size = new Size(66, 29);
             btnClear.TabIndex = 61;
             btnClear.Text = "CLEAR";
-            btnClear.Click += btnClear_Click;
             // 
             // btnPurchase
             // 
@@ -535,7 +528,6 @@
             btnPurchase.Size = new Size(97, 29);
             btnPurchase.TabIndex = 59;
             btnPurchase.Text = "PURCHASE";
-            btnPurchase.Click += btnPurchaseOrder_Click;
             // 
             // lblBalance
             // 
@@ -559,15 +551,16 @@
             txtCash.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
             txtCash.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
             txtCash.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtCash.Font = new Font("Segoe UI", 9F);
+            txtCash.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtCash.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtCash.Location = new Point(7, 75);
+            txtCash.Location = new Point(7, 77);
+            txtCash.Margin = new Padding(3, 4, 3, 4);
             txtCash.Name = "txtCash";
             txtCash.PasswordChar = '\0';
             txtCash.PlaceholderText = "100.00";
             txtCash.SelectedText = "";
             txtCash.ShadowDecoration.CustomizableEdges = customizableEdges14;
-            txtCash.Size = new Size(101, 26);
+            txtCash.Size = new Size(84, 26);
             txtCash.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             txtCash.TabIndex = 53;
             // 
@@ -615,10 +608,10 @@
             guna2HtmlLabel2.TabIndex = 3;
             guna2HtmlLabel2.Text = "Product Section";
             // 
-            // tblCarPartDetails
+            // tblOrderDetails
             // 
             dataGridViewCellStyle1.BackColor = Color.White;
-            tblCarPartDetails.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            tblOrderDetails.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = Color.FromArgb(100, 88, 255);
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
@@ -626,10 +619,9 @@
             dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            tblCarPartDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            tblCarPartDetails.ColumnHeadersHeight = 17;
-            tblCarPartDetails.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            tblCarPartDetails.Columns.AddRange(new DataGridViewColumn[] { colId, colParName, colCarId, colPrice, colOrderQty, colTotal });
+            tblOrderDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            tblOrderDetails.ColumnHeadersHeight = 17;
+            tblOrderDetails.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.White;
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
@@ -637,34 +629,34 @@
             dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(231, 229, 255);
             dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(71, 69, 94);
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            tblCarPartDetails.DefaultCellStyle = dataGridViewCellStyle3;
-            tblCarPartDetails.GridColor = Color.FromArgb(231, 229, 255);
-            tblCarPartDetails.Location = new Point(5, 286);
-            tblCarPartDetails.Name = "tblCarPartDetails";
-            tblCarPartDetails.RowHeadersVisible = false;
-            tblCarPartDetails.Size = new Size(694, 138);
-            tblCarPartDetails.TabIndex = 58;
-            tblCarPartDetails.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
-            tblCarPartDetails.ThemeStyle.AlternatingRowsStyle.Font = null;
-            tblCarPartDetails.ThemeStyle.AlternatingRowsStyle.ForeColor = Color.Empty;
-            tblCarPartDetails.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = Color.Empty;
-            tblCarPartDetails.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = Color.Empty;
-            tblCarPartDetails.ThemeStyle.BackColor = Color.White;
-            tblCarPartDetails.ThemeStyle.GridColor = Color.FromArgb(231, 229, 255);
-            tblCarPartDetails.ThemeStyle.HeaderStyle.BackColor = Color.FromArgb(100, 88, 255);
-            tblCarPartDetails.ThemeStyle.HeaderStyle.BorderStyle = DataGridViewHeaderBorderStyle.None;
-            tblCarPartDetails.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 9F);
-            tblCarPartDetails.ThemeStyle.HeaderStyle.ForeColor = Color.White;
-            tblCarPartDetails.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            tblCarPartDetails.ThemeStyle.HeaderStyle.Height = 17;
-            tblCarPartDetails.ThemeStyle.ReadOnly = false;
-            tblCarPartDetails.ThemeStyle.RowsStyle.BackColor = Color.White;
-            tblCarPartDetails.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            tblCarPartDetails.ThemeStyle.RowsStyle.Font = new Font("Segoe UI", 9F);
-            tblCarPartDetails.ThemeStyle.RowsStyle.ForeColor = Color.FromArgb(71, 69, 94);
-            tblCarPartDetails.ThemeStyle.RowsStyle.Height = 25;
-            tblCarPartDetails.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
-            tblCarPartDetails.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            tblOrderDetails.DefaultCellStyle = dataGridViewCellStyle3;
+            tblOrderDetails.GridColor = Color.FromArgb(231, 229, 255);
+            tblOrderDetails.Location = new Point(5, 286);
+            tblOrderDetails.Name = "tblOrderDetails";
+            tblOrderDetails.RowHeadersVisible = false;
+            tblOrderDetails.Size = new Size(694, 138);
+            tblOrderDetails.TabIndex = 58;
+            tblOrderDetails.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
+            tblOrderDetails.ThemeStyle.AlternatingRowsStyle.Font = null;
+            tblOrderDetails.ThemeStyle.AlternatingRowsStyle.ForeColor = Color.Empty;
+            tblOrderDetails.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = Color.Empty;
+            tblOrderDetails.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = Color.Empty;
+            tblOrderDetails.ThemeStyle.BackColor = Color.White;
+            tblOrderDetails.ThemeStyle.GridColor = Color.FromArgb(231, 229, 255);
+            tblOrderDetails.ThemeStyle.HeaderStyle.BackColor = Color.FromArgb(100, 88, 255);
+            tblOrderDetails.ThemeStyle.HeaderStyle.BorderStyle = DataGridViewHeaderBorderStyle.None;
+            tblOrderDetails.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 9F);
+            tblOrderDetails.ThemeStyle.HeaderStyle.ForeColor = Color.White;
+            tblOrderDetails.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            tblOrderDetails.ThemeStyle.HeaderStyle.Height = 17;
+            tblOrderDetails.ThemeStyle.ReadOnly = false;
+            tblOrderDetails.ThemeStyle.RowsStyle.BackColor = Color.White;
+            tblOrderDetails.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            tblOrderDetails.ThemeStyle.RowsStyle.Font = new Font("Segoe UI", 9F);
+            tblOrderDetails.ThemeStyle.RowsStyle.ForeColor = Color.FromArgb(71, 69, 94);
+            tblOrderDetails.ThemeStyle.RowsStyle.Height = 25;
+            tblOrderDetails.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
+            tblOrderDetails.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
             // 
             // searchIcon
             // 
@@ -699,36 +691,6 @@
             txtSearch.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             txtSearch.TabIndex = 63;
             // 
-            // colId
-            // 
-            colId.HeaderText = "Part Id";
-            colId.Name = "colId";
-            // 
-            // colParName
-            // 
-            colParName.HeaderText = "Part Name";
-            colParName.Name = "colParName";
-            // 
-            // colCarId
-            // 
-            colCarId.HeaderText = "Car Id";
-            colCarId.Name = "colCarId";
-            // 
-            // colPrice
-            // 
-            colPrice.HeaderText = "Unit Price";
-            colPrice.Name = "colPrice";
-            // 
-            // colOrderQty
-            // 
-            colOrderQty.HeaderText = "Order Qty";
-            colOrderQty.Name = "colOrderQty";
-            // 
-            // colTotal
-            // 
-            colTotal.HeaderText = "Total";
-            colTotal.Name = "colTotal";
-            // 
             // frmManageOrderDetails
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -737,7 +699,7 @@
             ClientSize = new Size(703, 430);
             Controls.Add(searchIcon);
             Controls.Add(txtSearch);
-            Controls.Add(tblCarPartDetails);
+            Controls.Add(tblOrderDetails);
             Controls.Add(guna2HtmlLabel2);
             Controls.Add(guna2HtmlLabel1);
             Controls.Add(guna2GradientPanel3);
@@ -752,7 +714,7 @@
             guna2GradientPanel2.PerformLayout();
             guna2GradientPanel3.ResumeLayout(false);
             guna2GradientPanel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)tblCarPartDetails).EndInit();
+            ((System.ComponentModel.ISupportInitialize)tblOrderDetails).EndInit();
             ((System.ComponentModel.ISupportInitialize)searchIcon).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -780,7 +742,7 @@
         private Guna.UI2.WinForms.Guna2Button btnAdd;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel2;
-        private Guna.UI2.WinForms.Guna2DataGridView tblCarPartDetails;
+        private Guna.UI2.WinForms.Guna2DataGridView tblOrderDetails;
         private Label lblTotal;
         private Label lblBalance;
         private Label lblCash;
@@ -806,11 +768,5 @@
         private Guna.UI2.WinForms.Guna2TextBox txtCash;
         private Label txtTotal;
         private Label txtBalance;
-        private DataGridViewTextBoxColumn colId;
-        private DataGridViewTextBoxColumn colParName;
-        private DataGridViewTextBoxColumn colCarId;
-        private DataGridViewTextBoxColumn colPrice;
-        private DataGridViewTextBoxColumn colOrderQty;
-        private DataGridViewTextBoxColumn colTotal;
     }
 }

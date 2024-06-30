@@ -2,7 +2,6 @@
 using System;
 using System.ComponentModel;
 using System.Linq;
-using System.Security.Policy;
 using System.Windows.Forms;
 
 namespace CarManagementSystem
@@ -11,22 +10,32 @@ namespace CarManagementSystem
     {
         private BindingList<Customer> customers = new BindingList<Customer>();
         private BindingList<Carpart> carParts = new BindingList<Carpart>();
-        //private BindingList<Car> cars = new BindingList<Car>();
         private BindingList<OrderDetail> orderDetails = new BindingList<OrderDetail>();
         private decimal totalOrderPrice = 0.00m;
 
         public frmManageOrderDetails()
         {
             InitializeComponent();
+            InitializeForm();
+
+        }
+
+        private void InitializeForm()
+        {
             LoadComboBoxData();
             DisableFields();
             txtOrderId.Text = GenerateOrderId();
+            AttachEventHandlers();
+        }
 
-            // Attach event handlers
+        private void AttachEventHandlers()
+        {
             cmbCustId.SelectedIndexChanged += CmbCustId_SelectedIndexChanged;
             cmbProductId.SelectedIndexChanged += CmbProductId_SelectedIndexChanged;
             txtOederQty.TextChanged += TxtOrderQty_TextChanged; // Event handler for orderQty validation
             searchIcon.Click += btnSearch_Click;
+            btnPurchase.Click += btnPurchaseOrder_Click;
+            txtCash.TextChanged += TxtCash_TextChanged;
         }
 
         private MySqlConnection OpenDatabaseConnection()
@@ -36,7 +45,7 @@ namespace CarManagementSystem
             return db.GetConnection();
         }
 
-        public void LoadComboBoxData()
+        private void LoadComboBoxData()
         {
             try
             {
@@ -48,110 +57,90 @@ namespace CarManagementSystem
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ShowErrorMessage($"An error occurred: {ex.Message}");
             }
         }
 
         private void LoadCustomers(MySqlConnection connection)
         {
             string queryCustomer = "SELECT customerId, firstName, lastName, phone, email FROM customer";
-            using (MySqlCommand command = new MySqlCommand(queryCustomer, connection))
-            {
-                using (var reader = command.ExecuteReader())
-                {
-                    cmbCustId.Items.Clear();
-                    customers.Clear();
-
-                    while (reader.Read())
-                    {
-                        string customerId = reader["customerId"].ToString();
-                        cmbCustId.Items.Add(customerId);
-                        customers.Add(new Customer
-                        {
-                            CustomerId = customerId,
-                            FirstName = reader["firstName"].ToString(),
-                            LastName = reader["lastName"].ToString(),
-                            Phone = reader["phone"].ToString(),
-                            Email = reader["email"].ToString()
-                        });
-                    }
-                }
-            }
+            LoadDataToComboBox(queryCustomer, connection, cmbCustId, customers);
         }
 
         private void LoadCarParts(MySqlConnection connection)
         {
             string queryCarPart = "SELECT partId, partname, model, price, description, qtyonhand FROM carpart";
-            using (MySqlCommand command = new MySqlCommand(queryCarPart, connection))
+            LoadDataToComboBox(queryCarPart, connection, cmbProductId, carParts);
+        }
+
+        private void LoadDataToComboBox<T>(string query, MySqlConnection connection, ComboBox comboBox, BindingList<T> bindingList)
+        {
+            using (MySqlCommand command = new MySqlCommand(query, connection))
             {
                 using (var reader = command.ExecuteReader())
                 {
-                    cmbProductId.Items.Clear();
-                    carParts.Clear();
+                    comboBox.Items.Clear();
+                    bindingList.Clear();
 
                     while (reader.Read())
                     {
-                        string partId = reader["partId"].ToString();
-                        cmbProductId.Items.Add(partId);
-                        carParts.Add(new Carpart
-                        {
-                            PartId = partId,
-                            PartName = reader["partname"].ToString(),
-                            Model = reader["model"].ToString(),
-                            UnitPrice = reader["price"].ToString(),
-                            Description = reader["description"].ToString(),
-                            QtyOnHand = reader["qtyonhand"].ToString()
-                        });
+                        string id = reader[0].ToString();
+                        comboBox.Items.Add(id);
+                        bindingList.Add(CreateObject<T>(reader));
                     }
                 }
             }
         }
 
-        public string GenerateOrderId()
+        private T CreateObject<T>(MySqlDataReader reader)
+        {
+            if (typeof(T) == typeof(Customer))
+            {
+                return (T)(object)new Customer
+                {
+                    CustomerId = reader["customerId"].ToString(),
+                    FirstName = reader["firstName"].ToString(),
+                    LastName = reader["lastName"].ToString(),
+                    Phone = reader["phone"].ToString(),
+                    Email = reader["email"].ToString()
+                };
+            }
+            else if (typeof(T) == typeof(Carpart))
+            {
+                return (T)(object)new Carpart
+                {
+                    PartId = reader["partId"].ToString(),
+                    PartName = reader["partname"].ToString(),
+                    Model = reader["model"].ToString(),
+                    UnitPrice = reader["price"].ToString(),
+                    Description = reader["description"].ToString(),
+                    QtyOnHand = reader["qtyonhand"].ToString()
+                };
+            }
+
+            return default(T);
+        }
+
+        private string GenerateId(string prefix)
         {
             Random random = new Random();
             string part1 = random.Next(0, 1000).ToString("D3");
             string part2 = random.Next(1, 1000).ToString("D3");
-            return $"O{part1}-{part2}";
+            return $"{prefix}{part1}-{part2}";
         }
 
-        public string GenerateOrderDetailId()
-        {
-            Random random = new Random();
-            string part1 = random.Next(0, 1000).ToString("D3");
-            string part2 = random.Next(1, 1000).ToString("D3");
-            return $"OD{part1}-{part2}";
-        }
+        public string GenerateOrderId() => GenerateId("O");
+        public string GenerateOrderDetailId() => GenerateId("OD");
 
-        public void DisableFields()
+        private void DisableFields()
         {
             txtFirstName.Enabled = false;
             txtLastName.Enabled = false;
             txtPhoneNo.Enabled = false;
             txtEmail.Enabled = false;
             txtOrderId.Enabled = false;
-            cmbProductId.Enabled = false; // Initially disable product selection
-            txtOederQty.Enabled = false; // Initially disable order quantity
-        }
-
-        private void CmbCustId_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cmbCustId.SelectedItem != null)
-            {
-                string selectedCustomerId = cmbCustId.SelectedItem.ToString();
-                Customer selectedCustomer = customers.FirstOrDefault(c => c.CustomerId == selectedCustomerId);
-
-                if (selectedCustomer != null)
-                {
-                    txtFirstName.Text = selectedCustomer.FirstName;
-                    txtLastName.Text = selectedCustomer.LastName;
-                    txtPhoneNo.Text = selectedCustomer.Phone;
-                    txtEmail.Text = selectedCustomer.Email;
-
-                    // Enable product section
-                    EnableProductSection();
-                }
-            }
+            cmbProductId.Enabled = false;
+            txtOederQty.Enabled = false;
         }
 
         private void EnableProductSection()
@@ -160,21 +149,49 @@ namespace CarManagementSystem
             txtOederQty.Enabled = true;
         }
 
+        private void CmbCustId_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbCustId.SelectedItem != null)
+            {
+                string selectedCustomerId = cmbCustId.SelectedItem.ToString();
+                var selectedCustomer = customers.FirstOrDefault(c => c.CustomerId == selectedCustomerId);
+
+                if (selectedCustomer != null)
+                {
+                    PopulateCustomerFields(selectedCustomer);
+                    EnableProductSection();
+                }
+            }
+        }
+
+        private void PopulateCustomerFields(Customer customer)
+        {
+            txtFirstName.Text = customer.FirstName;
+            txtLastName.Text = customer.LastName;
+            txtPhoneNo.Text = customer.Phone;
+            txtEmail.Text = customer.Email;
+        }
+
         private void CmbProductId_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cmbProductId.SelectedItem != null)
             {
                 string selectedPartId = cmbProductId.SelectedItem.ToString();
-                Carpart selectedPart = carParts.FirstOrDefault(p => p.PartId == selectedPartId);
+                var selectedPart = carParts.FirstOrDefault(p => p.PartId == selectedPartId);
 
                 if (selectedPart != null)
                 {
-                    txtPartName.Text = selectedPart.Description;
-                    txtModel.Text = selectedPart.Model;
-                    txtPrice.Text = selectedPart.UnitPrice;
-                    txtQty.Text = selectedPart.QtyOnHand;
+                    PopulateProductFields(selectedPart);
                 }
             }
+        }
+
+        private void PopulateProductFields(Carpart part)
+        {
+            txtPartName.Text = part.Description;
+            txtModel.Text = part.Model;
+            txtPrice.Text = part.UnitPrice;
+            txtQty.Text = part.QtyOnHand;
         }
 
         private void TxtOrderQty_TextChanged(object sender, EventArgs e)
@@ -184,16 +201,12 @@ namespace CarManagementSystem
 
         private void ValidateOrderQuantity()
         {
-            if (int.TryParse(txtOederQty.Text, out int orderQty))
+            if (int.TryParse(txtOederQty.Text, out int orderQty) &&
+                int.TryParse(txtQty.Text, out int qtyOnHand) &&
+                orderQty > qtyOnHand)
             {
-                if (int.TryParse(txtQty.Text, out int qtyOnHand))
-                {
-                    if (orderQty > qtyOnHand)
-                    {
-                        MessageBox.Show("Out of quantity", "Quantity Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        txtOederQty.Text = qtyOnHand.ToString(); // Reset orderQty to max available quantity
-                    }
-                }
+                ShowWarningMessage("Out of quantity");
+                txtOederQty.Text = qtyOnHand.ToString(); // Reset orderQty to max available quantity
             }
         }
 
@@ -202,37 +215,82 @@ namespace CarManagementSystem
             string partId = cmbProductId.SelectedItem?.ToString();
             string orderQtyText = txtOederQty.Text;
 
-            if (string.IsNullOrEmpty(partId) || string.IsNullOrEmpty(orderQtyText) || !int.TryParse(orderQtyText, out int orderQty))
+            if (IsValidOrderInput(partId, orderQtyText, out int orderQty))
             {
-                MessageBox.Show("Please ensure all product details are selected and filled.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                AddOrderDetail(partId, orderQty);
+                UpdateOrderDetailsTable();
+                ClearProductSelection();
+            }
+        }
+
+        private bool IsValidOrderInput(string partId, string orderQtyText, out int orderQty)
+        {
+            orderQty = 0;
+            if (string.IsNullOrEmpty(partId) || string.IsNullOrEmpty(orderQtyText) || !int.TryParse(orderQtyText, out orderQty))
+            {
+                ShowWarningMessage("Please ensure all product details are selected and filled.");
+                return false;
             }
 
-            Carpart selectedPart = carParts.FirstOrDefault(p => p.PartId == partId);
+            var selectedPart = carParts.FirstOrDefault(p => p.PartId == partId);
             if (selectedPart == null || orderQty > int.Parse(selectedPart.QtyOnHand))
             {
-                MessageBox.Show("Invalid product selection or quantity.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                ShowWarningMessage("Invalid product selection or quantity.");
+                return false;
             }
 
-            decimal unitPrice = decimal.Parse(selectedPart.UnitPrice);
-            decimal totalPrice = unitPrice * orderQty;
-            totalOrderPrice += totalPrice;
+            return true;
+        }
 
-            orderDetails.Add(new OrderDetail
+        private void AddOrderDetail(string partId, int orderQty)
+        {
+            var existingOrderDetail = orderDetails.FirstOrDefault(od => od.PartId == partId);
+
+            if (existingOrderDetail != null)
             {
-                PartId = partId,
-                PartName = selectedPart.PartName,
-                Model = selectedPart.Model,
-                UnitPrice = unitPrice,
-                OrderQty = orderQty,
-                TotalPrice = totalPrice
-            });
+                // Update the existing order detail
+                existingOrderDetail.OrderQty += orderQty;
+                existingOrderDetail.TotalPrice = existingOrderDetail.OrderQty * existingOrderDetail.UnitPrice;
+            }
+            else
+            {
+                // Add a new order detail
+                var selectedPart = carParts.First(p => p.PartId == partId);
+                decimal unitPrice = decimal.Parse(selectedPart.UnitPrice);
+                decimal totalPrice = unitPrice * orderQty;
+                totalOrderPrice += totalPrice;
 
-            tblCarPartDetails.DataSource = orderDetails.ToList(); // Assuming tblCarPartDetails is a DataGridView
+                orderDetails.Add(new OrderDetail
+                {
+                    PartId = partId,
+                    PartName = selectedPart.PartName,
+                    Model = selectedPart.Model,
+                    UnitPrice = unitPrice,
+                    OrderQty = orderQty,
+                    TotalPrice = totalPrice
+                });
+            }
+
+            // Update the total order price
+            totalOrderPrice = orderDetails.Sum(od => od.TotalPrice);
+        }
+
+        private void UpdateOrderDetailsTable()
+        {
+            var filteredOrderDetails = orderDetails.Select(od => new
+            {
+                od.PartId,
+                od.PartName,
+                od.OrderQty,
+                od.UnitPrice,
+                od.TotalPrice
+            }).ToList();
+            tblOrderDetails.DataSource = filteredOrderDetails;
             txtTotal.Text = totalOrderPrice.ToString("F2");
+        }
 
-            // Clear product selection
+        private void ClearProductSelection()
+        {
             cmbProductId.SelectedIndex = -1;
             txtPartName.Text = "";
             txtModel.Text = "";
@@ -243,107 +301,167 @@ namespace CarManagementSystem
 
         private void btnPurchaseOrder_Click(object sender, EventArgs e)
         {
-            string orderId = txtOrderId.Text;
-            string customerId = cmbCustId.SelectedItem?.ToString();
-            DateTime orderDate = DateTime.Today;
-            decimal totalPrice = CalculateTotalPriceForAllDetails();
-            decimal cash = 0.0m;
-            decimal balance = 0.0m;
-
-            // Parse cash and balance as decimals
-            decimal.TryParse(txtCash.Text, out cash);
-            decimal.TryParse(txtBalance.Text, out balance);
-
-            if (string.IsNullOrEmpty(customerId) || orderDetails.Count == 0)
+            if (IsValidPurchaseInput(out string orderId, out string customerId, out decimal cash, out decimal balance))
             {
-                MessageBox.Show("Please ensure all order details are selected and filled.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                ProcessPurchase(orderId, customerId, cash, balance);
+            }
+        }
+
+        private bool IsValidPurchaseInput(out string orderId, out string customerId, out decimal cash, out decimal balance)
+        {
+            orderId = txtOrderId.Text;
+            customerId = cmbCustId.SelectedItem?.ToString();
+            cash = 0;
+            balance = 0;
+
+            if (string.IsNullOrEmpty(customerId) || !decimal.TryParse(txtCash.Text, out cash))
+            {
+                ShowWarningMessage("Please ensure a valid customer is selected and cash amount is entered.");
+                return false;
             }
 
+            balance = cash - totalOrderPrice;
+            if (balance < 0)
+            {
+                ShowWarningMessage("Insufficient cash provided.");
+                return false;
+            }
+
+            return true;
+        }
+
+        private void ProcessPurchase(string orderId, string customerId, decimal cash, decimal balance)
+        {
             try
             {
-                using (var connection = OpenDatabaseConnection())
+                InsertOrder(orderId, customerId, totalOrderPrice, cash, balance);
+
+                foreach (var detail in orderDetails)
                 {
-                    using (var transaction = connection.BeginTransaction())
-                    {
-                        try
-                        {
-                            string orderQuery = "INSERT INTO `order` (orderId, customerId, orderdate, total, cash, balance) VALUES (@orderId, @customerId, @orderDate, @total, @cash, @balance)";
-                            using (MySqlCommand command = new MySqlCommand(orderQuery, connection, transaction))
-                            {
-                                command.Parameters.AddWithValue("@orderId", orderId);
-                                command.Parameters.AddWithValue("@customerId", customerId);
-                                command.Parameters.AddWithValue("@orderdate", orderDate);
-                                command.Parameters.AddWithValue("@total", totalPrice);
-                                command.Parameters.AddWithValue("@cash", cash);
-                                command.Parameters.AddWithValue("@balance", balance);
-
-                                command.ExecuteNonQuery();
-                            }
-
-                            foreach (var orderDetail in orderDetails)
-                            {
-                                string orderDetailId = GenerateOrderDetailId();
-                                string orderDetailQuery = "INSERT INTO orderdetail (orderdetailId, orderId, productId, quantity, unitPrice) VALUES (@orderdetailId, @orderId, @productId, @quantity, @unitPrice)";
-                                using (MySqlCommand command = new MySqlCommand(orderDetailQuery, connection, transaction))
-                                {
-                                    command.Parameters.AddWithValue("@orderdetailId", orderDetailId);
-                                    command.Parameters.AddWithValue("@orderId", orderId);
-                                    command.Parameters.AddWithValue("@productId", orderDetail.PartId);
-                                    command.Parameters.AddWithValue("@quantity", orderDetail.OrderQty);
-                                    command.Parameters.AddWithValue("@unitPrice", orderDetail.UnitPrice);
-
-                                    command.ExecuteNonQuery();
-                                }
-
-                                // Update the quantity in the carpart table
-                                string updateQuantityQuery = "UPDATE carpart SET qtyonhand = qtyonhand - @quantity WHERE partId = @partId";
-                                using (MySqlCommand command = new MySqlCommand(updateQuantityQuery, connection, transaction))
-                                {
-                                    command.Parameters.AddWithValue("@quantity", orderDetail.OrderQty);
-                                    command.Parameters.AddWithValue("@partId", orderDetail.PartId);
-
-                                    command.ExecuteNonQuery();
-                                }
-                            }
-
-                            transaction.Commit();
-                            MessageBox.Show("Order purchased successfully.", "Order Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                            // Clear the form for a new order
-                            ClearForm();
-                        }
-                        catch (Exception ex)
-                        {
-                            transaction.Rollback();
-                            MessageBox.Show($"An error occurred while processing the order: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
+                    InsertOrderDetail(orderId, detail);
+                    UpdateCarPartQuantity(detail.PartId, detail.OrderQty);
                 }
+
+                ShowInfoMessage($"Order successfully purchased! Balance: {balance:F2}");
+                ResetForm();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ShowErrorMessage($"An error occurred while processing the purchase: {ex.Message}");
             }
         }
 
 
-
-        private decimal CalculateTotalPriceForAllDetails()
+        private void InsertOrder(string orderId, string customerId, decimal totalPrice, decimal cash, decimal balance)
         {
-            decimal total = 0.0m;
-
-            foreach (var orderDetail in orderDetails)
-            {
-                total += orderDetail.UnitPrice * orderDetail.OrderQty;
-            }
-
-            txtTotal.Text = total.ToString("F2"); // Format as currency
-            return total;
+            string queryOrder = "INSERT INTO `order` (orderId, customerId, orderDate, total, cash, balance) VALUES (@orderId, @customerId, @orderDate, @total, @cash, @balance)";
+            ExecuteNonQuery(queryOrder,("@orderId", orderId), ("@customerId", customerId), ("@orderDate", DateTime.Now), ("@total", totalPrice), ("@cash", cash), ("@balance", balance));
         }
 
 
-        private void ClearForm()
+        private void InsertOrderDetail(string orderId, OrderDetail detail)
+        {
+            string queryOrderDetail = "INSERT INTO orderdetail (orderDetailId, orderId, productId, quantity, unitPrice) VALUES (@orderDetailId, @orderId, @productId, @quantity, @unitPrice)";
+            string orderDetailId = GenerateOrderDetailId();
+            ExecuteNonQuery(queryOrderDetail, ("@orderDetailId", orderDetailId), ("@orderId", orderId), ("@productId", detail.PartId), ("@quantity", detail.OrderQty), ("@unitPrice", detail.UnitPrice));
+        }
+
+        private void UpdateCarPartQuantity(string partId, int orderQty)
+        {
+            string queryUpdateCarPart = "UPDATE carpart SET qtyonhand = qtyonhand - @orderQty WHERE partId = @partId";
+            ExecuteNonQuery(queryUpdateCarPart, ("@orderQty", orderQty), ("@partId", partId));
+        }
+
+        private void ExecuteNonQuery(string query, params (string, object)[] parameters)
+        {
+            using (var connection = OpenDatabaseConnection())
+            {
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    foreach (var (parameterName, value) in parameters)
+                    {
+                        command.Parameters.AddWithValue(parameterName, value);
+                    }
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            string orderId = txtOrderId.Text;
+            if (!string.IsNullOrEmpty(orderId))
+            {
+                try
+                {
+                    using (var connection = OpenDatabaseConnection())
+                    {
+                        string query = "SELECT o.orderId, o.customerId, o.total, od.partId, od.orderQty, p.partname " +
+                                       "FROM `order` o " +
+                                       "JOIN orderdetail od ON o.orderId = od.orderId " +
+                                       "JOIN carpart p ON od.partId = p.partId " +
+                                       "WHERE o.orderId = @orderId";
+                        using (var command = new MySqlCommand(query, connection))
+                        {
+                            command.Parameters.AddWithValue("@orderId", orderId);
+                            using (var reader = command.ExecuteReader())
+                            {
+                                orderDetails.Clear();
+                                while (reader.Read())
+                                {
+                                    orderDetails.Add(new OrderDetail
+                                    {
+                                        PartId = reader["partId"].ToString(),
+                                        PartName = reader["partname"].ToString(),
+                                        OrderQty = Convert.ToInt32(reader["orderQty"]),
+                                        TotalPrice = Convert.ToDecimal(reader["orderQty"]) * Convert.ToDecimal(reader["price"])
+                                    });
+                                }
+                                tblOrderDetails.DataSource = orderDetails.ToList();
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ShowErrorMessage($"An error occurred while searching for the order: {ex.Message}");
+                }
+            }
+            else
+            {
+                ShowWarningMessage("Please enter a valid order ID.");
+            }
+        }
+
+        private void TxtCash_TextChanged(object sender, EventArgs e)
+        {
+            if (decimal.TryParse(txtCash.Text, out decimal cash))
+            {
+                decimal balance = cash - totalOrderPrice;
+                txtBalance.Text = balance.ToString("F2"); // Update the balance label in real-time
+            }
+            else
+            {
+                txtBalance.Text = "0.00";
+            }
+        }
+
+        private void ShowWarningMessage(string message)
+        {
+            MessageBox.Show(message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
+        private void ShowErrorMessage(string message)
+        {
+            MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void ShowInfoMessage(string message)
+        {
+            MessageBox.Show(message, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void ResetForm()
         {
             txtOrderId.Text = GenerateOrderId();
             cmbCustId.SelectedIndex = -1;
@@ -357,95 +475,40 @@ namespace CarManagementSystem
             txtPrice.Text = "";
             txtQty.Text = "";
             txtOederQty.Text = "";
+            txtCash.Text = "";
             txtTotal.Text = "";
-            totalOrderPrice = 0.00m;
             orderDetails.Clear();
-            tblCarPartDetails.DataSource = null;
-            DisableFields();
+            tblOrderDetails.DataSource = null;
+            totalOrderPrice = 0.00m;
         }
 
-        private void btnClear_Click(object sender, EventArgs e)
+        public class Customer
         {
-            ClearForm();
+            public string CustomerId { get; set; }
+            public string FirstName { get; set; }
+            public string LastName { get; set; }
+            public string Phone { get; set; }
+            public string Email { get; set; }
         }
 
-        private void btnSearch_Click(object sender, EventArgs e)
+        public class Carpart
         {
-            SearchCustomer();
+            public string PartId { get; set; }
+            public string PartName { get; set; }
+            public string Model { get; set; }
+            public string UnitPrice { get; set; }
+            public string Description { get; set; }
+            public string QtyOnHand { get; set; }
         }
 
-        private void SearchCustomer()
+        public class OrderDetail
         {
-            string searchCriteria = txtSearch.Text.Trim();
-            if (string.IsNullOrEmpty(searchCriteria))
-            {
-                MessageBox.Show("Please enter a customer ID or name to search.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            try
-            {
-                using (var connection = OpenDatabaseConnection())
-                {
-                    string query = "SELECT customerId, firstName, lastName, phone, email FROM customer WHERE customerId = @search OR firstName LIKE @search OR lastName LIKE @search";
-                    using (MySqlCommand command = new MySqlCommand(query, connection))
-                    {
-                        command.Parameters.AddWithValue("@search", searchCriteria);
-                        using (var reader = command.ExecuteReader())
-                        {
-                            if (reader.Read())
-                            {
-                                cmbCustId.Text = reader["customerId"].ToString();
-                                txtFirstName.Text = reader["firstName"].ToString();
-                                txtLastName.Text = reader["lastName"].ToString();
-                                txtPhoneNo.Text = reader["phone"].ToString();
-                                txtEmail.Text = reader["email"].ToString();
-
-                                // Enable product section
-                                EnableProductSection();
-                            }
-                            else
-                            {
-                                MessageBox.Show("No customer found with the given ID or name.", "Search Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"An error occurred while searching for the customer: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            public string PartId { get; set; }
+            public string PartName { get; set; }
+            public string Model { get; set; }
+            public decimal UnitPrice { get; set; }
+            public int OrderQty { get; set; }
+            public decimal TotalPrice { get; set; }
         }
-    }
-
-
-    public class Customer
-    {
-        public string CustomerId { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Phone { get; set; }
-        public string Email { get; set; }
-    }
-
-    public class Carpart
-    {
-        public string PartId { get; set; }
-        public string PartName { get; set; }
-        public string Model { get; set; }
-        public string UnitPrice { get; set; }
-        public string Description { get; set; }
-        public string QtyOnHand { get; set; }
-    }
-
-    public class OrderDetail
-    {
-        public string PartId { get; set; }
-        public string PartName { get; set; }
-        public string Model { get; set; }
-        public decimal UnitPrice { get; set; }
-        public int OrderQty { get; set; }
-        public decimal TotalPrice { get; set; }
     }
 }

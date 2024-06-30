@@ -28,10 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -40,21 +38,26 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             panelMenu = new Guna.UI2.WinForms.Guna2Panel();
-            guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
+            btnMangeCar = new Guna.UI2.WinForms.Guna2Button();
             pictureBox2 = new PictureBox();
-            guna2Button5 = new Guna.UI2.WinForms.Guna2Button();
-            guna2Button4 = new Guna.UI2.WinForms.Guna2Button();
-            guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
-            guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
+            btnGenerateReport = new Guna.UI2.WinForms.Guna2Button();
+            btnMangeOrder = new Guna.UI2.WinForms.Guna2Button();
+            btnMangeCutomer = new Guna.UI2.WinForms.Guna2Button();
+            btnMangeCarPart = new Guna.UI2.WinForms.Guna2Button();
             pnlDashboard = new Guna.UI2.WinForms.Guna2Panel();
             lblTitle = new Guna.UI2.WinForms.Guna2HtmlLabel();
             lblWelcome = new Guna.UI2.WinForms.Guna2HtmlLabel();
             pictureBox1 = new PictureBox();
             lblUserName = new Guna.UI2.WinForms.Guna2HtmlLabel();
             lblDateTime = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            btnMangeCarRental = new Guna.UI2.WinForms.Guna2Button();
             panelMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -63,40 +66,41 @@
             // panelMenu
             // 
             panelMenu.BackColor = Color.FromArgb(248, 247, 252);
-            panelMenu.Controls.Add(guna2Button1);
+            panelMenu.Controls.Add(btnMangeCarRental);
+            panelMenu.Controls.Add(btnMangeCar);
             panelMenu.Controls.Add(pictureBox2);
-            panelMenu.Controls.Add(guna2Button5);
-            panelMenu.Controls.Add(guna2Button4);
-            panelMenu.Controls.Add(guna2Button3);
-            panelMenu.Controls.Add(guna2Button2);
-            panelMenu.CustomizableEdges = customizableEdges11;
+            panelMenu.Controls.Add(btnGenerateReport);
+            panelMenu.Controls.Add(btnMangeOrder);
+            panelMenu.Controls.Add(btnMangeCutomer);
+            panelMenu.Controls.Add(btnMangeCarPart);
+            panelMenu.CustomizableEdges = customizableEdges13;
             panelMenu.ForeColor = SystemColors.ControlText;
             panelMenu.Location = new Point(0, 0);
             panelMenu.Name = "panelMenu";
-            panelMenu.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            panelMenu.ShadowDecoration.CustomizableEdges = customizableEdges14;
             panelMenu.Size = new Size(211, 488);
             panelMenu.TabIndex = 0;
             // 
-            // guna2Button1
+            // btnMangeCar
             // 
-            guna2Button1.BackColor = Color.White;
-            guna2Button1.BorderColor = Color.White;
-            guna2Button1.BorderThickness = 1;
-            guna2Button1.CustomizableEdges = customizableEdges1;
-            guna2Button1.DisabledState.BorderColor = Color.DarkGray;
-            guna2Button1.DisabledState.CustomBorderColor = Color.DarkGray;
-            guna2Button1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            guna2Button1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2Button1.FillColor = Color.White;
-            guna2Button1.Font = new Font("Segoe UI", 9F);
-            guna2Button1.ForeColor = Color.Black;
-            guna2Button1.Location = new Point(8, 87);
-            guna2Button1.Name = "guna2Button1";
-            guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            guna2Button1.Size = new Size(195, 45);
-            guna2Button1.TabIndex = 8;
-            guna2Button1.Text = "Manage Car Details";
-            guna2Button1.Click += getManageCarDetails;
+            btnMangeCar.BackColor = Color.White;
+            btnMangeCar.BorderColor = Color.White;
+            btnMangeCar.BorderThickness = 1;
+            btnMangeCar.CustomizableEdges = customizableEdges3;
+            btnMangeCar.DisabledState.BorderColor = Color.DarkGray;
+            btnMangeCar.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnMangeCar.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnMangeCar.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnMangeCar.FillColor = Color.White;
+            btnMangeCar.Font = new Font("Segoe UI", 9F);
+            btnMangeCar.ForeColor = Color.Black;
+            btnMangeCar.Location = new Point(8, 87);
+            btnMangeCar.Name = "btnMangeCar";
+            btnMangeCar.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            btnMangeCar.Size = new Size(195, 45);
+            btnMangeCar.TabIndex = 8;
+            btnMangeCar.Text = "Manage Car Details";
+            btnMangeCar.Click += getManageCarDetails;
             // 
             // pictureBox2
             // 
@@ -109,97 +113,97 @@
             pictureBox2.TabStop = false;
             pictureBox2.Click += getDashboardSummery;
             // 
-            // guna2Button5
+            // btnGenerateReport
             // 
-            guna2Button5.BackColor = Color.White;
-            guna2Button5.BorderColor = Color.White;
-            guna2Button5.BorderThickness = 1;
-            guna2Button5.CustomizableEdges = customizableEdges3;
-            guna2Button5.DisabledState.BorderColor = Color.DarkGray;
-            guna2Button5.DisabledState.CustomBorderColor = Color.DarkGray;
-            guna2Button5.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            guna2Button5.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2Button5.FillColor = Color.White;
-            guna2Button5.Font = new Font("Segoe UI", 9F);
-            guna2Button5.ForeColor = Color.Black;
-            guna2Button5.Location = new Point(8, 290);
-            guna2Button5.Name = "guna2Button5";
-            guna2Button5.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            guna2Button5.Size = new Size(195, 45);
-            guna2Button5.TabIndex = 5;
-            guna2Button5.Text = "Generate Reports";
-            guna2Button5.Click += getAllReports;
+            btnGenerateReport.BackColor = Color.White;
+            btnGenerateReport.BorderColor = Color.White;
+            btnGenerateReport.BorderThickness = 1;
+            btnGenerateReport.CustomizableEdges = customizableEdges5;
+            btnGenerateReport.DisabledState.BorderColor = Color.DarkGray;
+            btnGenerateReport.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnGenerateReport.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnGenerateReport.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnGenerateReport.FillColor = Color.White;
+            btnGenerateReport.Font = new Font("Segoe UI", 9F);
+            btnGenerateReport.ForeColor = Color.Black;
+            btnGenerateReport.Location = new Point(8, 341);
+            btnGenerateReport.Name = "btnGenerateReport";
+            btnGenerateReport.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            btnGenerateReport.Size = new Size(195, 45);
+            btnGenerateReport.TabIndex = 5;
+            btnGenerateReport.Text = "Generate Reports";
+            btnGenerateReport.Click += getAllReports;
             // 
-            // guna2Button4
+            // btnMangeOrder
             // 
-            guna2Button4.BackColor = Color.White;
-            guna2Button4.BorderColor = Color.White;
-            guna2Button4.BorderThickness = 1;
-            guna2Button4.CustomizableEdges = customizableEdges5;
-            guna2Button4.DisabledState.BorderColor = Color.DarkGray;
-            guna2Button4.DisabledState.CustomBorderColor = Color.DarkGray;
-            guna2Button4.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            guna2Button4.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2Button4.FillColor = Color.White;
-            guna2Button4.Font = new Font("Segoe UI", 9F);
-            guna2Button4.ForeColor = Color.Black;
-            guna2Button4.Location = new Point(8, 239);
-            guna2Button4.Name = "guna2Button4";
-            guna2Button4.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            guna2Button4.Size = new Size(195, 45);
-            guna2Button4.TabIndex = 4;
-            guna2Button4.Text = "Manage Customer Order Details";
-            guna2Button4.Click += getOrderDetails;
+            btnMangeOrder.BackColor = Color.White;
+            btnMangeOrder.BorderColor = Color.White;
+            btnMangeOrder.BorderThickness = 1;
+            btnMangeOrder.CustomizableEdges = customizableEdges7;
+            btnMangeOrder.DisabledState.BorderColor = Color.DarkGray;
+            btnMangeOrder.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnMangeOrder.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnMangeOrder.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnMangeOrder.FillColor = Color.White;
+            btnMangeOrder.Font = new Font("Segoe UI", 9F);
+            btnMangeOrder.ForeColor = Color.Black;
+            btnMangeOrder.Location = new Point(8, 239);
+            btnMangeOrder.Name = "btnMangeOrder";
+            btnMangeOrder.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            btnMangeOrder.Size = new Size(195, 45);
+            btnMangeOrder.TabIndex = 4;
+            btnMangeOrder.Text = "Manage Customer Order Details";
+            btnMangeOrder.Click += getOrderDetails;
             // 
-            // guna2Button3
+            // btnMangeCutomer
             // 
-            guna2Button3.BackColor = Color.White;
-            guna2Button3.BorderColor = Color.White;
-            guna2Button3.BorderThickness = 1;
-            guna2Button3.CustomizableEdges = customizableEdges7;
-            guna2Button3.DisabledState.BorderColor = Color.DarkGray;
-            guna2Button3.DisabledState.CustomBorderColor = Color.DarkGray;
-            guna2Button3.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            guna2Button3.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2Button3.FillColor = Color.White;
-            guna2Button3.Font = new Font("Segoe UI", 9F);
-            guna2Button3.ForeColor = Color.Black;
-            guna2Button3.Location = new Point(8, 188);
-            guna2Button3.Name = "guna2Button3";
-            guna2Button3.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            guna2Button3.Size = new Size(195, 45);
-            guna2Button3.TabIndex = 3;
-            guna2Button3.Text = "Manage Customer Details";
-            guna2Button3.Click += getCustomerDetails;
+            btnMangeCutomer.BackColor = Color.White;
+            btnMangeCutomer.BorderColor = Color.White;
+            btnMangeCutomer.BorderThickness = 1;
+            btnMangeCutomer.CustomizableEdges = customizableEdges9;
+            btnMangeCutomer.DisabledState.BorderColor = Color.DarkGray;
+            btnMangeCutomer.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnMangeCutomer.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnMangeCutomer.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnMangeCutomer.FillColor = Color.White;
+            btnMangeCutomer.Font = new Font("Segoe UI", 9F);
+            btnMangeCutomer.ForeColor = Color.Black;
+            btnMangeCutomer.Location = new Point(8, 188);
+            btnMangeCutomer.Name = "btnMangeCutomer";
+            btnMangeCutomer.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            btnMangeCutomer.Size = new Size(195, 45);
+            btnMangeCutomer.TabIndex = 3;
+            btnMangeCutomer.Text = "Manage Customer Details";
+            btnMangeCutomer.Click += getCustomerDetails;
             // 
-            // guna2Button2
+            // btnMangeCarPart
             // 
-            guna2Button2.BackColor = Color.White;
-            guna2Button2.BorderColor = Color.White;
-            guna2Button2.BorderThickness = 1;
-            guna2Button2.CustomizableEdges = customizableEdges9;
-            guna2Button2.DisabledState.BorderColor = Color.DarkGray;
-            guna2Button2.DisabledState.CustomBorderColor = Color.DarkGray;
-            guna2Button2.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            guna2Button2.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2Button2.FillColor = Color.White;
-            guna2Button2.Font = new Font("Segoe UI", 9F);
-            guna2Button2.ForeColor = Color.Black;
-            guna2Button2.Location = new Point(8, 137);
-            guna2Button2.Name = "guna2Button2";
-            guna2Button2.ShadowDecoration.CustomizableEdges = customizableEdges10;
-            guna2Button2.Size = new Size(195, 45);
-            guna2Button2.TabIndex = 2;
-            guna2Button2.Text = "Manage Car Parts Details";
-            guna2Button2.Click += getManageCarParts;
+            btnMangeCarPart.BackColor = Color.White;
+            btnMangeCarPart.BorderColor = Color.White;
+            btnMangeCarPart.BorderThickness = 1;
+            btnMangeCarPart.CustomizableEdges = customizableEdges11;
+            btnMangeCarPart.DisabledState.BorderColor = Color.DarkGray;
+            btnMangeCarPart.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnMangeCarPart.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnMangeCarPart.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnMangeCarPart.FillColor = Color.White;
+            btnMangeCarPart.Font = new Font("Segoe UI", 9F);
+            btnMangeCarPart.ForeColor = Color.Black;
+            btnMangeCarPart.Location = new Point(8, 137);
+            btnMangeCarPart.Name = "btnMangeCarPart";
+            btnMangeCarPart.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            btnMangeCarPart.Size = new Size(195, 45);
+            btnMangeCarPart.TabIndex = 2;
+            btnMangeCarPart.Text = "Manage Car Parts Details";
+            btnMangeCarPart.Click += getManageCarParts;
             // 
             // pnlDashboard
             // 
-            pnlDashboard.CustomizableEdges = customizableEdges13;
+            pnlDashboard.CustomizableEdges = customizableEdges15;
             pnlDashboard.FillColor = Color.FromArgb(248, 247, 252);
             pnlDashboard.Location = new Point(212, 53);
             pnlDashboard.Name = "pnlDashboard";
-            pnlDashboard.ShadowDecoration.CustomizableEdges = customizableEdges14;
+            pnlDashboard.ShadowDecoration.CustomizableEdges = customizableEdges16;
             pnlDashboard.Size = new Size(709, 436);
             pnlDashboard.TabIndex = 1;
             // 
@@ -258,6 +262,27 @@
             lblDateTime.TabIndex = 17;
             lblDateTime.Text = "Date & Time";
             // 
+            // btnMangeCarRental
+            // 
+            btnMangeCarRental.BackColor = Color.White;
+            btnMangeCarRental.BorderColor = Color.White;
+            btnMangeCarRental.BorderThickness = 1;
+            btnMangeCarRental.CustomizableEdges = customizableEdges1;
+            btnMangeCarRental.DisabledState.BorderColor = Color.DarkGray;
+            btnMangeCarRental.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnMangeCarRental.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnMangeCarRental.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnMangeCarRental.FillColor = Color.White;
+            btnMangeCarRental.Font = new Font("Segoe UI", 9F);
+            btnMangeCarRental.ForeColor = Color.Black;
+            btnMangeCarRental.Location = new Point(8, 290);
+            btnMangeCarRental.Name = "btnMangeCarRental";
+            btnMangeCarRental.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            btnMangeCarRental.Size = new Size(195, 45);
+            btnMangeCarRental.TabIndex = 9;
+            btnMangeCarRental.Text = "Manage Car Rental Details";
+            btnMangeCarRental.Click += getManageCarRentalDetails;
+            // 
             // frmAdminDashboard
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -285,17 +310,18 @@
         #endregion
 
         private Guna.UI2.WinForms.Guna2Panel panelMenu;
-        private Guna.UI2.WinForms.Guna2Button guna2Button5;
-        private Guna.UI2.WinForms.Guna2Button guna2Button4;
-        private Guna.UI2.WinForms.Guna2Button guna2Button3;
-        private Guna.UI2.WinForms.Guna2Button guna2Button2;
+        private Guna.UI2.WinForms.Guna2Button btnGenerateReport;
+        private Guna.UI2.WinForms.Guna2Button btnMangeOrder;
+        private Guna.UI2.WinForms.Guna2Button btnMangeCutomer;
+        private Guna.UI2.WinForms.Guna2Button btnMangeCarPart;
         private Guna.UI2.WinForms.Guna2Panel pnlDashboard;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblTitle;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblWelcome;
         private PictureBox pictureBox1;
-        private Guna.UI2.WinForms.Guna2Button guna2Button1;
+        private Guna.UI2.WinForms.Guna2Button btnMangeCar;
         private PictureBox pictureBox2;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblUserName;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblDateTime;
+        private Guna.UI2.WinForms.Guna2Button btnMangeCarRental;
     }
 }
