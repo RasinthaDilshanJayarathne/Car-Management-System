@@ -172,6 +172,7 @@
             // lblSignup
             // 
             lblSignup.AutoSize = true;
+            lblSignup.BackColor = Color.FromArgb(246, 255, 250);
             lblSignup.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblSignup.LinkColor = Color.FromArgb(0, 0, 192);
             lblSignup.Location = new Point(146, 373);
@@ -185,7 +186,7 @@
             // 
             // lblNewMember
             // 
-            lblNewMember.BackColor = Color.Transparent;
+            lblNewMember.BackColor = Color.FromArgb(246, 255, 250);
             lblNewMember.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblNewMember.Location = new Point(58, 371);
             lblNewMember.Name = "lblNewMember";

@@ -36,15 +36,15 @@ namespace CarManagementSystem
             string make = txtMake.Text;
             string model = txtModel.Text;
             string year = txtYear.Text;
-            string price = txtPrice.Text;
+            string dailyRate = txtDailyRate.Text;
             string description = txtDescription.Text;
 
-            if (!IsValidInput(carId, make, model, year, price, description))
+            if (!IsValidInput(carId, make, model, year, dailyRate, description))
                 return;
 
             int count = btnCarSave.Text == "SAVE" ?
-                        InsertOrUpdateCar(carId, make, model, year, price, description, imagePath, isUpdate: false) :
-                        InsertOrUpdateCar(carId, make, model, year, price, description, imagePath, isUpdate: true);
+                        InsertOrUpdateCar(carId, make, model, year, dailyRate, description, imagePath, isUpdate: false) :
+                        InsertOrUpdateCar(carId, make, model, year, dailyRate, description, imagePath, isUpdate: true);
 
             string message = btnCarSave.Text == "SAVE" ? "registered" : "updated";
 
@@ -65,12 +65,12 @@ namespace CarManagementSystem
             }
         }
 
-        private int InsertOrUpdateCar(string carId, string make, string model, string year, string price, string description, string imagePath, bool isUpdate)
+        private int InsertOrUpdateCar(string carId, string make, string model, string year, string dailyRate, string description, string imagePath, bool isUpdate)
         {
             int count = 0;
             string query = isUpdate ?
-                           "UPDATE car SET Make = @make, Model = @model, Year = @year, Price = @price, Description = @description, ImagePath = @imagePath WHERE CarID = @cId" :
-                           "INSERT INTO car (CarID, Make, Model, Year, Price, Description, ImagePath) VALUES (@cId, @make, @model, @year, @price, @description, @imagePath)";
+                           "UPDATE car SET Make = @make, Model = @model, Year = @year, dailyRate = @dailyRate, Description = @description, ImagePath = @imagePath WHERE CarID = @cId" :
+                           "INSERT INTO car (CarID, Make, Model, Year, dailyRate, Description, ImagePath) VALUES (@cId, @make, @model, @year, @dailyRate, @description, @imagePath)";
 
             try
             {
@@ -84,7 +84,7 @@ namespace CarManagementSystem
                         command.Parameters.AddWithValue("@make", make);
                         command.Parameters.AddWithValue("@model", model);
                         command.Parameters.AddWithValue("@year", int.Parse(year));
-                        command.Parameters.AddWithValue("@price", decimal.Parse(price));
+                        command.Parameters.AddWithValue("@dailyRate", decimal.Parse(dailyRate));
                         command.Parameters.AddWithValue("@description", description);
                         command.Parameters.AddWithValue("@imagePath", imagePath);
 
@@ -102,18 +102,18 @@ namespace CarManagementSystem
             return count;
         }
 
-        private bool IsValidInput(string carId, string make, string model, string year, string price, string description)
+        private bool IsValidInput(string carId, string make, string model, string year, string dailyRate, string description)
         {
             if (string.IsNullOrWhiteSpace(make) || string.IsNullOrWhiteSpace(model) || string.IsNullOrWhiteSpace(year) ||
-                string.IsNullOrWhiteSpace(price) || string.IsNullOrWhiteSpace(description))
+                string.IsNullOrWhiteSpace(dailyRate) || string.IsNullOrWhiteSpace(description))
             {
                 MessageBox.Show("Please fill all fields.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
-            if (!int.TryParse(year, out _) || !decimal.TryParse(price, out _))
+            if (!int.TryParse(year, out _) || !decimal.TryParse(dailyRate, out _))
             {
-                MessageBox.Show("Please enter valid Year and Price.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please enter valid Year and Daily Rate.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
@@ -194,7 +194,7 @@ namespace CarManagementSystem
                 {
                     db.OpenConnection();
 
-                    string query = "SELECT CarID, Make, Model, Year, Price, Description, ImagePath FROM car";
+                    string query = "SELECT CarID, Make, Model, Year, DailyRate, Description, ImagePath FROM car";
                     using (MySqlCommand command = new MySqlCommand(query, db.GetConnection()))
                     {
                         using (MySqlDataAdapter dataAdapter = new MySqlDataAdapter(command))
@@ -223,7 +223,7 @@ namespace CarManagementSystem
             txtMake.Clear();
             txtModel.Clear();
             txtYear.Clear();
-            txtPrice.Clear();
+            txtDailyRate.Clear();
             txtDescription.Clear();
             txtSearch.Clear();
             carImgBox.Image = null;
@@ -240,7 +240,7 @@ namespace CarManagementSystem
                 txtMake.Text = row.Cells["colMake"].Value.ToString();
                 txtModel.Text = row.Cells["colModel"].Value.ToString();
                 txtYear.Text = row.Cells["colYear"].Value.ToString();
-                txtPrice.Text = row.Cells["colPrice"].Value.ToString();
+                txtDailyRate.Text = row.Cells["colPrice"].Value.ToString();
                 txtDescription.Text = row.Cells["colDescription"].Value.ToString();
 
                 txtCarId.Enabled = false;
@@ -270,7 +270,7 @@ namespace CarManagementSystem
                 {
                     db.OpenConnection();
 
-                    string query = "SELECT CarID, Make, Model, Year, Price, Description, ImagePath FROM car WHERE CarID = @term OR Model = @term OR Year = @term";
+                    string query = "SELECT CarID, Make, Model, Year, DailyRate, Description, ImagePath FROM car WHERE CarID = @term OR Model = @term OR Year = @term";
                     using (MySqlCommand command = new MySqlCommand(query, db.GetConnection()))
                     {
                         command.Parameters.AddWithValue("@term", searchTerm);
@@ -283,7 +283,7 @@ namespace CarManagementSystem
                                 txtMake.Text = reader["Make"].ToString();
                                 txtModel.Text = reader["Model"].ToString();
                                 txtYear.Text = reader["Year"].ToString();
-                                txtPrice.Text = reader["Price"].ToString();
+                                txtDailyRate.Text = reader["DailyRate"].ToString();
                                 txtDescription.Text = reader["Description"].ToString();
 
                                 txtCarId.Enabled = false;

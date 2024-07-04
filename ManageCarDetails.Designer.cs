@@ -56,7 +56,7 @@
             lblMake = new Label();
             txtMake = new Guna.UI2.WinForms.Guna2TextBox();
             lblPrice = new Label();
-            txtPrice = new Guna.UI2.WinForms.Guna2TextBox();
+            txtDailyRate = new Guna.UI2.WinForms.Guna2TextBox();
             lblDescription = new Label();
             txtDescription = new Guna.UI2.WinForms.Guna2TextBox();
             lblModel = new Label();
@@ -76,6 +76,7 @@
             colMake = new DataGridViewTextBoxColumn();
             colId = new DataGridViewTextBoxColumn();
             tblCarDetails = new Guna.UI2.WinForms.Guna2DataGridView();
+            mySqlCommand1 = new MySql.Data.MySqlClient.MySqlCommand();
             ((System.ComponentModel.ISupportInitialize)carImgBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)searchIcon).BeginInit();
             ((System.ComponentModel.ISupportInitialize)tblCarDetails).BeginInit();
@@ -157,31 +158,31 @@
             lblPrice.ForeColor = Color.Black;
             lblPrice.Location = new Point(141, 169);
             lblPrice.Name = "lblPrice";
-            lblPrice.Size = new Size(33, 15);
+            lblPrice.Size = new Size(59, 15);
             lblPrice.TabIndex = 32;
-            lblPrice.Text = "Price";
+            lblPrice.Text = "Daily Rate";
             // 
-            // txtPrice
+            // txtDailyRate
             // 
-            txtPrice.BorderColor = Color.White;
-            txtPrice.CustomizableEdges = customizableEdges5;
-            txtPrice.DefaultText = "";
-            txtPrice.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            txtPrice.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            txtPrice.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            txtPrice.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            txtPrice.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtPrice.Font = new Font("Segoe UI", 9F);
-            txtPrice.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtPrice.Location = new Point(132, 187);
-            txtPrice.Name = "txtPrice";
-            txtPrice.PasswordChar = '\0';
-            txtPrice.PlaceholderText = "Enter Price";
-            txtPrice.SelectedText = "";
-            txtPrice.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            txtPrice.Size = new Size(127, 36);
-            txtPrice.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
-            txtPrice.TabIndex = 34;
+            txtDailyRate.BorderColor = Color.White;
+            txtDailyRate.CustomizableEdges = customizableEdges5;
+            txtDailyRate.DefaultText = "";
+            txtDailyRate.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txtDailyRate.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txtDailyRate.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txtDailyRate.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txtDailyRate.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtDailyRate.Font = new Font("Segoe UI", 9F);
+            txtDailyRate.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtDailyRate.Location = new Point(132, 187);
+            txtDailyRate.Name = "txtDailyRate";
+            txtDailyRate.PasswordChar = '\0';
+            txtDailyRate.PlaceholderText = "Enter Daily Rate";
+            txtDailyRate.SelectedText = "";
+            txtDailyRate.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            txtDailyRate.Size = new Size(127, 36);
+            txtDailyRate.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
+            txtDailyRate.TabIndex = 34;
             // 
             // lblDescription
             // 
@@ -479,6 +480,13 @@
             tblCarDetails.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
             tblCarDetails.CellContentClick += carDataGridView_CellClick;
             // 
+            // mySqlCommand1
+            // 
+            mySqlCommand1.CacheAge = 0;
+            mySqlCommand1.Connection = null;
+            mySqlCommand1.EnableCaching = false;
+            mySqlCommand1.Transaction = null;
+            // 
             // frmManageCarDetails
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -497,7 +505,7 @@
             Controls.Add(lblYear);
             Controls.Add(txtYear);
             Controls.Add(lblPrice);
-            Controls.Add(txtPrice);
+            Controls.Add(txtDailyRate);
             Controls.Add(lblDescription);
             Controls.Add(txtDescription);
             Controls.Add(lblCarId);
@@ -520,7 +528,7 @@
         private Label lblMake;
         private Guna.UI2.WinForms.Guna2TextBox txtMake;
         private Label lblPrice;
-        private Guna.UI2.WinForms.Guna2TextBox txtPrice;
+        private Guna.UI2.WinForms.Guna2TextBox txtDailyRate;
         private Label lblDescription;
         private Guna.UI2.WinForms.Guna2TextBox txtDescription;
         private Label lblModel;
@@ -540,5 +548,6 @@
         private DataGridViewTextBoxColumn colMake;
         private DataGridViewTextBoxColumn colId;
         private Guna.UI2.WinForms.Guna2DataGridView tblCarDetails;
+        private MySql.Data.MySqlClient.MySqlCommand mySqlCommand1;
     }
 }

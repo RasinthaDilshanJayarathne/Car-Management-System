@@ -17,7 +17,18 @@ namespace CarManagementSystem
         public SignUp()
         {
             InitializeComponent();
+            GenerateCustomerId();
         }
+
+        private string GenerateId(string prefix)
+        {
+            Random random = new Random();
+            string part1 = random.Next(0, 1000).ToString("D3");
+            string part2 = random.Next(1, 1000).ToString("D3");
+            return $"{prefix}{part1}-{part2}";
+        }
+
+        public string GenerateCustomerId() => GenerateId("C");
 
         private void signUp(object sender, EventArgs e)
         {
@@ -61,13 +72,13 @@ namespace CarManagementSystem
                 {
                     db.OpenConnection();
 
-                    string custId = "COO-"+ getCurrentCustomerId();
+                    //string custId = "COO-"+ getCurrentCustomerId();
 
                     string query = "INSERT INTO customer (CustomerId, FirstName, LastName, Phone, Email, Password, ConfPassword) VALUES (@custId, @fName, @lName, @contact, @Email, @pswrd, @confPswrd)";
 
                     using (MySqlCommand command = new MySqlCommand(query, db.GetConnection()))
                     {
-                        command.Parameters.Add("@custId", MySqlDbType.VarChar).Value = custId;
+                        command.Parameters.Add("@custId", MySqlDbType.VarChar).Value = GenerateCustomerId();
                         command.Parameters.Add("@fName", MySqlDbType.VarChar).Value = firstName;
                         command.Parameters.Add("@lName", MySqlDbType.VarChar).Value = lastName;
                         command.Parameters.Add("@contact", MySqlDbType.VarChar).Value = contactNumber;

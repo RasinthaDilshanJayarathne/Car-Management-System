@@ -510,7 +510,6 @@
             btnClear.Size = new Size(66, 29);
             btnClear.TabIndex = 61;
             btnClear.Text = "CLEAR";
-            btnClear.Click += btnClear_Click;
             // 
             // btnPurchase
             // 

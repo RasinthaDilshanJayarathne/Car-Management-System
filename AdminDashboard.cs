@@ -113,7 +113,7 @@ namespace CarManagementSystem
         private void getManageCarRentalDetails(object sender, EventArgs e)
         {
             lblTitle.Text = "MANAGE CAR RENTAL DETAILS";
-            frmManageCarRental manageCarRental = new frmManageCarRental();
+            frmManageCarRentalDetails manageCarRental = new frmManageCarRentalDetails();
             manageCarRental.TopLevel = false;
             manageCarRental.FormBorderStyle = FormBorderStyle.None;
             manageCarRental.Dock = DockStyle.Fill;
