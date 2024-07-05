@@ -1,6 +1,6 @@
 ﻿namespace CarManagementSystem
 {
-    partial class CustomerDashboardSummery
+    partial class frmSearchCars
     {
         /// <summary>
         /// Required designer variable.
@@ -28,22 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             pnlContainer = new Guna.UI2.WinForms.Guna2GradientPanel();
             SuspendLayout();
             // 
             // pnlContainer
             // 
             pnlContainer.AutoScroll = true;
-            pnlContainer.CustomizableEdges = customizableEdges3;
-            pnlContainer.Location = new Point(12, 43);
+            pnlContainer.CustomizableEdges = customizableEdges1;
+            pnlContainer.Location = new Point(12, 48);
             pnlContainer.Name = "pnlContainer";
-            pnlContainer.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            pnlContainer.ShadowDecoration.CustomizableEdges = customizableEdges2;
             pnlContainer.Size = new Size(679, 377);
-            pnlContainer.TabIndex = 58;
+            pnlContainer.TabIndex = 59;
             // 
-            // CustomerDashboardSummery
+            // frmSearchCars
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -51,15 +51,16 @@
             ClientSize = new Size(703, 430);
             Controls.Add(pnlContainer);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "CustomerDashboardSummery";
+            Name = "frmSearchCars";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "CustomerDashboardSummery";
+            Text = "SearchCars";
             ResumeLayout(false);
         }
 
         #endregion
-        private Guna.UI2.WinForms.Guna2GradientPanel pnlOrder;
-        private PictureBox imgOrderBox;
+
         private Guna.UI2.WinForms.Guna2GradientPanel pnlContainer;
+        private PictureBox searchIcon;
+        private Guna.UI2.WinForms.Guna2TextBox txtSearch;
     }
 }

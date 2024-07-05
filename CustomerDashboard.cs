@@ -26,6 +26,7 @@ namespace CarManagementSystem
             timer.Interval = 1000; // 1 second intervals
             timer.Tick += new EventHandler(UpdateDateTime);
             timer.Start();*/
+
         }
 
         private void clickLogout(object sender, EventArgs e)
@@ -108,6 +109,32 @@ namespace CarManagementSystem
             this.pnlDashboard.Controls.Clear();
             this.pnlDashboard.Controls.Add(customerCarRentalHistory);
             customerCarRentalHistory.Show();
+        }
+
+        private void searchCars(object sender, EventArgs e)
+        {
+            lblTitle.Text = "ALL CARS";
+            frmSearchCars searchCars = new frmSearchCars();
+            searchCars.TopLevel = false;
+            searchCars.FormBorderStyle = FormBorderStyle.None;
+            searchCars.Dock = DockStyle.Fill;
+
+            this.pnlDashboard.Controls.Clear();
+            this.pnlDashboard.Controls.Add(searchCars);
+            searchCars.Show();
+        }
+
+        private void searchCarParts(object sender, EventArgs e)
+        {
+            lblTitle.Text = "ALL CAR PARTS";
+            frmSearchCarParts searchCarParts = new frmSearchCarParts();
+            searchCarParts.TopLevel = false;
+            searchCarParts.FormBorderStyle = FormBorderStyle.None;
+            searchCarParts.Dock = DockStyle.Fill;
+
+            this.pnlDashboard.Controls.Clear();
+            this.pnlDashboard.Controls.Add(searchCarParts);
+            searchCarParts.Show();
         }
     }
 }
