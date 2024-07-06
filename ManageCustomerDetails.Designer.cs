@@ -337,7 +337,7 @@
             tblCustomerDetails.ThemeStyle.RowsStyle.Height = 25;
             tblCustomerDetails.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             tblCustomerDetails.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
-            tblCustomerDetails.CellContentClick += customerDataGridView_CellClick;
+            tblCustomerDetails.CellClick += tblCustomerDetails_CellClick;
             // 
             // colFirstName
             // 

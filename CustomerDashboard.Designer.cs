@@ -132,7 +132,6 @@
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 7;
             pictureBox2.TabStop = false;
-            pictureBox2.Click += getDashboardSummery;
             // 
             // guna2Button4
             // 

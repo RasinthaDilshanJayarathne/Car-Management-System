@@ -69,12 +69,6 @@
             carImgBox = new PictureBox();
             txtSearch = new Guna.UI2.WinForms.Guna2TextBox();
             searchIcon = new PictureBox();
-            colDescription = new DataGridViewTextBoxColumn();
-            colPrice = new DataGridViewTextBoxColumn();
-            colYear = new DataGridViewTextBoxColumn();
-            colModel = new DataGridViewTextBoxColumn();
-            colMake = new DataGridViewTextBoxColumn();
-            colId = new DataGridViewTextBoxColumn();
             tblCarDetails = new Guna.UI2.WinForms.Guna2DataGridView();
             mySqlCommand1 = new MySql.Data.MySqlClient.MySqlCommand();
             ((System.ComponentModel.ISupportInitialize)carImgBox).BeginInit();
@@ -90,9 +84,9 @@
             lblCarId.ForeColor = Color.Black;
             lblCarId.Location = new Point(141, 96);
             lblCarId.Name = "lblCarId";
-            lblCarId.Size = new Size(38, 15);
+            lblCarId.Size = new Size(57, 15);
             lblCarId.TabIndex = 28;
-            lblCarId.Text = "Car Id";
+            lblCarId.Text = "Vehicle Id";
             // 
             // txtCarId
             // 
@@ -385,48 +379,6 @@
             searchIcon.TabStop = false;
             searchIcon.Click += btnSearching_Click;
             // 
-            // colDescription
-            // 
-            colDescription.DataPropertyName = "description";
-            colDescription.HeaderText = "Description";
-            colDescription.Name = "colDescription";
-            colDescription.ReadOnly = true;
-            // 
-            // colPrice
-            // 
-            colPrice.DataPropertyName = "price";
-            colPrice.HeaderText = "Price";
-            colPrice.Name = "colPrice";
-            colPrice.ReadOnly = true;
-            // 
-            // colYear
-            // 
-            colYear.DataPropertyName = "year";
-            colYear.HeaderText = "Year";
-            colYear.Name = "colYear";
-            colYear.ReadOnly = true;
-            // 
-            // colModel
-            // 
-            colModel.DataPropertyName = "model";
-            colModel.HeaderText = "Model";
-            colModel.Name = "colModel";
-            colModel.ReadOnly = true;
-            // 
-            // colMake
-            // 
-            colMake.DataPropertyName = "make";
-            colMake.HeaderText = "Make";
-            colMake.Name = "colMake";
-            colMake.ReadOnly = true;
-            // 
-            // colId
-            // 
-            colId.DataPropertyName = "carId";
-            colId.HeaderText = "Id";
-            colId.Name = "colId";
-            colId.ReadOnly = true;
-            // 
             // tblCarDetails
             // 
             dataGridViewCellStyle1.BackColor = Color.White;
@@ -441,7 +393,6 @@
             tblCarDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             tblCarDetails.ColumnHeadersHeight = 17;
             tblCarDetails.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            tblCarDetails.Columns.AddRange(new DataGridViewColumn[] { colId, colMake, colModel, colYear, colPrice, colDescription });
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.White;
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
@@ -541,12 +492,6 @@
         private PictureBox carImgBox;
         private Guna.UI2.WinForms.Guna2TextBox txtSearch;
         private PictureBox searchIcon;
-        private DataGridViewTextBoxColumn colDescription;
-        private DataGridViewTextBoxColumn colPrice;
-        private DataGridViewTextBoxColumn colYear;
-        private DataGridViewTextBoxColumn colModel;
-        private DataGridViewTextBoxColumn colMake;
-        private DataGridViewTextBoxColumn colId;
         private Guna.UI2.WinForms.Guna2DataGridView tblCarDetails;
         private MySql.Data.MySqlClient.MySqlCommand mySqlCommand1;
     }

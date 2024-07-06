@@ -70,12 +70,6 @@
             carPartImgBox = new PictureBox();
             btnUpload = new Guna.UI2.WinForms.Guna2Button();
             tblCarPartDetails = new Guna.UI2.WinForms.Guna2DataGridView();
-            colId = new DataGridViewTextBoxColumn();
-            colPartName = new DataGridViewTextBoxColumn();
-            colModel = new DataGridViewTextBoxColumn();
-            colYear = new DataGridViewTextBoxColumn();
-            colQtyOnHand = new DataGridViewTextBoxColumn();
-            colDescription = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)searchIcon).BeginInit();
             ((System.ComponentModel.ISupportInitialize)carPartImgBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)tblCarPartDetails).BeginInit();
@@ -398,7 +392,6 @@
             tblCarPartDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             tblCarPartDetails.ColumnHeadersHeight = 17;
             tblCarPartDetails.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            tblCarPartDetails.Columns.AddRange(new DataGridViewColumn[] { colId, colPartName, colModel, colYear, colQtyOnHand, colDescription });
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.White;
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
@@ -435,49 +428,7 @@
             tblCarPartDetails.ThemeStyle.RowsStyle.Height = 25;
             tblCarPartDetails.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             tblCarPartDetails.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
-            tblCarPartDetails.CellContentClick += carPartDataGridView_CellClick;
-            // 
-            // colId
-            // 
-            colId.DataPropertyName = "partId";
-            colId.HeaderText = "Id";
-            colId.Name = "colId";
-            colId.ReadOnly = true;
-            // 
-            // colPartName
-            // 
-            colPartName.DataPropertyName = "partName";
-            colPartName.HeaderText = "Part Name";
-            colPartName.Name = "colPartName";
-            colPartName.ReadOnly = true;
-            // 
-            // colModel
-            // 
-            colModel.DataPropertyName = "model";
-            colModel.HeaderText = "Model";
-            colModel.Name = "colModel";
-            colModel.ReadOnly = true;
-            // 
-            // colYear
-            // 
-            colYear.DataPropertyName = "price";
-            colYear.HeaderText = "Price";
-            colYear.Name = "colYear";
-            colYear.ReadOnly = true;
-            // 
-            // colQtyOnHand
-            // 
-            colQtyOnHand.DataPropertyName = "qtyOnHand";
-            colQtyOnHand.HeaderText = "QtyOnHand";
-            colQtyOnHand.Name = "colQtyOnHand";
-            colQtyOnHand.ReadOnly = true;
-            // 
-            // colDescription
-            // 
-            colDescription.DataPropertyName = "description";
-            colDescription.HeaderText = "Description";
-            colDescription.Name = "colDescription";
-            colDescription.ReadOnly = true;
+            tblCarPartDetails.CellClick += tblCarPartDetails_CellClick;
             // 
             // frmManageCarPartsDetails
             // 
@@ -534,11 +485,5 @@
         private PictureBox carPartImgBox;
         private Guna.UI2.WinForms.Guna2Button btnUpload;
         private Guna.UI2.WinForms.Guna2DataGridView tblCarPartDetails;
-        private DataGridViewTextBoxColumn colId;
-        private DataGridViewTextBoxColumn colPartName;
-        private DataGridViewTextBoxColumn colModel;
-        private DataGridViewTextBoxColumn colYear;
-        private DataGridViewTextBoxColumn colQtyOnHand;
-        private DataGridViewTextBoxColumn colDescription;
     }
 }

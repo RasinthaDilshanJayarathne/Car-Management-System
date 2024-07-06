@@ -7,7 +7,7 @@ namespace CarManagementSystem
 {
     public partial class frmSearchCarParts : Form
     {
-        // Add TextBox controls for search criteria
+        // TextBox controls for search criteria
         private TextBox txtSearchPartId;
         private TextBox txtSearchPartName;
         private TextBox txtSearchModel;
@@ -16,7 +16,7 @@ namespace CarManagementSystem
         public frmSearchCarParts()
         {
             InitializeComponent();
-            InitializeSearchControls(); 
+            InitializeSearchControls();
             SearchCarPartDetails();
         }
 
@@ -28,7 +28,7 @@ namespace CarManagementSystem
             txtSearchModel = new TextBox { Location = new Point(230, 10), Width = 100, PlaceholderText = "Model" };
             btnSearchCarParts = new Button { Location = new Point(340, 10), Width = 75, Text = "Search" };
 
-            btnSearchCarParts.Click += new EventHandler(searchCarParts_Click);
+            btnSearchCarParts.Click += searchCarParts_Click;
 
             this.Controls.Add(txtSearchPartId);
             this.Controls.Add(txtSearchPartName);
@@ -66,19 +66,17 @@ namespace CarManagementSystem
                         }
                         if (!string.IsNullOrEmpty(partName))
                         {
-                            command.Parameters.AddWithValue("@PartName", "%" + partName + "%");
+                            command.Parameters.AddWithValue("@PartName", $"%{partName}%");
                         }
                         if (!string.IsNullOrEmpty(model))
                         {
-                            command.Parameters.AddWithValue("@Model", "%" + model + "%");
+                            command.Parameters.AddWithValue("@Model", $"%{model}%");
                         }
 
                         using (MySqlDataReader reader = command.ExecuteReader())
                         {
-                            pnlContainer.Controls.Clear(); 
-                            int xPos = 10; 
-                            int yPos = 40; 
-                            int columnCount = 0; 
+                            pnlContainer.Controls.Clear();
+                            int xPos = 10, yPos = 40, columnCount = 0;
 
                             while (reader.Read())
                             {
@@ -122,13 +120,13 @@ namespace CarManagementSystem
 
                                 pnlContainer.Controls.Add(pnlOrder);
 
-                                xPos += 214; 
+                                xPos += 214;
                                 columnCount++;
 
                                 if (columnCount == 3)
                                 {
                                     columnCount = 0;
-                                    xPos = 10; 
+                                    xPos = 10;
                                     yPos += 260;
                                 }
                             }

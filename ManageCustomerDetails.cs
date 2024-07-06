@@ -15,7 +15,7 @@ namespace CarManagementSystem
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            string searchValue = txtSearch.Text;
+            string searchValue = txtSearch.Text.Trim();
             if (string.IsNullOrWhiteSpace(searchValue))
             {
                 MessageBox.Show("Please enter a value to search.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -25,24 +25,30 @@ namespace CarManagementSystem
             try
             {
                 using (var db = new CarManagementSystem.DBConnection.DBConnection())
+                using (var command = new MySqlCommand("SELECT * FROM customer WHERE firstName LIKE @searchValue OR lastName LIKE @searchValue", db.GetConnection()))
                 {
                     db.OpenConnection();
+                    command.Parameters.AddWithValue("@searchValue", $"%{searchValue}%");
 
-                    string query = "SELECT * FROM customer WHERE firstName LIKE @searchValue OR lastName LIKE @searchValue";
-                    using (MySqlCommand command = new MySqlCommand(query, db.GetConnection()))
+                    using (var reader = command.ExecuteReader())
                     {
-                        command.Parameters.AddWithValue("@searchValue", "%" + searchValue + "%");
-                        using (MySqlDataAdapter dataAdapter = new MySqlDataAdapter(command))
+                        if (reader.Read())
                         {
-                            DataTable dataTable = new DataTable();
-                            dataAdapter.Fill(dataTable);
-
-                            tblCustomerDetails.DataSource = dataTable;
-                            SetColumnOrder();
+                            txtCustomerId.Text = reader["customerId"].ToString();
+                            txtFirstName.Text = reader["firstName"].ToString();
+                            txtLastName.Text = reader["lastName"].ToString();
+                            txtPhoneNo.Text = reader["phone"].ToString();
+                            txtEmail.Text = reader["email"].ToString();
+                            txtPassword.Text = reader["password"].ToString();
+                            txtConfPassword.Text = reader["password"].ToString();
+                            txtSearch.Text = "";
+                        }
+                        else
+                        {
+                            ClearFields(); 
+                            MessageBox.Show("No matching customer found.", "Search Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
-
-                    db.CloseConnection();
                 }
             }
             catch (Exception ex)
@@ -51,45 +57,31 @@ namespace CarManagementSystem
             }
         }
 
+
         private void btnDeleteCust_Click(object sender, EventArgs e)
         {
-            string custId = txtCustomerId.Text;
+            string custId = txtCustomerId.Text.Trim();
             if (string.IsNullOrWhiteSpace(custId))
             {
                 MessageBox.Show("Please select a customer to delete.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            // Confirmation prompt
             DialogResult result = MessageBox.Show("Are you sure you want to delete this customer?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
             if (result == DialogResult.Yes)
             {
                 try
                 {
-                    using (var db = new CarManagementSystem.DBConnection.DBConnection())
+                    int count = DeleteCustomer(custId);
+                    if (count > 0)
                     {
-                        db.OpenConnection();
-
-                        string query = "DELETE FROM customer WHERE customerId = @custId";
-                        using (MySqlCommand command = new MySqlCommand(query, db.GetConnection()))
-                        {
-                            command.Parameters.AddWithValue("@custId", custId);
-                            int count = command.ExecuteNonQuery();
-
-                            if (count > 0)
-                            {
-                                MessageBox.Show("Customer successfully deleted.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                ClearFields();
-                                LoadTableData();
-                            }
-                            else
-                            {
-                                MessageBox.Show("Failed to delete customer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
-                        }
-
-                        db.CloseConnection();
+                        MessageBox.Show("Customer successfully deleted.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        ClearFields();
+                        LoadTableData();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed to delete customer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 catch (Exception ex)
@@ -99,79 +91,77 @@ namespace CarManagementSystem
             }
             else
             {
-                // User chose not to delete the customer
                 MessageBox.Show("Customer deletion canceled.", "Canceled", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private int DeleteCustomer(string custId)
+        {
+            using (var db = new CarManagementSystem.DBConnection.DBConnection())
+            using (var command = new MySqlCommand("DELETE FROM customer WHERE customerId = @custId", db.GetConnection()))
+            {
+                db.OpenConnection();
+                command.Parameters.AddWithValue("@custId", custId);
+                return command.ExecuteNonQuery();
             }
         }
 
         private void btnSaveCust_Click(object sender, EventArgs e)
         {
-            string custId = txtCustomerId.Text;
-            string firstName = txtFirstName.Text;
-            string lastName = txtLastName.Text;
-            string phoneNo = txtPhoneNo.Text;
-            string email = txtEmail.Text;
+            string custId = txtCustomerId.Text.Trim();
+            string firstName = txtFirstName.Text.Trim();
+            string lastName = txtLastName.Text.Trim();
+            string phoneNo = txtPhoneNo.Text.Trim();
+            string email = txtEmail.Text.Trim();
             string password = txtPassword.Text;
             string confPassword = txtConfPassword.Text;
 
-            /*if (!IsValidInput(custId, firstName, lastName, phoneNo, email, password, confPassword))
-                return;*/
+            if (!IsValidInput(custId, firstName, lastName, phoneNo, email, password, confPassword))
+                return;
 
-            // Confirmation prompt
             DialogResult result = MessageBox.Show("Are you sure you want to update this customer?", "Confirm Update", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
             if (result == DialogResult.Yes)
             {
-                int count = UpdateCustomer(custId, firstName, lastName, phoneNo, email, password);
-
-                if (count > 0)
+                try
                 {
-                    MessageBox.Show("Customer successfully updated.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    ClearFields();
-                    LoadTableData();
+                    int count = UpdateCustomer(custId, firstName, lastName, phoneNo, email, password);
+                    if (count > 0)
+                    {
+                        MessageBox.Show("Customer successfully updated.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        ClearFields();
+                        LoadTableData();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed to update customer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Failed to update customer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
             {
-                // User chose not to update the customer
                 MessageBox.Show("Customer update canceled.", "Canceled", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
         private int UpdateCustomer(string custId, string firstName, string lastName, string phoneNo, string email, string password)
         {
-            try
+            using (var db = new CarManagementSystem.DBConnection.DBConnection())
+            using (var command = new MySqlCommand("UPDATE customer SET firstName = @firstName, lastName = @lastName, phone = @phoneNo, email = @Email, password = @password WHERE customerId = @custId", db.GetConnection()))
             {
-                using (var db = new CarManagementSystem.DBConnection.DBConnection())
-                {
-                    db.OpenConnection();
-
-                    string query = "UPDATE customer SET firstName = @firstName, lastName = @lastName, phone = @phoneNo, email = @Email, password = @password, confPassword = @password WHERE customerId = @custId";
-                    using (MySqlCommand command = new MySqlCommand(query, db.GetConnection()))
-                    {
-                        command.Parameters.AddWithValue("@custId", custId);
-                        command.Parameters.AddWithValue("@firstName", firstName);
-                        command.Parameters.AddWithValue("@lastName", lastName);
-                        command.Parameters.AddWithValue("@phoneNo", phoneNo);
-                        command.Parameters.AddWithValue("@Email", email);
-                        command.Parameters.AddWithValue("@password", password);
-
-                        return command.ExecuteNonQuery();
-                    }
-                    db.CloseConnection();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return 0;
+                db.OpenConnection();
+                command.Parameters.AddWithValue("@custId", custId);
+                command.Parameters.AddWithValue("@firstName", firstName);
+                command.Parameters.AddWithValue("@lastName", lastName);
+                command.Parameters.AddWithValue("@phoneNo", phoneNo);
+                command.Parameters.AddWithValue("@Email", email);
+                command.Parameters.AddWithValue("@password", password);
+                return command.ExecuteNonQuery();
             }
         }
-
 
         private bool IsValidInput(string custId, string firstName, string lastName, string phoneNo, string email, string password, string confPassword)
         {
@@ -191,13 +181,11 @@ namespace CarManagementSystem
             return true;
         }
 
-        private void customerDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void tblCustomerDetails_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = tblCustomerDetails.Rows[e.RowIndex];
-
-                //txtCustomerId.Text = row.Cells["cusId"].Value.ToString();
                 txtCustomerId.Text = row.Cells["customerId"].Value.ToString();
                 txtFirstName.Text = row.Cells["colFirstName"].Value.ToString();
                 txtLastName.Text = row.Cells["colLastName"].Value.ToString();
@@ -215,23 +203,16 @@ namespace CarManagementSystem
             try
             {
                 using (var db = new CarManagementSystem.DBConnection.DBConnection())
+                using (var command = new MySqlCommand("SELECT * FROM customer", db.GetConnection()))
                 {
                     db.OpenConnection();
-
-                    string query = "SELECT * FROM customer";
-                    using (MySqlCommand command = new MySqlCommand(query, db.GetConnection()))
+                    using (var dataAdapter = new MySqlDataAdapter(command))
                     {
-                        using (MySqlDataAdapter dataAdapter = new MySqlDataAdapter(command))
-                        {
-                            DataTable dataTable = new DataTable();
-                            dataAdapter.Fill(dataTable);
-
-                            tblCustomerDetails.DataSource = dataTable;
-                            SetColumnOrder();
-                        }
+                        var dataTable = new DataTable();
+                        dataAdapter.Fill(dataTable);
+                        tblCustomerDetails.DataSource = dataTable;
+                        SetColumnOrder();
                     }
-
-                    db.CloseConnection();
                 }
             }
             catch (Exception ex)

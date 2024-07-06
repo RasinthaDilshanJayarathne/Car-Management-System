@@ -42,18 +42,17 @@ namespace CarManagementSystem
             if (!IsValidInput(carId, make, model, year, dailyRate, description))
                 return;
 
-            int count = btnCarSave.Text == "SAVE" ?
-                        InsertOrUpdateCar(carId, make, model, year, dailyRate, description, imagePath, isUpdate: false) :
-                        InsertOrUpdateCar(carId, make, model, year, dailyRate, description, imagePath, isUpdate: true);
+            bool isUpdate = btnCarSave.Text == "UPDATE";
+            int count = SaveCarDetails(carId, make, model, year, dailyRate, description, imagePath, isUpdate);
 
-            string message = btnCarSave.Text == "SAVE" ? "registered" : "updated";
+            string message = isUpdate ? "updated" : "registered";
 
             if (count > 0)
             {
                 MessageBox.Show($"Car successfully {message}.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ClearFields();
                 LoadTableData();
-                if (btnCarSave.Text == "UPDATE")
+                if (isUpdate)
                 {
                     txtCarId.Enabled = true;
                     btnCarSave.Text = "SAVE";
@@ -65,41 +64,21 @@ namespace CarManagementSystem
             }
         }
 
-        private int InsertOrUpdateCar(string carId, string make, string model, string year, string dailyRate, string description, string imagePath, bool isUpdate)
+        private int SaveCarDetails(string carId, string make, string model, string year, string dailyRate, string description, string imagePath, bool isUpdate)
         {
-            int count = 0;
             string query = isUpdate ?
-                           "UPDATE car SET Make = @make, Model = @model, Year = @year, dailyRate = @dailyRate, Description = @description, ImagePath = @imagePath WHERE CarID = @cId" :
-                           "INSERT INTO car (CarID, Make, Model, Year, dailyRate, Description, ImagePath) VALUES (@cId, @make, @model, @year, @dailyRate, @description, @imagePath)";
-
-            try
+                           "UPDATE car SET Make = @make, Model = @model, Year = @year, DailyRate = @dailyRate, Description = @description, ImagePath = @imagePath WHERE CarID = @cId" :
+                           "INSERT INTO car (CarID, Make, Model, Year, DailyRate, Description, ImagePath) VALUES (@cId, @make, @model, @year, @dailyRate, @description, @imagePath)";
+            return ExecuteNonQuery(query, new MySqlParameter[]
             {
-                using (var db = new CarManagementSystem.DBConnection.DBConnection())
-                {
-                    db.OpenConnection();
-
-                    using (MySqlCommand command = new MySqlCommand(query, db.GetConnection()))
-                    {
-                        command.Parameters.AddWithValue("@cId", carId);
-                        command.Parameters.AddWithValue("@make", make);
-                        command.Parameters.AddWithValue("@model", model);
-                        command.Parameters.AddWithValue("@year", int.Parse(year));
-                        command.Parameters.AddWithValue("@dailyRate", decimal.Parse(dailyRate));
-                        command.Parameters.AddWithValue("@description", description);
-                        command.Parameters.AddWithValue("@imagePath", imagePath);
-
-                        count = command.ExecuteNonQuery();
-                    }
-
-                    db.CloseConnection();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-            return count;
+                new MySqlParameter("@cId", carId),
+                new MySqlParameter("@make", make),
+                new MySqlParameter("@model", model),
+                new MySqlParameter("@year", int.Parse(year)),
+                new MySqlParameter("@dailyRate", decimal.Parse(dailyRate)),
+                new MySqlParameter("@description", description),
+                new MySqlParameter("@imagePath", imagePath)
+            });
         }
 
         private bool IsValidInput(string carId, string make, string model, string year, string dailyRate, string description)
@@ -130,7 +109,6 @@ namespace CarManagementSystem
                 return;
             }
 
-            // Confirmation prompt
             DialogResult result = MessageBox.Show("Are you sure you want to delete this car?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (result == DialogResult.Yes)
@@ -141,8 +119,9 @@ namespace CarManagementSystem
                 {
                     MessageBox.Show("Car successfully deleted.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     ClearFields();
-                    LoadTableData();
                     txtCarId.Text = "";
+                    LoadTableData();
+                    btnCarSave.Text = "SAVE";
                 }
                 else
                 {
@@ -151,39 +130,18 @@ namespace CarManagementSystem
             }
             else
             {
-                // User chose not to delete the car
                 MessageBox.Show("Car deletion canceled.", "Canceled", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
-
         private int DeleteCar(string carId)
         {
-            int count = 0;
-
-            try
+            string query = "DELETE FROM car WHERE CarID = @cId";
+            return ExecuteNonQuery(query, new MySqlParameter[]
             {
-                using (var db = new CarManagementSystem.DBConnection.DBConnection())
-                {
-                    db.OpenConnection();
-
-                    string query = "DELETE FROM car WHERE CarID = @cId";
-
-                    using (MySqlCommand command = new MySqlCommand(query, db.GetConnection()))
-                    {
-                        command.Parameters.AddWithValue("@cId", carId);
-                        count = command.ExecuteNonQuery();
-                    }
-
-                    db.CloseConnection();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-            return count;
+                new MySqlParameter("@cId", carId)
+            });
+            
         }
 
         private void LoadTableData()
@@ -203,7 +161,6 @@ namespace CarManagementSystem
                             dataAdapter.Fill(dataTable);
 
                             tblCarDetails.DataSource = dataTable;
-                            // Hide the ImagePath column
                             tblCarDetails.Columns["ImagePath"].Visible = false;
                         }
                     }
@@ -236,17 +193,17 @@ namespace CarManagementSystem
             {
                 DataGridViewRow row = tblCarDetails.Rows[e.RowIndex];
 
-                txtCarId.Text = row.Cells["colId"].Value.ToString();
-                txtMake.Text = row.Cells["colMake"].Value.ToString();
-                txtModel.Text = row.Cells["colModel"].Value.ToString();
-                txtYear.Text = row.Cells["colYear"].Value.ToString();
-                txtDailyRate.Text = row.Cells["colPrice"].Value.ToString();
-                txtDescription.Text = row.Cells["colDescription"].Value.ToString();
+                txtCarId.Text = row.Cells["CarID"].Value?.ToString();
+                txtMake.Text = row.Cells["Make"].Value?.ToString();
+                txtModel.Text = row.Cells["Model"].Value?.ToString();
+                txtYear.Text = row.Cells["Year"].Value?.ToString();
+                txtDailyRate.Text = row.Cells["DailyRate"].Value?.ToString();
+                txtDescription.Text = row.Cells["Description"].Value?.ToString();
 
                 txtCarId.Enabled = false;
                 btnCarSave.Text = "UPDATE";
 
-                string imgPath = row.Cells["ImagePath"].Value.ToString();
+                string imgPath = row.Cells["ImagePath"].Value?.ToString();
                 if (!string.IsNullOrEmpty(imgPath) && System.IO.File.Exists(imgPath))
                 {
                     carImgBox.Image = new Bitmap(imgPath);
@@ -263,6 +220,7 @@ namespace CarManagementSystem
         private void btnSearching_Click(object sender, EventArgs e)
         {
             string searchTerm = txtSearch.Text;
+            string query = "SELECT CarID, Make, Model, Year, DailyRate, Description, ImagePath FROM car WHERE CarID = @term OR Model = @term OR Year = @term";
 
             try
             {
@@ -270,7 +228,6 @@ namespace CarManagementSystem
                 {
                     db.OpenConnection();
 
-                    string query = "SELECT CarID, Make, Model, Year, DailyRate, Description, ImagePath FROM car WHERE CarID = @term OR Model = @term OR Year = @term";
                     using (MySqlCommand command = new MySqlCommand(query, db.GetConnection()))
                     {
                         command.Parameters.AddWithValue("@term", searchTerm);
@@ -318,5 +275,31 @@ namespace CarManagementSystem
             }
         }
 
+        private int ExecuteNonQuery(string query, MySqlParameter[] parameters)
+        {
+            int count = 0;
+
+            try
+            {
+                using (var db = new CarManagementSystem.DBConnection.DBConnection())
+                {
+                    db.OpenConnection();
+
+                    using (MySqlCommand command = new MySqlCommand(query, db.GetConnection()))
+                    {
+                        command.Parameters.AddRange(parameters);
+                        count = command.ExecuteNonQuery();
+                    }
+
+                    db.CloseConnection();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return count;
+        }
     }
 }

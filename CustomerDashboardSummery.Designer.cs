@@ -1,6 +1,6 @@
 ﻿namespace CarManagementSystem
 {
-    partial class CustomerDashboardSummery
+    partial class frmCustomerDashboardSummery
     {
         /// <summary>
         /// Required designer variable.
@@ -43,7 +43,7 @@
             pnlContainer.Size = new Size(679, 377);
             pnlContainer.TabIndex = 58;
             // 
-            // CustomerDashboardSummery
+            // frmCustomerDashboardSummery
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -51,7 +51,7 @@
             ClientSize = new Size(703, 430);
             Controls.Add(pnlContainer);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "CustomerDashboardSummery";
+            Name = "frmCustomerDashboardSummery";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "CustomerDashboardSummery";
             ResumeLayout(false);

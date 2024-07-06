@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace CarManagementSystem
 {
@@ -12,21 +11,23 @@ namespace CarManagementSystem
         public frmCustomerDashboard(string username, string customerId)
         {
             InitializeComponent();
-
             currentUsername = username;
             currentCustomerId = customerId;
             lblTitle.Text = "CUSTOMER-DASHBOARD";
-            lblUserName.Text = $"{currentUsername}";
+            lblUserName.Text = currentUsername;
             lblDateTime.Text = DateTime.Now.ToString();
 
-            //ShowDashboardSummary();
+        }
 
-            // Initialize and start the timer to update the date and time
-            /*Timer timer = new Timer();
-            timer.Interval = 1000; // 1 second intervals
-            timer.Tick += new EventHandler(UpdateDateTime);
-            timer.Start();*/
+        private void SwitchToForm(Form form)
+        {
+            form.TopLevel = false;
+            form.FormBorderStyle = FormBorderStyle.None;
+            form.Dock = DockStyle.Fill;
 
+            pnlDashboard.Controls.Clear();
+            pnlDashboard.Controls.Add(form);
+            form.Show();
         }
 
         private void clickLogout(object sender, EventArgs e)
@@ -36,105 +37,46 @@ namespace CarManagementSystem
             login.Show();
         }
 
-        private void getDashboardSummery(object sender, EventArgs e)
+        private void getDashboardSummary(object sender, EventArgs e)
         {
             lblTitle.Text = "CUSTOMER-DASHBOARD";
-            //ShowDashboardSummary();
-        }
-
-        private void ShowDashboardSummary()
-        {
-            CustomerDashboardSummery dashboardSummery = new CustomerDashboardSummery(currentUsername, currentCustomerId);
-            dashboardSummery.TopLevel = false;
-            dashboardSummery.FormBorderStyle = FormBorderStyle.None;
-            dashboardSummery.Dock = DockStyle.Fill;
-
-            this.pnlDashboard.Controls.Clear();
-            this.pnlDashboard.Controls.Add(dashboardSummery);
-            dashboardSummery.Show();
-        }
-
-        private void UpdateDateTime(object sender, EventArgs e)
-        {
-            lblDateTime.Text = DateTime.Now.ToString();
+            SwitchToForm(new frmCustomerDashboardSummery(currentUsername, currentCustomerId));
         }
 
         private void getOrderCarPart(object sender, EventArgs e)
         {
             lblTitle.Text = "ORDER CAR PARTS";
-            frmCustomerOrderDetails customerOrderDetails = new frmCustomerOrderDetails(currentUsername, currentCustomerId);
-            customerOrderDetails.TopLevel = false;
-            customerOrderDetails.FormBorderStyle = FormBorderStyle.None;
-            customerOrderDetails.Dock = DockStyle.Fill;
-
-            this.pnlDashboard.Controls.Clear();
-            this.pnlDashboard.Controls.Add(customerOrderDetails);
-            customerOrderDetails.Show();
+            SwitchToForm(new frmCustomerOrderDetails(currentUsername, currentCustomerId));
         }
 
         private void getCarRental(object sender, EventArgs e)
         {
             lblTitle.Text = "CAR RENTAL";
-            frmCustomerCarRentalDetails customerCarRentalDetails = new frmCustomerCarRentalDetails(currentUsername, currentCustomerId);
-            customerCarRentalDetails.TopLevel = false;
-            customerCarRentalDetails.FormBorderStyle = FormBorderStyle.None;
-            customerCarRentalDetails.Dock = DockStyle.Fill;
-
-            this.pnlDashboard.Controls.Clear();
-            this.pnlDashboard.Controls.Add(customerCarRentalDetails);
-            customerCarRentalDetails.Show();
+            SwitchToForm(new frmCustomerCarRentalDetails(currentUsername, currentCustomerId));
         }
 
         private void getOrderHistory(object sender, EventArgs e)
         {
             lblTitle.Text = $"{currentUsername.ToUpper()}" + " YOUR ORDER HISTORY";
-            frmCustomerOrderHistory customerOrderHistory = new frmCustomerOrderHistory(currentUsername, currentCustomerId);
-            customerOrderHistory.TopLevel = false;
-            customerOrderHistory.FormBorderStyle = FormBorderStyle.None;
-            customerOrderHistory.Dock = DockStyle.Fill;
-
-            this.pnlDashboard.Controls.Clear();
-            this.pnlDashboard.Controls.Add(customerOrderHistory);
-            customerOrderHistory.Show();
+            SwitchToForm(new frmCustomerOrderHistory(currentUsername, currentCustomerId));
         }
 
         private void getCarRentalHistory(object sender, EventArgs e)
         {
             lblTitle.Text = $"{currentUsername.ToUpper()}" + " YOUR CAR RENTAL HISTORY";
-            frmCustomerCarRentalHistory customerCarRentalHistory = new frmCustomerCarRentalHistory(currentUsername, currentCustomerId);
-            customerCarRentalHistory.TopLevel = false;
-            customerCarRentalHistory.FormBorderStyle = FormBorderStyle.None;
-            customerCarRentalHistory.Dock = DockStyle.Fill;
-
-            this.pnlDashboard.Controls.Clear();
-            this.pnlDashboard.Controls.Add(customerCarRentalHistory);
-            customerCarRentalHistory.Show();
+            SwitchToForm(new frmCustomerCarRentalHistory(currentUsername, currentCustomerId));
         }
 
         private void searchCars(object sender, EventArgs e)
         {
             lblTitle.Text = "ALL CARS";
-            frmSearchCars searchCars = new frmSearchCars();
-            searchCars.TopLevel = false;
-            searchCars.FormBorderStyle = FormBorderStyle.None;
-            searchCars.Dock = DockStyle.Fill;
-
-            this.pnlDashboard.Controls.Clear();
-            this.pnlDashboard.Controls.Add(searchCars);
-            searchCars.Show();
+            SwitchToForm(new frmSearchCars());
         }
 
         private void searchCarParts(object sender, EventArgs e)
         {
             lblTitle.Text = "ALL CAR PARTS";
-            frmSearchCarParts searchCarParts = new frmSearchCarParts();
-            searchCarParts.TopLevel = false;
-            searchCarParts.FormBorderStyle = FormBorderStyle.None;
-            searchCarParts.Dock = DockStyle.Fill;
-
-            this.pnlDashboard.Controls.Clear();
-            this.pnlDashboard.Controls.Add(searchCarParts);
-            searchCarParts.Show();
+            SwitchToForm(new frmSearchCarParts());
         }
     }
 }

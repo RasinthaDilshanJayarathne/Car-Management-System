@@ -1,7 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Data;
-using System.Drawing;
 using System.Windows.Forms;
 
 namespace CarManagementSystem
@@ -18,35 +16,21 @@ namespace CarManagementSystem
         {
             try
             {
-                using (var db = new CarManagementSystem.DBConnection.DBConnection())
+                using (var db = new DBConnection.DBConnection())
                 {
                     db.OpenConnection();
 
-                    // Queries for counting cars, car parts, and customers
+                    // Queries for counting cars, car parts, customers, and orders
                     string queryCar = "SELECT IFNULL(COUNT(*), 0) FROM car";
                     string queryCarParts = "SELECT IFNULL(COUNT(*), 0) FROM carpart";
                     string queryCustomer = "SELECT IFNULL(COUNT(*), 0) FROM customer";
+                    string queryOrder = "SELECT IFNULL(COUNT(*), 0) FROM `order`";
 
-                    // Count the number of cars
-                    using (MySqlCommand command = new MySqlCommand(queryCar, db.GetConnection()))
-                    {
-                        int carCount = Convert.ToInt32(command.ExecuteScalar());
-                        lblNoOfCars.Text = carCount.ToString("D2"); 
-                    }
-
-                    // Count the number of car parts
-                    using (MySqlCommand command = new MySqlCommand(queryCarParts, db.GetConnection()))
-                    {
-                        int carPartsCount = Convert.ToInt32(command.ExecuteScalar());
-                        lblNoOfCarParts.Text = carPartsCount.ToString("D2");
-                    }
-
-                    // Count the number of customers
-                    using (MySqlCommand command = new MySqlCommand(queryCustomer, db.GetConnection()))
-                    {
-                        int customerCount = Convert.ToInt32(command.ExecuteScalar());
-                        lblNoOfCustomers.Text = customerCount.ToString("D2");
-                    }
+                    // Update labels with counts
+                    lblNoOfCars.Text = ExecuteCountQuery(db, queryCar);
+                    lblNoOfCarParts.Text = ExecuteCountQuery(db, queryCarParts);
+                    lblNoOfCustomers.Text = ExecuteCountQuery(db, queryCustomer);
+                    lblNoOfOrders.Text = ExecuteCountQuery(db, queryOrder);
 
                     db.CloseConnection();
                 }
@@ -57,6 +41,13 @@ namespace CarManagementSystem
             }
         }
 
-
+        private string ExecuteCountQuery(DBConnection.DBConnection db, string query)
+        {
+            using (MySqlCommand command = new MySqlCommand(query, db.GetConnection()))
+            {
+                int count = Convert.ToInt32(command.ExecuteScalar());
+                return count.ToString("D2");
+            }
+        }
     }
 }

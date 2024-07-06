@@ -15,8 +15,8 @@ namespace CarManagementSystem
         public frmSearchCars()
         {
             InitializeComponent();
-            InitializeSearchControls(); 
-            SearchCarDetails(); 
+            InitializeSearchControls();
+            SearchCarDetails();
         }
 
         private void InitializeSearchControls()
@@ -73,9 +73,9 @@ namespace CarManagementSystem
 
                         using (MySqlDataReader reader = command.ExecuteReader())
                         {
-                            pnlContainer.Controls.Clear(); 
-                            int xPos = 10; 
-                            int yPos = 40; 
+                            pnlContainer.Controls.Clear();
+                            int xPos = 10;
+                            int yPos = 40;
                             int columnCount = 0;
 
                             while (reader.Read())
@@ -121,13 +121,13 @@ namespace CarManagementSystem
 
                                 pnlContainer.Controls.Add(pnlOrder);
 
-                                xPos += 214; 
+                                xPos += 214;
                                 columnCount++;
 
                                 if (columnCount == 3)
                                 {
                                     columnCount = 0;
-                                    xPos = 10; 
+                                    xPos = 10;
                                     yPos += 260;
                                 }
                             }

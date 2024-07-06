@@ -1,10 +1,8 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
-using System.Xml.Linq;
 
 namespace CarManagementSystem
 {
@@ -23,7 +21,6 @@ namespace CarManagementSystem
             using (OpenFileDialog ofd = new OpenFileDialog())
             {
                 ofd.Filter = "Image Files (*.bmp;*.jpg;*.jpeg;*.png;*.gif;*.tiff;*.ico)|*.bmp;*.jpg;*.jpeg;*.png;*.gif;*.tiff;*.ico";
-
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {
                     carPartImgBox.Image = new Bitmap(ofd.FileName);
@@ -34,28 +31,18 @@ namespace CarManagementSystem
 
         private void btnSaveCarPart_Click(object sender, EventArgs e)
         {
-            string partId = txtPartId.Text;
-            string name = txtPartName.Text;
-            string model = txtModel.Text;
-            string price = txtPrice.Text;
-            string qtyOnHand = txtQtyOnHand.Text;
-            string description = txtDescription.Text;
+            if (!IsValidInput(out var carPart)) return;
 
-            if (!IsValidInput(partId, name, model, price, qtyOnHand, description))
-                return;
-
-            int count = btnCarPartSave.Text == "SAVE" ?
-                        InsertOrUpdateCarPart(partId, name, model, price, qtyOnHand, description, imagePath, isUpdate: false) :
-                        InsertOrUpdateCarPart(partId, name, model, price, qtyOnHand, description, imagePath, isUpdate: true);
-
-            string message = btnCarPartSave.Text == "SAVE" ? "registered" : "updated";
+            var message = btnCarPartSave.Text == "SAVE" ? "registered" : "updated";
+            var isUpdate = btnCarPartSave.Text != "SAVE";
+            var count = InsertOrUpdateCarPart(carPart, isUpdate);
 
             if (count > 0)
             {
                 MessageBox.Show($"Car part successfully {message}.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ClearFields();
                 LoadTableData();
-                if (btnCarPartSave.Text == "UPDATE")
+                if (isUpdate)
                 {
                     txtPartId.Enabled = true;
                     btnCarPartSave.Text = "SAVE";
@@ -67,126 +54,93 @@ namespace CarManagementSystem
             }
         }
 
-        private int InsertOrUpdateCarPart(string partId, string name, string model, string price, string qtyOnHand, string description, string imagePath, bool isUpdate)
+        private (string PartId, string Name, string Model, decimal Price, int QtyOnHand, string Description, string ImagePath) GetCarPartInput()
         {
-            int count = 0;
-            string query = isUpdate ?
-                           "UPDATE carpart SET PartName = @name, Model = @model, Price = @price, QtyOnHand = @qtyOnHand, Description = @description, ImagePath = @imagePath WHERE PartID = @partId" :
-                           "INSERT INTO carpart (PartID, PartName, Model, Price, QtyOnHand, Description, ImagePath) VALUES (@partId, @name, @model, @price, @qtyOnHand, @description, @imagePath)";
-
-            try
-            {
-                using (var db = new CarManagementSystem.DBConnection.DBConnection())
-                {
-                    db.OpenConnection();
-
-                    using (MySqlCommand command = new MySqlCommand(query, db.GetConnection()))
-                    {
-                        command.Parameters.AddWithValue("@partId", partId);
-                        command.Parameters.AddWithValue("@name", name);
-                        command.Parameters.AddWithValue("@model", model);
-                        command.Parameters.AddWithValue("@price", decimal.Parse(price));
-                        command.Parameters.AddWithValue("@qtyOnHand", int.Parse(qtyOnHand));
-                        command.Parameters.AddWithValue("@description", description);
-                        command.Parameters.AddWithValue("@imagePath", imagePath);
-
-                        count = command.ExecuteNonQuery();
-                    }
-
-                    db.CloseConnection();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-            return count;
+            return (
+                txtPartId.Text,
+                txtPartName.Text,
+                txtModel.Text,
+                decimal.Parse(txtPrice.Text),
+                int.Parse(txtQtyOnHand.Text),
+                txtDescription.Text,
+                imagePath
+            );
         }
 
-        private void LoadTableData()
+        private bool IsValidInput(out (string PartId, string Name, string Model, decimal Price, int QtyOnHand, string Description, string ImagePath) carPart)
         {
-            try
+            carPart = GetCarPartInput();
+            if (string.IsNullOrWhiteSpace(carPart.PartId) ||
+                string.IsNullOrWhiteSpace(carPart.Name) ||
+                string.IsNullOrWhiteSpace(carPart.Model) ||
+                string.IsNullOrWhiteSpace(carPart.Description))
             {
-                using (var db = new DBConnection.DBConnection())
-                {
-                    db.OpenConnection();
-
-                    string query = "SELECT PartID, PartName, Model, Price, QtyOnHand, Description, ImagePath FROM carpart";
-                    using (MySqlCommand command = new MySqlCommand(query, db.GetConnection()))
-                    {
-                        using (MySqlDataAdapter dataAdapter = new MySqlDataAdapter(command))
-                        {
-                            DataTable dataTable = new DataTable();
-                            dataAdapter.Fill(dataTable);
-
-                            tblCarPartDetails.DataSource = dataTable;
-
-                            // Hide the ImagePath column
-                            tblCarPartDetails.Columns["ImagePath"].Visible = false;
-                        }
-                    }
-                    db.CloseConnection();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void ClearFields()
-        {
-            txtPartId.Clear();
-            txtPartName.Clear();
-            txtModel.Clear();
-            txtPrice.Clear();
-            txtQtyOnHand.Clear();
-            txtDescription.Clear();
-            txtSearch.Clear();
-            carPartImgBox.Image = null;
-            imagePath = string.Empty;
-        }
-
-        private bool IsValidInput(string partId, string name, string model, string price, string qtyOnHand, string description)
-        {
-            if (string.IsNullOrEmpty(partId))
-            {
-                MessageBox.Show("Part ID cannot be empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please fill in all required fields.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-            if (string.IsNullOrEmpty(name))
+
+            if (!decimal.TryParse(txtPrice.Text, out carPart.Price) ||
+                !int.TryParse(txtQtyOnHand.Text, out carPart.QtyOnHand))
             {
-                MessageBox.Show("Name cannot be empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-            if (string.IsNullOrEmpty(model))
-            {
-                MessageBox.Show("Model cannot be empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-            if (!decimal.TryParse(price, out _))
-            {
-                MessageBox.Show("Price must be a valid number.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-            if (!int.TryParse(qtyOnHand, out _))
-            {
-                MessageBox.Show("Quantity on Hand must be a valid number.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-            if (string.IsNullOrEmpty(description))
-            {
-                MessageBox.Show("Description cannot be empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please enter valid numbers for price and quantity.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
             return true;
         }
 
+        private int InsertOrUpdateCarPart((string PartId, string Name, string Model, decimal Price, int QtyOnHand, string Description, string ImagePath) carPart, bool isUpdate)
+        {
+            var query = isUpdate ?
+                "UPDATE carpart SET PartName = @name, Model = @model, Price = @price, QtyOnHand = @qtyOnHand, Description = @description, ImagePath = @imagePath WHERE PartID = @partId" :
+                "INSERT INTO carpart (PartID, PartName, Model, Price, QtyOnHand, Description, ImagePath) VALUES (@partId, @name, @model, @price, @qtyOnHand, @description, @imagePath)";
+
+            return ExecuteNonQuery(query, new MySqlParameter[]
+            {
+                new MySqlParameter("@partId", carPart.PartId),
+                new MySqlParameter("@name", carPart.Name),
+                new MySqlParameter("@model", carPart.Model),
+                new MySqlParameter("@price", carPart.Price),
+                new MySqlParameter("@qtyOnHand", carPart.QtyOnHand),
+                new MySqlParameter("@description", carPart.Description),
+                new MySqlParameter("@imagePath", carPart.ImagePath)
+            });
+        }
+
+        private void LoadTableData()
+        {
+            var query = "SELECT PartID, PartName, Model, Price, QtyOnHand, Description, ImagePath FROM carpart";
+            var dataTable = ExecuteQuery(query);
+            if (dataTable != null)
+            {
+                tblCarPartDetails.DataSource = dataTable;
+                tblCarPartDetails.Columns["ImagePath"].Visible = false;
+            }
+        }
+
+        private void ClearFields()
+        {
+            foreach (Control control in Controls)
+            {
+                if (control is TextBox textBox)
+                {
+                    textBox.Clear();
+                }
+            }
+
+            carPartImgBox.Image = null;
+            imagePath = string.Empty;
+            txtPartId.Text = "";
+            txtPartName.Text = "";
+            txtModel.Text = "";
+            txtPrice.Text = "";
+            txtQtyOnHand.Text = "";
+            txtDescription.Text= "";
+        }
+
         private void btnDeleteCarPart_Click(object sender, EventArgs e)
         {
-            string partId = txtPartId.Text.Trim();
+            var partId = txtPartId.Text.Trim();
 
             if (string.IsNullOrWhiteSpace(partId))
             {
@@ -194,144 +148,130 @@ namespace CarManagementSystem
                 return;
             }
 
-            // Confirmation prompt
-            DialogResult result = MessageBox.Show("Are you sure you want to delete this car part?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            var result = MessageBox.Show("Are you sure you want to delete this car part?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result != DialogResult.Yes) return;
 
-            if (result == DialogResult.Yes)
+            var count = DeleteCarPart(partId);
+            if (count > 0)
             {
-                int count = DeleteCarPart(partId);
-
-                if (count > 0)
-                {
-                    MessageBox.Show("Car Part successfully deleted.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    ClearFields();
-                    LoadTableData();
-                }
-                else
-                {
-                    MessageBox.Show("Failed to delete car part.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                MessageBox.Show("Car Part successfully deleted.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ClearFields();
+                btnCarPartSave.Text = "SAVE";
+                LoadTableData();
             }
             else
             {
-                // User chose not to delete the car part
-                MessageBox.Show("Car part deletion canceled.", "Canceled", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Failed to delete car part.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private int DeleteCarPart(string partId)
         {
-            int count = 0;
-            try
+            var query = "DELETE FROM carpart WHERE PartID = @partId";
+            return ExecuteNonQuery(query, new MySqlParameter[]
             {
-                using (var db = new DBConnection.DBConnection())
-                {
-                    db.OpenConnection();
-
-                    string query = "DELETE FROM carpart WHERE PartID = @partId";
-                    using (MySqlCommand command = new MySqlCommand(query, db.GetConnection()))
-                    {
-                        command.Parameters.AddWithValue("@partId", partId);
-                        count = command.ExecuteNonQuery();
-                    }
-                    db.CloseConnection();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-            }
-            return count;
+                new MySqlParameter("@partId", partId)
+            });
         }
 
         private void btnSearching_Click(object sender, EventArgs e)
         {
-            string searchTerm = txtSearch.Text.Trim();
+            var searchTerm = txtSearch.Text.Trim();
+            var query = "SELECT PartId, PartName, Model, Price, QtyOnHand, Description, ImagePath FROM carpart WHERE PartId = @term OR Model = @term OR PartName = @term";
+            var parameters = new MySqlParameter[] { new MySqlParameter("@term", searchTerm) };
+            var dataTable = ExecuteQuery(query, parameters);
+            if (dataTable?.Rows.Count > 0)
+            {
+                var row = dataTable.Rows[0];
+                txtPartId.Text = row["PartId"].ToString();
+                txtPartName.Text = row["PartName"].ToString();
+                txtModel.Text = row["Model"].ToString();
+                txtPrice.Text = row["Price"].ToString();
+                txtQtyOnHand.Text = row["QtyOnHand"].ToString();
+                txtDescription.Text = row["Description"].ToString();
+                txtPartId.Enabled = false;
+                btnCarPartSave.Text = "UPDATE";
+                LoadImage(row["ImagePath"].ToString());
+            }
+            else
+            {
+                MessageBox.Show("Car Part not found.", "Search Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ClearFields();
+            }
+        }
 
+        private void LoadImage(string imgPath)
+        {
+            if (!string.IsNullOrEmpty(imgPath) && File.Exists(imgPath))
+            {
+                carPartImgBox.Image = new Bitmap(imgPath);
+                imagePath = imgPath;
+            }
+            else
+            {
+                carPartImgBox.Image = null;
+                imagePath = string.Empty;
+            }
+        }
+
+        private void tblCarPartDetails_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+            var row = tblCarPartDetails.Rows[e.RowIndex];
+            txtPartId.Text = row.Cells["PartID"].Value.ToString();
+            txtPartName.Text = row.Cells["PartName"].Value.ToString();
+            txtModel.Text = row.Cells["Model"].Value.ToString();
+            txtPrice.Text = row.Cells["Price"].Value.ToString();
+            txtQtyOnHand.Text = row.Cells["QtyOnHand"].Value.ToString();
+            txtDescription.Text = row.Cells["Description"].Value.ToString();
+            txtPartId.Enabled = false;
+            btnCarPartSave.Text = "UPDATE";
+            LoadImage(row.Cells["ImagePath"].Value.ToString());
+        }
+
+        private DataTable ExecuteQuery(string query, MySqlParameter[] parameters = null)
+        {
             try
             {
                 using (var db = new DBConnection.DBConnection())
+                using (var command = new MySqlCommand(query, db.GetConnection()))
                 {
                     db.OpenConnection();
+                    if (parameters != null)
+                        command.Parameters.AddRange(parameters);
 
-                    string query = "SELECT PartId, PartName, Model, Price, QtyOnHand, Description, ImagePath FROM carpart WHERE PartId = @term OR Model = @term OR PartName = @term";
-                    using (MySqlCommand command = new MySqlCommand(query, db.GetConnection()))
+                    using (var adapter = new MySqlDataAdapter(command))
                     {
-                        command.Parameters.AddWithValue("@term", searchTerm);
-
-                        using (MySqlDataReader reader = command.ExecuteReader())
-                        {
-                            if (reader.Read())
-                            {
-                                txtPartId.Text = reader["PartId"].ToString();
-                                txtPartName.Text = reader["PartName"].ToString();
-                                txtModel.Text = reader["Model"].ToString();
-                                txtPrice.Text = reader["Price"].ToString();
-                                txtQtyOnHand.Text = reader["QtyOnHand"].ToString();
-                                txtDescription.Text = reader["Description"].ToString();
-
-                                txtPartId.Enabled = false;
-                                btnCarPartSave.Text = "UPDATE";
-
-                                string imgPath = reader["ImagePath"].ToString();
-                                if (!string.IsNullOrEmpty(imgPath) && File.Exists(imgPath))
-                                {
-                                    carPartImgBox.Image = new Bitmap(imgPath);
-                                    imagePath = imgPath;
-                                }
-                                else
-                                {
-                                    carPartImgBox.Image = null;
-                                    imagePath = string.Empty;
-                                }
-
-                            }
-                            else
-                            {
-                                MessageBox.Show("Car Part not found.", "Search Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                ClearFields();
-                            }
-                        }
+                        var dataTable = new DataTable();
+                        adapter.Fill(dataTable);
+                        return dataTable;
                     }
-                    db.CloseConnection();
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
             }
         }
 
-        private void carPartDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        private int ExecuteNonQuery(string query, MySqlParameter[] parameters)
         {
-            if (e.RowIndex >= 0)
+            try
             {
-                DataGridViewRow row = tblCarPartDetails.Rows[e.RowIndex];
-
-                txtPartId.Text = row.Cells["colId"].Value.ToString();
-                txtPartName.Text = row.Cells["colPartName"].Value.ToString();
-                txtModel.Text = row.Cells["colModel"].Value.ToString();
-                txtPrice.Text = row.Cells["colYear"].Value.ToString();
-                txtQtyOnHand.Text = row.Cells["colQtyOnHand"].Value.ToString();
-                txtDescription.Text = row.Cells["colDescription"].Value.ToString();
-
-                txtPartId.Enabled = false;
-                btnCarPartSave.Text = "UPDATE";
-
-                string imgPath = row.Cells["ImagePath"].Value.ToString();
-                if (!string.IsNullOrEmpty(imgPath) && File.Exists(imgPath))
+                using (var db = new DBConnection.DBConnection())
+                using (var command = new MySqlCommand(query, db.GetConnection()))
                 {
-                    carPartImgBox.Image = new Bitmap(imgPath);
-                    imagePath = imgPath;
-                }
-                else
-                {
-                    carPartImgBox.Image = null;
-                    imagePath = string.Empty;
+                    db.OpenConnection();
+                    command.Parameters.AddRange(parameters);
+                    return command.ExecuteNonQuery();
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return 0;
+            }
         }
-
     }
 }

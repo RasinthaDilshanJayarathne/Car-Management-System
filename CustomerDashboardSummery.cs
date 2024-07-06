@@ -5,11 +5,11 @@ using System.Windows.Forms;
 
 namespace CarManagementSystem
 {
-    public partial class CustomerDashboardSummery : Form
+    public partial class frmCustomerDashboardSummery : Form
     {
         private string currentUsername;
         private string currentId;
-        public CustomerDashboardSummery(string username,string custId)
+        public frmCustomerDashboardSummery(string username,string custId)
         {
             InitializeComponent();
             SearchCarDetails();
