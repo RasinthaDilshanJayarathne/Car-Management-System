@@ -14,6 +14,13 @@ namespace CarManagementSystem
         {
             InitializeComponent();
             LoadTableData();
+            checkVehicleSellOrNo.CheckedChanged += new EventHandler(CheckVehicleSellOrNo_CheckedChanged); // Add this line
+        }
+
+        private void CheckVehicleSellOrNo_CheckedChanged(object sender, EventArgs e)
+        {
+            // Enable or disable txtDailyRate based on the checkbox's checked state
+            txtDailyRate.Enabled = !checkVehicleSellOrNo.Checked;
         }
 
         private void uploadImage(object sender, EventArgs e)
@@ -37,13 +44,14 @@ namespace CarManagementSystem
             string model = txtModel.Text;
             string year = txtYear.Text;
             string dailyRate = txtDailyRate.Text;
-            string description = txtDescription.Text;
+            string price = txtCarPrice.Text;
+            int sellOrRent = checkVehicleSellOrNo.Checked ? 1 : 0;
 
-            if (!IsValidInput(carId, make, model, year, dailyRate, description))
+            if (!IsValidInput(carId, make, model, year, dailyRate, price))
                 return;
 
             bool isUpdate = btnCarSave.Text == "UPDATE";
-            int count = SaveCarDetails(carId, make, model, year, dailyRate, description, imagePath, isUpdate);
+            int count = SaveCarDetails(carId, make, model, year, dailyRate, price, sellOrRent, imagePath, isUpdate);
 
             string message = isUpdate ? "updated" : "registered";
 
@@ -64,11 +72,11 @@ namespace CarManagementSystem
             }
         }
 
-        private int SaveCarDetails(string carId, string make, string model, string year, string dailyRate, string description, string imagePath, bool isUpdate)
+        private int SaveCarDetails(string carId, string make, string model, string year, string dailyRate, string price, int sellOrRent, string imagePath, bool isUpdate)
         {
             string query = isUpdate ?
-                           "UPDATE car SET Make = @make, Model = @model, Year = @year, DailyRate = @dailyRate, Description = @description, ImagePath = @imagePath WHERE CarID = @cId" :
-                           "INSERT INTO car (CarID, Make, Model, Year, DailyRate, Description, ImagePath) VALUES (@cId, @make, @model, @year, @dailyRate, @description, @imagePath)";
+                           "UPDATE car SET Make = @make, Model = @model, Year = @year, DailyRate = @dailyRate, Price = @price, ImagePath = @imagePath WHERE CarID = @cId" :
+                           "INSERT INTO car (CarID, Make, Model, Year, DailyRate, Price, SellOrRent, ImagePath) VALUES (@cId, @make, @model, @year, @dailyRate, @price, @sellOrRent, @imagePath)";
             return ExecuteNonQuery(query, new MySqlParameter[]
             {
                 new MySqlParameter("@cId", carId),
@@ -76,23 +84,24 @@ namespace CarManagementSystem
                 new MySqlParameter("@model", model),
                 new MySqlParameter("@year", int.Parse(year)),
                 new MySqlParameter("@dailyRate", decimal.Parse(dailyRate)),
-                new MySqlParameter("@description", description),
+                new MySqlParameter("@price", decimal.Parse(price)),
+                new MySqlParameter("@sellOrRent", sellOrRent),
                 new MySqlParameter("@imagePath", imagePath)
             });
         }
 
-        private bool IsValidInput(string carId, string make, string model, string year, string dailyRate, string description)
+        private bool IsValidInput(string carId, string make, string model, string year, string dailyRate, string price)
         {
             if (string.IsNullOrWhiteSpace(make) || string.IsNullOrWhiteSpace(model) || string.IsNullOrWhiteSpace(year) ||
-                string.IsNullOrWhiteSpace(dailyRate) || string.IsNullOrWhiteSpace(description))
+                string.IsNullOrWhiteSpace(dailyRate) || string.IsNullOrWhiteSpace(price))
             {
                 MessageBox.Show("Please fill all fields.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
-            if (!int.TryParse(year, out _) || !decimal.TryParse(dailyRate, out _))
+            if (!int.TryParse(year, out _) || !decimal.TryParse(dailyRate, out _) || !decimal.TryParse(price, out _))
             {
-                MessageBox.Show("Please enter valid Year and Daily Rate.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please enter valid Year, Daily Rate and Price.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
@@ -141,7 +150,6 @@ namespace CarManagementSystem
             {
                 new MySqlParameter("@cId", carId)
             });
-            
         }
 
         private void LoadTableData()
@@ -152,7 +160,7 @@ namespace CarManagementSystem
                 {
                     db.OpenConnection();
 
-                    string query = "SELECT CarID, Make, Model, Year, DailyRate, Description, ImagePath FROM car";
+                    string query = "SELECT CarID, Make, Model, Year, DailyRate, Price, ImagePath FROM car";
                     using (MySqlCommand command = new MySqlCommand(query, db.GetConnection()))
                     {
                         using (MySqlDataAdapter dataAdapter = new MySqlDataAdapter(command))
@@ -181,8 +189,9 @@ namespace CarManagementSystem
             txtModel.Clear();
             txtYear.Clear();
             txtDailyRate.Clear();
-            txtDescription.Clear();
+            txtCarPrice.Clear();
             txtSearch.Clear();
+            checkVehicleSellOrNo.Checked = false;
             carImgBox.Image = null;
             imagePath = string.Empty;
         }
@@ -198,7 +207,7 @@ namespace CarManagementSystem
                 txtModel.Text = row.Cells["Model"].Value?.ToString();
                 txtYear.Text = row.Cells["Year"].Value?.ToString();
                 txtDailyRate.Text = row.Cells["DailyRate"].Value?.ToString();
-                txtDescription.Text = row.Cells["Description"].Value?.ToString();
+                txtCarPrice.Text = row.Cells["Price"].Value?.ToString();
 
                 txtCarId.Enabled = false;
                 btnCarSave.Text = "UPDATE";
@@ -220,7 +229,7 @@ namespace CarManagementSystem
         private void btnSearching_Click(object sender, EventArgs e)
         {
             string searchTerm = txtSearch.Text;
-            string query = "SELECT CarID, Make, Model, Year, DailyRate, Description, ImagePath FROM car WHERE CarID = @term OR Model = @term OR Year = @term";
+            string query = "SELECT CarID, Make, Model, Year, DailyRate, Price, ImagePath FROM car WHERE CarID = @term OR Model = @term OR Year = @term";
 
             try
             {
@@ -241,7 +250,7 @@ namespace CarManagementSystem
                                 txtModel.Text = reader["Model"].ToString();
                                 txtYear.Text = reader["Year"].ToString();
                                 txtDailyRate.Text = reader["DailyRate"].ToString();
-                                txtDescription.Text = reader["Description"].ToString();
+                                txtCarPrice.Text = reader["Price"].ToString();
 
                                 txtCarId.Enabled = false;
 

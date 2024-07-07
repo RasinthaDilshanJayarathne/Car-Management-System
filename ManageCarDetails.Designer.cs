@@ -57,8 +57,8 @@
             txtMake = new Guna.UI2.WinForms.Guna2TextBox();
             lblPrice = new Label();
             txtDailyRate = new Guna.UI2.WinForms.Guna2TextBox();
-            lblDescription = new Label();
-            txtDescription = new Guna.UI2.WinForms.Guna2TextBox();
+            lblCarPrice = new Label();
+            txtCarPrice = new Guna.UI2.WinForms.Guna2TextBox();
             lblModel = new Label();
             txtModel = new Guna.UI2.WinForms.Guna2TextBox();
             lblYear = new Label();
@@ -71,6 +71,7 @@
             searchIcon = new PictureBox();
             tblCarDetails = new Guna.UI2.WinForms.Guna2DataGridView();
             mySqlCommand1 = new MySql.Data.MySqlClient.MySqlCommand();
+            checkVehicleSellOrNo = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)carImgBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)searchIcon).BeginInit();
             ((System.ComponentModel.ISupportInitialize)tblCarDetails).BeginInit();
@@ -82,7 +83,7 @@
             lblCarId.BackColor = Color.White;
             lblCarId.Font = new Font("Segoe UI", 9F);
             lblCarId.ForeColor = Color.Black;
-            lblCarId.Location = new Point(141, 96);
+            lblCarId.Location = new Point(142, 101);
             lblCarId.Name = "lblCarId";
             lblCarId.Size = new Size(57, 15);
             lblCarId.TabIndex = 28;
@@ -100,7 +101,7 @@
             txtCarId.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtCarId.Font = new Font("Segoe UI", 9F);
             txtCarId.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtCarId.Location = new Point(132, 114);
+            txtCarId.Location = new Point(133, 119);
             txtCarId.Name = "txtCarId";
             txtCarId.PasswordChar = '\0';
             txtCarId.PlaceholderText = "Enter Car Id";
@@ -116,7 +117,7 @@
             lblMake.BackColor = Color.White;
             lblMake.Font = new Font("Segoe UI", 9F);
             lblMake.ForeColor = Color.Black;
-            lblMake.Location = new Point(285, 96);
+            lblMake.Location = new Point(286, 101);
             lblMake.Name = "lblMake";
             lblMake.Size = new Size(36, 15);
             lblMake.TabIndex = 29;
@@ -134,7 +135,7 @@
             txtMake.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtMake.Font = new Font("Segoe UI", 9F);
             txtMake.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtMake.Location = new Point(275, 114);
+            txtMake.Location = new Point(276, 119);
             txtMake.Name = "txtMake";
             txtMake.PasswordChar = '\0';
             txtMake.PlaceholderText = "Enter Make";
@@ -150,7 +151,7 @@
             lblPrice.BackColor = Color.White;
             lblPrice.Font = new Font("Segoe UI", 9F);
             lblPrice.ForeColor = Color.Black;
-            lblPrice.Location = new Point(141, 169);
+            lblPrice.Location = new Point(142, 174);
             lblPrice.Name = "lblPrice";
             lblPrice.Size = new Size(59, 15);
             lblPrice.TabIndex = 32;
@@ -168,7 +169,7 @@
             txtDailyRate.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtDailyRate.Font = new Font("Segoe UI", 9F);
             txtDailyRate.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtDailyRate.Location = new Point(132, 187);
+            txtDailyRate.Location = new Point(133, 192);
             txtDailyRate.Name = "txtDailyRate";
             txtDailyRate.PasswordChar = '\0';
             txtDailyRate.PlaceholderText = "Enter Daily Rate";
@@ -178,39 +179,39 @@
             txtDailyRate.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             txtDailyRate.TabIndex = 34;
             // 
-            // lblDescription
+            // lblCarPrice
             // 
-            lblDescription.AutoSize = true;
-            lblDescription.BackColor = Color.White;
-            lblDescription.Font = new Font("Segoe UI", 9F);
-            lblDescription.ForeColor = Color.Black;
-            lblDescription.Location = new Point(285, 169);
-            lblDescription.Name = "lblDescription";
-            lblDescription.Size = new Size(67, 15);
-            lblDescription.TabIndex = 33;
-            lblDescription.Text = "Description";
+            lblCarPrice.AutoSize = true;
+            lblCarPrice.BackColor = Color.White;
+            lblCarPrice.Font = new Font("Segoe UI", 9F);
+            lblCarPrice.ForeColor = Color.Black;
+            lblCarPrice.Location = new Point(286, 174);
+            lblCarPrice.Name = "lblCarPrice";
+            lblCarPrice.Size = new Size(33, 15);
+            lblCarPrice.TabIndex = 33;
+            lblCarPrice.Text = "Price";
             // 
-            // txtDescription
+            // txtCarPrice
             // 
-            txtDescription.BorderColor = Color.White;
-            txtDescription.CustomizableEdges = customizableEdges7;
-            txtDescription.DefaultText = "";
-            txtDescription.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            txtDescription.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            txtDescription.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            txtDescription.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            txtDescription.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtDescription.Font = new Font("Segoe UI", 9F);
-            txtDescription.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtDescription.Location = new Point(276, 187);
-            txtDescription.Name = "txtDescription";
-            txtDescription.PasswordChar = '\0';
-            txtDescription.PlaceholderText = "Enter Description ";
-            txtDescription.SelectedText = "";
-            txtDescription.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            txtDescription.Size = new Size(127, 36);
-            txtDescription.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
-            txtDescription.TabIndex = 35;
+            txtCarPrice.BorderColor = Color.White;
+            txtCarPrice.CustomizableEdges = customizableEdges7;
+            txtCarPrice.DefaultText = "";
+            txtCarPrice.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txtCarPrice.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txtCarPrice.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txtCarPrice.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txtCarPrice.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtCarPrice.Font = new Font("Segoe UI", 9F);
+            txtCarPrice.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtCarPrice.Location = new Point(277, 192);
+            txtCarPrice.Name = "txtCarPrice";
+            txtCarPrice.PasswordChar = '\0';
+            txtCarPrice.PlaceholderText = "Enter Car Price ";
+            txtCarPrice.SelectedText = "";
+            txtCarPrice.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            txtCarPrice.Size = new Size(127, 36);
+            txtCarPrice.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
+            txtCarPrice.TabIndex = 35;
             // 
             // lblModel
             // 
@@ -218,7 +219,7 @@
             lblModel.BackColor = Color.White;
             lblModel.Font = new Font("Segoe UI", 9F);
             lblModel.ForeColor = Color.Black;
-            lblModel.Location = new Point(428, 96);
+            lblModel.Location = new Point(429, 101);
             lblModel.Name = "lblModel";
             lblModel.Size = new Size(41, 15);
             lblModel.TabIndex = 36;
@@ -236,7 +237,7 @@
             txtModel.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtModel.Font = new Font("Segoe UI", 9F);
             txtModel.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtModel.Location = new Point(418, 114);
+            txtModel.Location = new Point(419, 119);
             txtModel.Name = "txtModel";
             txtModel.PasswordChar = '\0';
             txtModel.PlaceholderText = "Enter Model";
@@ -252,7 +253,7 @@
             lblYear.BackColor = Color.White;
             lblYear.Font = new Font("Segoe UI", 9F);
             lblYear.ForeColor = Color.Black;
-            lblYear.Location = new Point(573, 96);
+            lblYear.Location = new Point(574, 101);
             lblYear.Name = "lblYear";
             lblYear.Size = new Size(29, 15);
             lblYear.TabIndex = 37;
@@ -270,7 +271,7 @@
             txtYear.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtYear.Font = new Font("Segoe UI", 9F);
             txtYear.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtYear.Location = new Point(564, 114);
+            txtYear.Location = new Point(565, 119);
             txtYear.Name = "txtYear";
             txtYear.PasswordChar = '\0';
             txtYear.PlaceholderText = "Enter Year";
@@ -291,7 +292,7 @@
             btnCarSave.FillColor = Color.FromArgb(59, 216, 94);
             btnCarSave.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnCarSave.ForeColor = Color.White;
-            btnCarSave.Location = new Point(619, 187);
+            btnCarSave.Location = new Point(620, 192);
             btnCarSave.Name = "btnCarSave";
             btnCarSave.ShadowDecoration.CustomizableEdges = customizableEdges14;
             btnCarSave.Size = new Size(72, 29);
@@ -310,7 +311,7 @@
             btnCarDelete.FillColor = Color.FromArgb(230, 0, 0);
             btnCarDelete.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnCarDelete.ForeColor = Color.White;
-            btnCarDelete.Location = new Point(530, 187);
+            btnCarDelete.Location = new Point(531, 192);
             btnCarDelete.Name = "btnCarDelete";
             btnCarDelete.ShadowDecoration.CustomizableEdges = customizableEdges16;
             btnCarDelete.Size = new Size(72, 29);
@@ -329,7 +330,7 @@
             btnUpload.FillColor = Color.FromArgb(59, 216, 94);
             btnUpload.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnUpload.ForeColor = Color.White;
-            btnUpload.Location = new Point(13, 202);
+            btnUpload.Location = new Point(13, 207);
             btnUpload.Name = "btnUpload";
             btnUpload.ShadowDecoration.CustomizableEdges = customizableEdges18;
             btnUpload.Size = new Size(104, 21);
@@ -339,9 +340,9 @@
             // 
             // carImgBox
             // 
-            carImgBox.Location = new Point(9, 73);
+            carImgBox.Location = new Point(9, 63);
             carImgBox.Name = "carImgBox";
-            carImgBox.Size = new Size(114, 123);
+            carImgBox.Size = new Size(114, 138);
             carImgBox.SizeMode = PictureBoxSizeMode.Zoom;
             carImgBox.TabIndex = 45;
             carImgBox.TabStop = false;
@@ -438,12 +439,23 @@
             mySqlCommand1.EnableCaching = false;
             mySqlCommand1.Transaction = null;
             // 
+            // checkVehicleSellOrNo
+            // 
+            checkVehicleSellOrNo.AutoSize = true;
+            checkVehicleSellOrNo.Location = new Point(142, 63);
+            checkVehicleSellOrNo.Name = "checkVehicleSellOrNo";
+            checkVehicleSellOrNo.Size = new Size(84, 19);
+            checkVehicleSellOrNo.TabIndex = 52;
+            checkVehicleSellOrNo.Text = "Sell Vehicle";
+            checkVehicleSellOrNo.UseVisualStyleBackColor = true;
+            // 
             // frmManageCarDetails
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(703, 430);
+            Controls.Add(checkVehicleSellOrNo);
             Controls.Add(searchIcon);
             Controls.Add(txtSearch);
             Controls.Add(carImgBox);
@@ -457,8 +469,8 @@
             Controls.Add(txtYear);
             Controls.Add(lblPrice);
             Controls.Add(txtDailyRate);
-            Controls.Add(lblDescription);
-            Controls.Add(txtDescription);
+            Controls.Add(lblCarPrice);
+            Controls.Add(txtCarPrice);
             Controls.Add(lblCarId);
             Controls.Add(txtCarId);
             Controls.Add(lblMake);
@@ -480,8 +492,8 @@
         private Guna.UI2.WinForms.Guna2TextBox txtMake;
         private Label lblPrice;
         private Guna.UI2.WinForms.Guna2TextBox txtDailyRate;
-        private Label lblDescription;
-        private Guna.UI2.WinForms.Guna2TextBox txtDescription;
+        private Label lblCarPrice;
+        private Guna.UI2.WinForms.Guna2TextBox txtCarPrice;
         private Label lblModel;
         private Guna.UI2.WinForms.Guna2TextBox txtModel;
         private Label lblYear;
@@ -494,5 +506,6 @@
         private PictureBox searchIcon;
         private Guna.UI2.WinForms.Guna2DataGridView tblCarDetails;
         private MySql.Data.MySqlClient.MySqlCommand mySqlCommand1;
+        private CheckBox checkVehicleSellOrNo;
     }
 }

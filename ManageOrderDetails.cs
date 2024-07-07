@@ -10,6 +10,7 @@ namespace CarManagementSystem
     {
         private BindingList<Customer> customers = new BindingList<Customer>();
         private BindingList<Carpart> carParts = new BindingList<Carpart>();
+        private BindingList<Car> cars = new BindingList<Car>();
         private BindingList<OrderDetail> orderDetails = new BindingList<OrderDetail>();
         private decimal totalOrderPrice = 0.00m;
 
@@ -32,6 +33,7 @@ namespace CarManagementSystem
         {
             cmbCustId.SelectedIndexChanged += CmbCustId_SelectedIndexChanged;
             cmbProductId.SelectedIndexChanged += CmbProductId_SelectedIndexChanged;
+            cmbVehicleId.SelectedIndexChanged += CmbVehicleId_SelectedIndexChanged;
             txtOederQty.TextChanged += TxtOrderQty_TextChanged; // Event handler for orderQty validation
             searchIcon.Click += btnSearch_Click;
             btnPurchase.Click += btnPurchaseOrder_Click;
@@ -53,12 +55,19 @@ namespace CarManagementSystem
                 {
                     LoadCustomers(connection);
                     LoadCarParts(connection);
+                    LoadCars(connection);
                 }
             }
             catch (Exception ex)
             {
                 ShowErrorMessage($"An error occurred: {ex.Message}");
             }
+        }
+
+        private void LoadCars(MySqlConnection connection)
+        {
+            string queryCar = "SELECT carId, make, model, year, price, qtyOnHand FROM car WHERE sellOrRent = 0";
+            LoadDataToComboBox(queryCar, connection, cmbVehicleId, cars);
         }
 
         private void LoadCustomers(MySqlConnection connection)
@@ -117,6 +126,18 @@ namespace CarManagementSystem
                     QtyOnHand = reader["qtyonhand"].ToString()
                 };
             }
+            else if (typeof(T) == typeof(Car))
+            {
+                return (T)(object)new Car
+                {
+                    CarId = reader["carId"].ToString(),
+                    Make = reader["make"].ToString(),
+                    Model = reader["model"].ToString(),
+                    Year = reader["year"].ToString(),
+                    Price = reader["price"].ToString(),
+                    QtyOnHand = reader["qtyOnHand"].ToString()
+                };
+            }
 
             return default(T);
         }
@@ -140,6 +161,7 @@ namespace CarManagementSystem
             txtEmail.Enabled = false;
             txtOrderId.Enabled = false;
             cmbProductId.Enabled = false;
+            cmbVehicleId.Enabled = false;
             txtOederQty.Enabled = false;
             btnAdd.Enabled = false;
             txtTotal.Enabled = false;
@@ -152,6 +174,7 @@ namespace CarManagementSystem
         private void EnableProductSection()
         {
             cmbProductId.Enabled = true;
+            cmbVehicleId.Enabled = true;
             txtOederQty.Enabled = true;
         }
 
@@ -182,6 +205,7 @@ namespace CarManagementSystem
         {
             if (cmbProductId.SelectedItem != null)
             {
+                cmbVehicleId.Enabled = false;
                 string selectedPartId = cmbProductId.SelectedItem.ToString();
                 var selectedPart = carParts.FirstOrDefault(p => p.PartId == selectedPartId);
 
@@ -205,6 +229,34 @@ namespace CarManagementSystem
             txtQty.Text = part.QtyOnHand;
         }
 
+        private void CmbVehicleId_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbVehicleId.SelectedItem != null)
+            {
+                cmbProductId.Enabled = false;
+                string selectedCarId = cmbVehicleId.SelectedItem.ToString();
+                var selectedCar = cars.FirstOrDefault(p => p.CarId == selectedCarId);
+
+                if (selectedCar != null)
+                {
+                    PopulateCarFields(selectedCar);
+                    btnAdd.Enabled = true;
+                    txtTotal.Enabled = true;
+                    txtCash.Enabled = true;
+                    txtBalance.Enabled = true;
+                    btnClear.Enabled = true;
+                }
+            }
+        }
+
+        private void PopulateCarFields(Car car)
+        {
+            txtPartName.Text = car.Make;
+            txtModel.Text = car.Model;
+            txtPrice.Text = car.Price;
+            txtQty.Text = car.QtyOnHand;
+        }
+
         private void TxtOrderQty_TextChanged(object sender, EventArgs e)
         {
             ValidateOrderQuantity();
@@ -226,10 +278,24 @@ namespace CarManagementSystem
             if (int.TryParse(txtOederQty.Text, out int orderQty) && orderQty > 0)
             {
                 string partId = cmbProductId.SelectedItem?.ToString();
+                string carId = cmbVehicleId.SelectedItem?.ToString();
 
-                if (IsValidOrderInput(partId, txtOederQty.Text, out orderQty))
+                if (IsValidOrderInput(partId, carId, txtOederQty.Text, out orderQty))
                 {
-                    AddOrderDetail(partId, orderQty);
+                    if (!string.IsNullOrEmpty(partId))
+                    {
+                        AddOrderDetail(partId, orderQty, true); // Add order detail for a part
+                    }
+                    else if (!string.IsNullOrEmpty(carId))
+                    {
+                        AddOrderDetail(carId, orderQty, false); // Add order detail for a car
+                    }
+                    else
+                    {
+                        ShowErrorMessage("Please select a product or vehicle.");
+                        return;
+                    }
+
                     UpdateOrderDetailsTable();
                     ClearProductSelection();
                 }
@@ -244,29 +310,31 @@ namespace CarManagementSystem
             }
         }
 
-        private bool IsValidOrderInput(string partId, string orderQtyText, out int orderQty)
+
+        private bool IsValidOrderInput(string partId, string carId, string orderQtyText, out int orderQty)
         {
             orderQty = 0;
 
-            if (string.IsNullOrEmpty(partId) || string.IsNullOrEmpty(orderQtyText) || !int.TryParse(orderQtyText, out orderQty))
+            if (string.IsNullOrEmpty(orderQtyText) || !int.TryParse(orderQtyText, out orderQty))
             {
                 ShowWarningMessage("Please ensure all product details are selected and filled.");
                 return false;
             }
 
-            var selectedPart = carParts.FirstOrDefault(p => p.PartId == partId);
-            if (selectedPart == null || orderQty > int.Parse(selectedPart.QtyOnHand))
+            /*var selectedPart = carParts.FirstOrDefault(p => p.PartId == partId);
+            var selectedCar = carParts.FirstOrDefault(p => p.PartId == carId);
+            if (selectedPart == null || orderQty > int.Parse(selectedPart.QtyOnHand) || selectedCar == null || orderQty > int.Parse(selectedCar.QtyOnHand))
             {
                 ShowWarningMessage("Invalid product selection or quantity.");
                 return false;
-            }
+            }*/
 
             return true;
         }
 
-        private void AddOrderDetail(string partId, int orderQty)
+        private void AddOrderDetail(string productIdOrVehicleId, int orderQty, bool isProductId)
         {
-            var existingOrderDetail = orderDetails.FirstOrDefault(od => od.PartId == partId);
+            var existingOrderDetail = orderDetails.FirstOrDefault(od => isProductId ? od.PartId == productIdOrVehicleId : od.PartId == productIdOrVehicleId);
 
             if (existingOrderDetail != null)
             {
@@ -276,26 +344,50 @@ namespace CarManagementSystem
             }
             else
             {
-                // Add a new order detail
-                var selectedPart = carParts.First(p => p.PartId == partId);
-                decimal unitPrice = decimal.Parse(selectedPart.UnitPrice);
-                decimal totalPrice = unitPrice * orderQty;
-                totalOrderPrice += totalPrice;
-
-                orderDetails.Add(new OrderDetail
+                if (isProductId)
                 {
-                    PartId = partId,
-                    PartName = selectedPart.PartName,
-                    Model = selectedPart.Model,
-                    UnitPrice = unitPrice,
-                    OrderQty = orderQty,
-                    TotalPrice = totalPrice
-                });
+                    // Add a new order detail for a part
+                    var selectedPart = carParts.First(p => p.PartId == productIdOrVehicleId);
+                    decimal unitPrice = decimal.Parse(selectedPart.UnitPrice);
+                    decimal totalPrice = unitPrice * orderQty;
+
+                    totalOrderPrice += totalPrice;
+
+                    orderDetails.Add(new OrderDetail
+                    {
+                        PartId = productIdOrVehicleId,
+                        PartName = selectedPart.PartName,
+                        Model = selectedPart.Model,
+                        UnitPrice = unitPrice,
+                        OrderQty = orderQty,
+                        TotalPrice = totalPrice
+                    });
+                }
+                else
+                {
+                    // Add a new order detail for a car
+                    var selectedCar = cars.First(c => c.CarId == productIdOrVehicleId);
+                    decimal unitPrice = decimal.Parse(selectedCar.Price);
+                    decimal totalPrice = unitPrice * orderQty;
+
+                    totalOrderPrice += totalPrice;
+
+                    orderDetails.Add(new OrderDetail
+                    {
+                        PartId = productIdOrVehicleId,
+                        PartName = selectedCar.Make,
+                        Model = selectedCar.Model,
+                        UnitPrice = unitPrice,
+                        OrderQty = orderQty,
+                        TotalPrice = totalPrice
+                    });
+                }
             }
 
             // Update the total order price
             totalOrderPrice = orderDetails.Sum(od => od.TotalPrice);
         }
+
 
         private void UpdateOrderDetailsTable()
         {
@@ -314,6 +406,7 @@ namespace CarManagementSystem
         private void ClearProductSelection()
         {
             cmbProductId.SelectedIndex = -1;
+            cmbVehicleId.SelectedIndex = -1;
             txtPartName.Text = "";
             txtModel.Text = "";
             txtPrice.Text = "";
@@ -363,6 +456,7 @@ namespace CarManagementSystem
                 {
                     InsertOrderDetail(orderId, detail);
                     UpdateCarPartQuantity(detail.PartId, detail.OrderQty);
+                    UpdateCarQuantity(detail.PartId, detail.OrderQty);
                 }
 
                 ShowInfoMessage($"Order successfully purchased! Balance: {balance:F2}");
@@ -393,6 +487,12 @@ namespace CarManagementSystem
         {
             string queryUpdateCarPart = "UPDATE carpart SET qtyonhand = qtyonhand - @orderQty WHERE partId = @partId";
             ExecuteNonQuery(queryUpdateCarPart, ("@orderQty", orderQty), ("@partId", partId));
+        }
+
+        private void UpdateCarQuantity(string carId, int orderQty)
+        {
+            string queryUpdateCar = "UPDATE car SET qtyonhand = 0 WHERE carId = @carId";
+            ExecuteNonQuery(queryUpdateCar, ("@carId", carId));
         }
 
         private void ExecuteNonQuery(string query, params (string, object)[] parameters)
@@ -504,11 +604,41 @@ namespace CarManagementSystem
             txtPhoneNo.Text = "";
             txtEmail.Text = "";
             cmbProductId.SelectedIndex = -1;
+            cmbVehicleId.SelectedIndex = -1;
             txtPartName.Text = "";
             txtModel.Text = "";
             txtPrice.Text = "";
             txtQty.Text = "";
             txtOederQty.Text = "";
+            txtCash.Text = "";
+            txtTotal.Text = "";
+            orderDetails.Clear();
+            tblOrderDetails.DataSource = null;
+            totalOrderPrice = 0.00m;
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+
+            cmbCustId.Text = "";
+            txtFirstName.Text = "";
+            txtLastName.Text = "";
+            txtPhoneNo.Text = "";
+            txtEmail.Text = "";
+
+            cmbCustId.SelectedIndex = -1;
+            txtFirstName.Text = "";
+            txtLastName.Text = "";
+            txtPhoneNo.Text = "";
+            txtEmail.Text = "";
+            cmbProductId.SelectedIndex = -1;
+            cmbVehicleId.SelectedIndex = -1;
+            txtPartName.Text = "";
+            txtModel.Text = "";
+            txtPrice.Text = "";
+            txtQty.Text = "";
+            txtOederQty.Text = "";
+            txtBalance.Text = "";
             txtCash.Text = "";
             txtTotal.Text = "";
             orderDetails.Clear();
@@ -545,32 +675,14 @@ namespace CarManagementSystem
             public decimal TotalPrice { get; set; }
         }
 
-        private void btnClear_Click(object sender, EventArgs e)
+        public class Car
         {
-
-            cmbCustId.Text = "";
-            txtFirstName.Text = "";
-            txtLastName.Text = "";
-            txtPhoneNo.Text = "";
-            txtEmail.Text = "";
-
-            cmbCustId.SelectedIndex = -1;
-            txtFirstName.Text = "";
-            txtLastName.Text = "";
-            txtPhoneNo.Text = "";
-            txtEmail.Text = "";
-            cmbProductId.SelectedIndex = -1;
-            txtPartName.Text = "";
-            txtModel.Text = "";
-            txtPrice.Text = "";
-            txtQty.Text = "";
-            txtOederQty.Text = "";
-            txtBalance.Text = "";
-            txtCash.Text = "";
-            txtTotal.Text = "";
-            orderDetails.Clear();
-            tblOrderDetails.DataSource = null;
-            totalOrderPrice = 0.00m;
+            public string CarId { get; set; }
+            public string Make { get; set; }
+            public string Model { get; set; }
+            public string Year { get; set; }
+            public string Price { get; set; }
+            public string QtyOnHand { get; set; }
         }
     }
 }
