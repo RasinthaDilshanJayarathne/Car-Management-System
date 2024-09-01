@@ -40,7 +40,7 @@ namespace CarManagementSystem
             UpdateDashboard("MANAGE ORDER DETAILS", new frmManageOrderDetails());
 
         private void getAllReports(object sender, EventArgs e) =>
-            UpdateDashboard("REPORT GENERATION", new frmManageCustomerDetails());
+            UpdateDashboard("REPORT GENERATION", new frmManageCustomerReports());
 
         private void getManageCarRentalDetails(object sender, EventArgs e) =>
             UpdateDashboard("MANAGE CAR RENTAL DETAILS", new frmManageCarRentalDetails());

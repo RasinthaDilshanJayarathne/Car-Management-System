@@ -20,9 +20,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Corrected.Microsoft.ReportingServices.ReportViewerControl.Winforms" Version="150.1358.0" />
     <PackageReference Include="Guna.UI2.WinForms" Version="2.0.4.6" />
+    <PackageReference Include="Microsoft.ReportingServices.ReportViewerControl.Winforms" Version="150.1652.0" />
     <PackageReference Include="MySql.Data" Version="8.4.0" />
     <PackageReference Include="NuGet.Frameworks" Version="6.10.0" />
+    <PackageReference Include="ReportViewerCore.WinForms" Version="15.1.22" />
   </ItemGroup>
 
   <ItemGroup>

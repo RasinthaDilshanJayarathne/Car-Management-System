@@ -491,7 +491,7 @@ namespace CarManagementSystem
 
         private void UpdateCarQuantity(string carId, int orderQty)
         {
-            string queryUpdateCar = "UPDATE car SET qtyonhand = 0 WHERE carId = @carId";
+            string queryUpdateCar = "UPDATE car SET qtyonhand = 0, availability = 'Unavailable' WHERE carId = @carId";
             ExecuteNonQuery(queryUpdateCar, ("@carId", carId));
         }
 
@@ -663,11 +663,14 @@ namespace CarManagementSystem
             public string UnitPrice { get; set; }
             public string Description { get; set; }
             public string QtyOnHand { get; set; }
+            public string ImagePath { get; set; }
         }
 
         public class OrderDetail
         {
             public string PartId { get; set; }
+            public string OrderDetailId { get; set; }
+            public string OrderId { get; set; }
             public string PartName { get; set; }
             public string Model { get; set; }
             public decimal UnitPrice { get; set; }
@@ -683,6 +686,7 @@ namespace CarManagementSystem
             public string Year { get; set; }
             public string Price { get; set; }
             public string QtyOnHand { get; set; }
+            public string ImagePath { get; set; }
         }
     }
 }

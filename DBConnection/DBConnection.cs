@@ -11,7 +11,6 @@ namespace CarManagementSystem.DBConnection
     {
         public MySqlConnection connection = new MySqlConnection("server=localhost; port=3306; username=root; password=; database=abcCarService");
 
-        //public MySqlConnection connection = new MySqlConnection("server=localhost; port=3306; username=root; database=abcCarService");
 
         public void OpenConnection()
         {

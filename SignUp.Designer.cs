@@ -130,13 +130,14 @@
             txtConPassword.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
             txtConPassword.Location = new Point(169, 233);
             txtConPassword.Name = "txtConPassword";
-            txtConPassword.PasswordChar = '\0';
+            txtConPassword.PasswordChar = '●';
             txtConPassword.PlaceholderText = "Enter Password ";
             txtConPassword.SelectedText = "";
             txtConPassword.ShadowDecoration.CustomizableEdges = customizableEdges2;
             txtConPassword.Size = new Size(143, 36);
             txtConPassword.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             txtConPassword.TabIndex = 31;
+            txtConPassword.UseSystemPasswordChar = true;
             // 
             // txtPassword
             // 
@@ -152,13 +153,14 @@
             txtPassword.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
             txtPassword.Location = new Point(14, 233);
             txtPassword.Name = "txtPassword";
-            txtPassword.PasswordChar = '\0';
+            txtPassword.PasswordChar = '●';
             txtPassword.PlaceholderText = "Enter Password";
             txtPassword.SelectedText = "";
             txtPassword.ShadowDecoration.CustomizableEdges = customizableEdges4;
             txtPassword.Size = new Size(143, 36);
             txtPassword.Style = Guna.UI2.WinForms.Enums.TextBoxStyle.Material;
             txtPassword.TabIndex = 30;
+            txtPassword.UseSystemPasswordChar = true;
             // 
             // txtEmail
             // 

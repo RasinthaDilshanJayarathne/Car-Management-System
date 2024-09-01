@@ -77,6 +77,8 @@
             guna2GradientPanel2 = new Guna.UI2.WinForms.Guna2GradientPanel();
             btnAdd = new Guna.UI2.WinForms.Guna2Button();
             imgProductBox = new PictureBox();
+            cmbVehicleId = new ComboBox();
+            lblVehicleId = new Label();
             ((System.ComponentModel.ISupportInitialize)searchIcon).BeginInit();
             guna2GradientPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)tblOrderDetails).BeginInit();
@@ -101,7 +103,7 @@
             txtPrice.BackColor = Color.White;
             txtPrice.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtPrice.ForeColor = Color.Gray;
-            txtPrice.Location = new Point(122, 77);
+            txtPrice.Location = new Point(122, 125);
             txtPrice.Name = "txtPrice";
             txtPrice.Size = new Size(0, 20);
             txtPrice.TabIndex = 71;
@@ -112,7 +114,7 @@
             lblPrice.BackColor = Color.White;
             lblPrice.Font = new Font("Segoe UI", 9F);
             lblPrice.ForeColor = Color.Black;
-            lblPrice.Location = new Point(123, 56);
+            lblPrice.Location = new Point(123, 104);
             lblPrice.Name = "lblPrice";
             lblPrice.Size = new Size(33, 15);
             lblPrice.TabIndex = 70;
@@ -124,7 +126,7 @@
             txtModel.BackColor = Color.White;
             txtModel.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtModel.ForeColor = Color.Gray;
-            txtModel.Location = new Point(11, 77);
+            txtModel.Location = new Point(122, 78);
             txtModel.Name = "txtModel";
             txtModel.Size = new Size(0, 20);
             txtModel.TabIndex = 68;
@@ -135,7 +137,7 @@
             txtPartName.BackColor = Color.White;
             txtPartName.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtPartName.ForeColor = Color.Gray;
-            txtPartName.Location = new Point(122, 29);
+            txtPartName.Location = new Point(11, 78);
             txtPartName.Name = "txtPartName";
             txtPartName.Size = new Size(0, 20);
             txtPartName.TabIndex = 64;
@@ -149,7 +151,6 @@
             searchIcon.SizeMode = PictureBoxSizeMode.Zoom;
             searchIcon.TabIndex = 72;
             searchIcon.TabStop = false;
-            searchIcon.Click += btnSearch_Click;
             // 
             // guna2GradientPanel3
             // 
@@ -355,7 +356,7 @@
             lblModel.BackColor = Color.White;
             lblModel.Font = new Font("Segoe UI", 9F);
             lblModel.ForeColor = Color.Black;
-            lblModel.Location = new Point(12, 56);
+            lblModel.Location = new Point(123, 57);
             lblModel.Name = "lblModel";
             lblModel.Size = new Size(41, 15);
             lblModel.TabIndex = 67;
@@ -433,7 +434,7 @@
             lblName.BackColor = Color.White;
             lblName.Font = new Font("Segoe UI", 9F);
             lblName.ForeColor = Color.Black;
-            lblName.Location = new Point(123, 8);
+            lblName.Location = new Point(12, 57);
             lblName.Name = "lblName";
             lblName.Size = new Size(39, 15);
             lblName.TabIndex = 42;
@@ -451,7 +452,7 @@
             txtOederQty.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtOederQty.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtOederQty.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtOederQty.Location = new Point(123, 121);
+            txtOederQty.Location = new Point(11, 170);
             txtOederQty.Margin = new Padding(3, 4, 3, 4);
             txtOederQty.Name = "txtOederQty";
             txtOederQty.PasswordChar = '\0';
@@ -480,7 +481,7 @@
             lblOrderQty.BackColor = Color.White;
             lblOrderQty.Font = new Font("Segoe UI", 9F);
             lblOrderQty.ForeColor = Color.Black;
-            lblOrderQty.Location = new Point(122, 104);
+            lblOrderQty.Location = new Point(10, 153);
             lblOrderQty.Name = "lblOrderQty";
             lblOrderQty.Size = new Size(59, 15);
             lblOrderQty.TabIndex = 46;
@@ -492,6 +493,8 @@
             guna2GradientPanel2.BorderColor = Color.Black;
             guna2GradientPanel2.BorderRadius = 5;
             guna2GradientPanel2.BorderThickness = 1;
+            guna2GradientPanel2.Controls.Add(cmbVehicleId);
+            guna2GradientPanel2.Controls.Add(lblVehicleId);
             guna2GradientPanel2.Controls.Add(txtQty);
             guna2GradientPanel2.Controls.Add(txtPrice);
             guna2GradientPanel2.Controls.Add(lblPrice);
@@ -539,6 +542,26 @@
             imgProductBox.SizeMode = PictureBoxSizeMode.Zoom;
             imgProductBox.TabIndex = 0;
             imgProductBox.TabStop = false;
+            // 
+            // cmbVehicleId
+            // 
+            cmbVehicleId.FormattingEnabled = true;
+            cmbVehicleId.Location = new Point(122, 26);
+            cmbVehicleId.Name = "cmbVehicleId";
+            cmbVehicleId.Size = new Size(78, 23);
+            cmbVehicleId.TabIndex = 76;
+            // 
+            // lblVehicleId
+            // 
+            lblVehicleId.AutoSize = true;
+            lblVehicleId.BackColor = Color.White;
+            lblVehicleId.Font = new Font("Segoe UI", 9F);
+            lblVehicleId.ForeColor = Color.Black;
+            lblVehicleId.Location = new Point(122, 8);
+            lblVehicleId.Name = "lblVehicleId";
+            lblVehicleId.Size = new Size(57, 15);
+            lblVehicleId.TabIndex = 75;
+            lblVehicleId.Text = "Vehicle Id";
             // 
             // frmCustomerOrderDetails
             // 
@@ -602,5 +625,7 @@
         private Guna.UI2.WinForms.Guna2GradientPanel guna2GradientPanel2;
         private Guna.UI2.WinForms.Guna2Button btnAdd;
         private PictureBox imgProductBox;
+        private ComboBox cmbVehicleId;
+        private Label lblVehicleId;
     }
 }
